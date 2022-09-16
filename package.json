@@ -7,12 +7,12 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "chart.js": "^3.9.1",
+    "chart.js": "^2.9.4",
     "chartjs-adapter-luxon": "^1.2.0",
     "luxon": "^3.0.3",
     "moment": "^2.29.4",
     "react": "^18.2.0",
-    "react-chartjs-2": "^4.3.1",
+    "react-chartjs-2": "^2.11.2",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
@@ -42,7 +42,7 @@
     ]
   },
   "devDependencies": {
-    "chartjs-plugin-streaming": "^2.0.0",
+    "chartjs-plugin-streaming": "^1.9.0",
     "faker": "^5.5.3"
   }
 }
