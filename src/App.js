@@ -1,7 +1,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import "chartjs-plugin-streaming";
-import DataPoints from "./components/ShowData/DataPoints";
-import ChartComponent from "./components/ChartComponent";
+import ListDataComponent from "./components/ListDataComponent/ListDataComponent";
+import ChartComponent from "./components/ChartComponent/ChartComponent";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -16,7 +16,7 @@ const App = () => {
   return (
     <>
       <ChartComponent onReceiveData={receiveDataHandler}></ChartComponent>
-      <DataPoints data={data}></DataPoints>
+      <ListDataComponent data={data}></ListDataComponent>
     </>
   );
 };
