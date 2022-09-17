@@ -16,7 +16,7 @@ const App = () => {
       // return [...prevData, ...data];
       return [...data];
     });
-    console.log(timerStart);
+
     setTimerStart(timerStart);
   }, []);
 
