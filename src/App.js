@@ -3,6 +3,8 @@ import "chartjs-plugin-streaming";
 import ListDataComponent from "./components/ListDataComponent/ListDataComponent";
 import ChartComponent from "./components/ChartComponent/ChartComponent";
 
+import styles from "./App.module.css";
+
 const App = () => {
   const [data, setData] = useState([]);
   const receiveDataHandler = useCallback((data) => {

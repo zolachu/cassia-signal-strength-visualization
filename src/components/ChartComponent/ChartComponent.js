@@ -5,6 +5,8 @@ import { Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../chartConfig/config";
 
+import styles from "./ChartComponent.module.css";
+
 const ChartComponent = (props) => {
   const toggleRef = useRef(false);
   const chartRef = useRef();
@@ -53,7 +55,7 @@ const ChartComponent = (props) => {
 
   return (
     <>
-      <div class="chart-container">
+      <div className={styles["chart-container"]}>
         <Line
           ref={chartRef}
           datasetKeyProvider={datasetKeyProvider}
@@ -63,7 +65,6 @@ const ChartComponent = (props) => {
       </div>
 
       <Button text="aa" onClick={clickHandler} />
-      {/* <DataPoints array={[...arrayRef.current]}>""</DataPoints> */}
     </>
   );
 };

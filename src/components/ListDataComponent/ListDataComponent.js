@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import styles from "./ListDataComponent.module.css";
 
 const DataPoints = (props) => {
   let sum = 0;
@@ -15,6 +16,7 @@ const DataPoints = (props) => {
   const max = arrayY.length > 0 ? Math.min(...arrayY) : 0;
   const average =
     arrayY.length > 0 ? arrayY.reduce((a, b) => a + b, 0) / arrayY.length : 0;
+  average.toFixed(4);
   const count = arrayY.length > 0 ? arrayY.length : 0;
   return (
     <>
