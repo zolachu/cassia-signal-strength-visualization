@@ -14,7 +14,6 @@ const ChartComponent = (props) => {
 
   const clickToggleHandler = () => {
     toggleRef.current = !toggleRef.current;
-
     props.onReceiveData(arrayRef.current, toggleRef.current);
   };
 
@@ -69,7 +68,14 @@ const ChartComponent = (props) => {
           },
         },
       ],
-      yAxes: [{}],
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: "Signal Strength",
+          },
+        },
+      ],
     },
   };
 

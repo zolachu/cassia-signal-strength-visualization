@@ -24,19 +24,17 @@ const onFresh = async (ref, arrayRef, shouldStop, chart) => {
     const data = await response.json();
 
     chart.data.datasets.forEach(function (dataset) {
-      dataset.data.push({
+      const dataPoint = {
         x: Date.now(),
         y: (data.id % 50) + 50,
-      });
+        distance: 5,
+      };
+      dataset.data.push(dataPoint);
       dataset.segment.backgroundColor = chartColors.yellow;
 
       //if button is toggled, push new [x,y] point to arrayRef.current
       if (ref.current) {
-        arrayRef.current.push({
-          x: Date.now(),
-          y: data.id % 100,
-          distance: 5,
-        });
+        arrayRef.current.push(dataPoint);
       }
     });
   } catch (error) {

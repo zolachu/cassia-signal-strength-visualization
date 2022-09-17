@@ -7,7 +7,7 @@ const DataPoints = (props) => {
   const list = props.data.map((point) => {
     sum += point.y;
     arrayY.push(point.y);
-    const pointXY = `${new Date(point.x)} ${point.y}`;
+    const pointXY = `${new Date(point.x)} ${point.y} ${point.distance}`;
     return <li key={Math.random()}>{pointXY}</li>;
   });
 
@@ -21,7 +21,7 @@ const DataPoints = (props) => {
     <div>
       <div>MIN: {min}</div>
       <div>MAX: {max}</div>
-      <div>AVERAGE: {average}</div>
+      <div>AVERAGE: {average.toFixed(2)}</div>
       <div>COUNT: {count}</div>
       <ul>{list}</ul>
     </div>
