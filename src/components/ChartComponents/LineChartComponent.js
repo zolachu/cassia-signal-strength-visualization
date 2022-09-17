@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "chartjs-plugin-streaming";
-import ToggleButton from "../UI/ToggleButton";
+import RecordButton from "../UI/RecordButton";
 import { Bar, Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../chartConfig/configLine";
@@ -104,7 +104,7 @@ const ChartComponent = (props) => {
         />
       </div>
       <div className="actions">
-        <ToggleButton onClick={clickToggleHandler} disable={props.shouldStop} />
+        <RecordButton onClick={clickToggleHandler} disable={props.shouldStop} />
         <label htmlFor="inputDistance">Distance</label>
         <input
           type="number"

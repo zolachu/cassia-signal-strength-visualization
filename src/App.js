@@ -3,9 +3,11 @@ import "chartjs-plugin-streaming";
 import ListDataComponent from "./components/ListDataComponent/ListDataComponent";
 import ChartComponent from "./components/ChartComponents/LineChartComponent";
 import ElapsedTimer from "./components/UI/Timer";
-import ToggleButton from "./components/UI/ToggleButton";
+import ToggleButton from "./components/UI/RecordButton";
 import Card from "./components/UI/Card/Card";
 import BarChartComponent from "./components/ChartComponents/BarChartComponent";
+import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
+import PauseIcon from "@mui/icons-material/Pause";
 
 import styles from "./App.module.css";
 
@@ -34,11 +36,15 @@ const App = () => {
       <div className={styles.border}>
         <div className={styles.container}>
           <div className={styles.leftContainer}>
-            <Card className={styles.closeLiveChart}>
+            <div className={styles.closeLiveChart}>
               <button className={styles.stopButton} onClick={stopButtonHandler}>
                 {stopButtonName}
+                {stop && (
+                  <PlayCircleFilledIcon className={styles.closeButton} />
+                )}
+                {!stop && <PauseIcon />}
               </button>
-            </Card>
+            </div>
             <Card className={styles.chart}>
               <ChartComponent
                 onReceiveData={receiveDataHandler}
@@ -46,14 +52,14 @@ const App = () => {
               ></ChartComponent>
             </Card>
 
-            <Card className={styles.timerContainer}>
+            <div className={styles.timerContainer}>
               <div className={styles.timerCircle}>
                 <ElapsedTimer
                   timer={timerStart}
                   shouldStop={stop}
                 ></ElapsedTimer>
               </div>
-            </Card>
+            </div>
           </div>
 
           <div className={styles.rightContainer}>
