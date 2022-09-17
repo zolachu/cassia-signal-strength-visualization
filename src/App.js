@@ -9,7 +9,8 @@ const App = () => {
     console.log(data);
 
     setData((prevData) => {
-      return [...prevData, ...data];
+      // return [...prevData, ...data];
+      return [...data];
     });
   }, []);
   return (
