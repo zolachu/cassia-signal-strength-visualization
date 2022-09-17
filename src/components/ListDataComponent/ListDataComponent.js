@@ -3,6 +3,8 @@ import styles from "./ListDataComponent.module.css";
 import SingleDataComponent from "../SingleDataComponent/SingleDataComponent";
 
 const DataPoints = (props) => {
+  const fivesData = props.data.filter((point) => point.distance === 5);
+
   let sum = 0;
   const arrayY = [];
   const list = props.data.map((point) => {

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 const ToggleButton = (props) => {
-  const [isToggled, setIsToggled] = useState("Start");
+  const [isToggled, setIsToggled] = useState("RECORD");
 
   function clickHandler() {
     setIsToggled((prevButtonState) => {
-      return prevButtonState === "Start" ? "End" : "Start";
+      return prevButtonState === "RECORD" ? "STOP" : "RECORD";
     });
     props.onClick();
   }

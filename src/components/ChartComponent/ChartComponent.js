@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import "chartjs-plugin-streaming";
 import ToggleButton from "../UI/ToggleButton";
-import { Line } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../chartConfig/config";
 
@@ -38,7 +38,7 @@ const ChartComponent = (props) => {
   const options = {
     plugins: {
       streaming: {
-        frameRate: 5, // chart is drawn 5 times every second
+        // frameRate: 5, // chart is drawn 5 times every second
       },
       legend: {
         labels: {
@@ -65,6 +65,9 @@ const ChartComponent = (props) => {
               props.shouldStop,
               inputRef
             ),
+
+            duration: 2000,
+            refresh: 100,
             delay: 2000,
           },
         },
