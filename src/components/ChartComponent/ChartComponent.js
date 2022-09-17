@@ -4,7 +4,6 @@ import ToggleButton from "../UI/ToggleButton";
 import { Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../chartConfig/config";
-import ElapsedTimer from "../UI/Timer";
 
 import styles from "./ChartComponent.module.css";
 
@@ -12,13 +11,14 @@ const ChartComponent = (props) => {
   const toggleRef = useRef(false);
   const chartRef = useRef();
   const arrayRef = useRef([]);
-  const inputRef = useRef(0);
-  const elapsedTime = useRef(0);
+
+  console.log(props.shouldStop, " ... shoould stop");
 
   const clickToggleHandler = () => {
     toggleRef.current = !toggleRef.current;
-    props.onReceiveData(arrayRef.current);
-    props.onTimer(toggleRef.current);
+
+    props.onReceiveData(arrayRef.current, toggleRef.current);
+    // props.onTimer(toggleRef.current);
     // if (inputRef.current > 0 && !toggleRef.current) {
     //   toggleRef.current = true;
     //   setTimeout(() => {
@@ -56,7 +56,12 @@ const ChartComponent = (props) => {
         {
           type: "realtime",
           realtime: {
-            onRefresh: onFresh.bind(null, toggleRef, arrayRef),
+            onRefresh: onFresh.bind(
+              null,
+              toggleRef,
+              arrayRef,
+              props.shouldStop
+            ),
             delay: 2000,
           },
         },

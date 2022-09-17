@@ -5,11 +5,13 @@ import { useElapsedTime } from "use-elapsed-time";
 const ElapsedTimer = (props) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const { elapsedTime } = useElapsedTime({ isPlaying });
-
+  console.log("running");
+  console.log(props.timer);
   useEffect(() => {
     if (props.timer) {
       setIsPlaying((prevIsPlaying) => !prevIsPlaying);
       console.log("hi");
+    } else {
     }
   }, [props.timer]);
 

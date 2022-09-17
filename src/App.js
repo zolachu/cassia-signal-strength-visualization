@@ -9,17 +9,22 @@ import styles from "./App.module.css";
 const App = () => {
   const [data, setData] = useState([]);
   const [timerStart, setTimerStart] = useState(false);
-  const receiveDataHandler = useCallback((data) => {
+  const [stop, setStop] = useState(false);
+
+  const receiveDataHandler = useCallback((data, timerStart) => {
     setData((prevData) => {
       // return [...prevData, ...data];
       return [...data];
     });
+    console.log(timerStart);
+    setTimerStart(timerStart);
   }, []);
 
-  const timerHandler = useCallback((timerStart) => {
-    console.log("do something");
-    setTimerStart((v) => !v);
+  const stopButtonHandler = useCallback(() => {
+    setStop((v) => !v);
   }, []);
+
+  const stopButtonName = stop ? "START FETCHING DATA" : "STOP FETCHING DATA";
 
   return (
     <div className={styles.border}>
@@ -27,12 +32,16 @@ const App = () => {
         <div className={styles.chart}>
           <ChartComponent
             onReceiveData={receiveDataHandler}
-            onTimer={timerHandler}
+            // onTimer={timerHandler}
+            shouldStop={stop}
           ></ChartComponent>
         </div>
         <ElapsedTimer timer={timerStart}></ElapsedTimer>
         <div className={styles.listData}>
           <ListDataComponent data={data}></ListDataComponent>
+        </div>
+        <div>
+          <button onClick={stopButtonHandler}>{stopButtonName}</button>
         </div>
       </div>
     </div>

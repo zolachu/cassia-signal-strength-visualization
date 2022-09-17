@@ -12,7 +12,9 @@ var chartColors = {
 };
 var color = Chart.helpers.color;
 
-const onFresh = async (ref, arrayRef, chart) => {
+const onFresh = async (ref, arrayRef, shouldStop, chart) => {
+  console.log(shouldStop);
+  if (shouldStop) return;
   try {
     const response = await fetch(
       "https://random-data-api.com/api/users/random_user"
