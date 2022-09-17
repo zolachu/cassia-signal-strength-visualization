@@ -14,7 +14,7 @@ var color = Chart.helpers.color;
 
 const onFresh = async (ref, arrayRef, shouldStop, distance, chart) => {
   if (shouldStop) return;
-  console.log(distance, ref);
+  //   console.log(distance.current.value, ref);
   try {
     const response = await fetch(
       "https://random-data-api.com/api/users/random_user"
@@ -28,7 +28,7 @@ const onFresh = async (ref, arrayRef, shouldStop, distance, chart) => {
       const dataPoint = {
         x: Date.now(),
         y: (data.id % 50) + 50,
-        distance: distance,
+        distance: distance.current.value,
       };
       dataset.data.push(dataPoint);
       dataset.segment.backgroundColor = chartColors.yellow;

@@ -63,7 +63,7 @@ const ChartComponent = (props) => {
               toggleRef,
               arrayRef,
               props.shouldStop,
-              inputRef.current.value
+              inputRef
             ),
             delay: 2000,
           },
