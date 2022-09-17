@@ -4,6 +4,7 @@ import ToggleButton from "../UI/ToggleButton";
 import { Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../chartConfig/config";
+import ElapsedTimer from "../UI/Timer";
 
 import styles from "./ChartComponent.module.css";
 
@@ -11,14 +12,25 @@ const ChartComponent = (props) => {
   const toggleRef = useRef(false);
   const chartRef = useRef();
   const arrayRef = useRef([]);
+  const inputRef = useRef(0);
+  const elapsedTime = useRef(0);
 
-  const clickHandler = () => {
+  const clickToggleHandler = () => {
     toggleRef.current = !toggleRef.current;
     props.onReceiveData(arrayRef.current);
+    props.onTimer(toggleRef.current);
+    // if (inputRef.current > 0 && !toggleRef.current) {
+    //   toggleRef.current = true;
+    //   setTimeout(() => {
+    //     toggleRef.current = false;
+    //   }, inputRef.current * 1000);
+    // }
   };
 
+  const changeInputHandler = () => {};
+
   //chart component
-  const [chartColors, datasetKeyProvider, onFresh, color] = config;
+  const [chartColors, datasetKeyProvider, onFresh] = config;
 
   const data = {
     datasets: [
@@ -26,7 +38,7 @@ const ChartComponent = (props) => {
         label: "Sensor Data",
         data: [],
         fill: true,
-        backgroundColor: chartColors.red,
+        backgroundColor: chartColors.blue,
         borderColor: "rgb(75, 192, 192)",
         segment: {},
       },
@@ -63,8 +75,9 @@ const ChartComponent = (props) => {
           options={options}
         />
       </div>
-      <div>
-        <ToggleButton onClick={clickHandler} />
+      <div className="actions">
+        <ToggleButton onClick={clickToggleHandler} />
+        <input onChange={changeInputHandler} type="number" placeholder="0" />
       </div>
     </div>
   );

@@ -34,6 +34,7 @@ const onFresh = async (ref, arrayRef, chart) => {
         arrayRef.current.push({
           x: Date.now(),
           y: data.id % 100,
+          distance: 5,
         });
       }
     });

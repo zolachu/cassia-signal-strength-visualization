@@ -9,7 +9,6 @@ const ToggleButton = (props) => {
     });
     props.onClick();
   }
-  console.log(isToggled);
 
   return <button onClick={clickHandler}>{isToggled}</button>;
 };
