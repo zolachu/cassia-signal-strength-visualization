@@ -3,9 +3,9 @@ import "chartjs-plugin-streaming";
 import ToggleButton from "../UI/ToggleButton";
 import { Bar, Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
-import config from "../chartConfig/config";
+import config from "../chartConfig/configLine";
 
-import styles from "./ChartComponent.module.css";
+import styles from "./LineChartComponent.module.css";
 
 const ChartComponent = (props) => {
   const toggleRef = useRef(false);

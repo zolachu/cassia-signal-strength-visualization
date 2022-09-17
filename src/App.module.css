@@ -29,6 +29,13 @@
 
 .listData {
   background: #FAFAFA;
+  overflow: scroll;
+  height: 30rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr  3fr;
 }
 
 @media  screen and (min-width: 950px) {

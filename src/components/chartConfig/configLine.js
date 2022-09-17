@@ -12,9 +12,9 @@ var chartColors = {
 };
 var color = Chart.helpers.color;
 
-const onFresh = async (ref, arrayRef, shouldStop, distanceRef, chart) => {
+const onFresh = async (recordRef, arrayRef, shouldStop, distanceRef, chart) => {
   if (shouldStop) return;
-  //   console.log(distance.current.value, ref);
+
   try {
     const response = await fetch(
       "https://random-data-api.com/api/users/random_user"
@@ -27,14 +27,14 @@ const onFresh = async (ref, arrayRef, shouldStop, distanceRef, chart) => {
     chart.data.datasets.forEach(function (dataset) {
       const dataPoint = {
         x: Date.now(),
-        y: (data.id % 50) + 50,
+        y: data.id % 250,
         distance: distanceRef.current.value,
       };
       dataset.data.push(dataPoint);
       dataset.segment.backgroundColor = chartColors.yellow;
 
       //if button is toggled, push new [x,y] point to arrayRef.current
-      if (ref.current) {
+      if (recordRef.current) {
         arrayRef.current.push(dataPoint);
       }
     });

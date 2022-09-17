@@ -1,10 +1,11 @@
 import React, { useRef, useState, useCallback } from "react";
 import "chartjs-plugin-streaming";
 import ListDataComponent from "./components/ListDataComponent/ListDataComponent";
-import ChartComponent from "./components/ChartComponent/ChartComponent";
+import ChartComponent from "./components/ChartComponents/LineChartComponent";
 import ElapsedTimer from "./components/UI/Timer";
 import ToggleButton from "./components/UI/ToggleButton";
 import Card from "./components/UI/Card/Card";
+import BarChartComponent from "./components/ChartComponents/BarChartComponent";
 
 import styles from "./App.module.css";
 
@@ -48,10 +49,15 @@ const App = () => {
               <ElapsedTimer timer={timerStart} shouldStop={stop}></ElapsedTimer>
             </div>
           </Card>
+          <div className={styles.stats}>
+            <Card className={styles.listData}>
+              <ListDataComponent data={data}></ListDataComponent>
+            </Card>
 
-          <Card className={styles.listData}>
-            <ListDataComponent data={data}></ListDataComponent>
-          </Card>
+            <Card>
+              <BarChartComponent data={data} />
+            </Card>
+          </div>
         </div>
       </div>
     </div>
