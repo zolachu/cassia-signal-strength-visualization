@@ -1,5 +1,4 @@
 const SingleDataComponent = (props) => {
-  console.log(new Date(props.point.x));
   const date = new Date(props.point.x).toString();
   return (
     <li>

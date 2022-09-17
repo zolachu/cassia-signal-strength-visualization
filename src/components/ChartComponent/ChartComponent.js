@@ -67,7 +67,7 @@ const ChartComponent = (props) => {
             ),
 
             duration: 2000,
-            refresh: 100,
+            refresh: 400,
             delay: 2000,
           },
         },
