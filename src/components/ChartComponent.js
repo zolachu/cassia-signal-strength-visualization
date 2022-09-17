@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef } from "react";
 import "chartjs-plugin-streaming";
 import Button from "./UI/Button";
 import { Line } from "react-chartjs-2";
@@ -9,7 +9,7 @@ const ChartComponent = (props) => {
   const toggleRef = useRef(false);
   const chartRef = useRef();
   const arrayRef = useRef([]);
-  // props.onReceiveData();
+
   const clickHandler = () => {
     toggleRef.current = !toggleRef.current;
     props.onReceiveData(arrayRef.current);
@@ -18,41 +18,45 @@ const ChartComponent = (props) => {
   //chart component
   const [chartColors, datasetKeyProvider, onFresh, color] = config;
 
+  const data = {
+    datasets: [
+      {
+        label: "Sensor Data",
+        data: [],
+        fill: true,
+        backgroundColor: chartColors.red,
+        borderColor: "rgb(75, 192, 192)",
+        segment: {},
+      },
+    ],
+  };
+
+  const options = {
+    plugins: {
+      streaming: {
+        frameRate: 5, // chart is drawn 5 times every second
+      },
+    },
+    scales: {
+      xAxes: [
+        {
+          type: "realtime",
+          realtime: {
+            onRefresh: onFresh.bind(null, toggleRef, arrayRef),
+            delay: 2000,
+          },
+        },
+      ],
+      yAxes: [{}],
+    },
+  };
+
   const chart = (
     <Line
       ref={chartRef}
       datasetKeyProvider={datasetKeyProvider}
-      data={{
-        datasets: [
-          {
-            label: "Sensor Data",
-            data: [],
-            fill: true,
-            backgroundColor: chartColors.red,
-            borderColor: "rgb(75, 192, 192)",
-            segment: {},
-          },
-        ],
-      }}
-      options={{
-        plugins: {
-          streaming: {
-            frameRate: 5, // chart is drawn 5 times every second
-          },
-        },
-        scales: {
-          xAxes: [
-            {
-              type: "realtime",
-              realtime: {
-                onRefresh: onFresh.bind(null, toggleRef, arrayRef),
-                delay: 2000,
-              },
-            },
-          ],
-          yAxes: [{}],
-        },
-      }}
+      data={data}
+      options={options}
     />
   );
   return (
