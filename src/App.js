@@ -8,7 +8,7 @@ import styles from "./App.module.css";
 const App = () => {
   const [data, setData] = useState([]);
   const receiveDataHandler = useCallback((data) => {
-    console.log(data);
+    // console.log(data);
 
     setData((prevData) => {
       // return [...prevData, ...data];

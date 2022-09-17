@@ -5,7 +5,6 @@ const DataPoints = (props) => {
   let sum = 0;
   const arrayY = [];
   const list = props.data.map((point) => {
-    console.log(point, " <=== point");
     sum += point.y;
     arrayY.push(point.y);
     const pointXY = `${new Date(point.x)} ${point.y}`;

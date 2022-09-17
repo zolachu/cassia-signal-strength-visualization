@@ -14,7 +14,6 @@ var color = Chart.helpers.color;
 
 const onFresh = async (ref, arrayRef, chart) => {
   try {
-    console.log(ref, "hhh");
     const response = await fetch(
       "https://random-data-api.com/api/users/random_user"
     );
@@ -36,7 +35,6 @@ const onFresh = async (ref, arrayRef, chart) => {
           x: Date.now(),
           y: data.id % 100,
         });
-        console.log(arrayRef.current.length, " ... ");
       }
     });
   } catch (error) {
