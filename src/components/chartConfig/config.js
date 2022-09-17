@@ -26,7 +26,7 @@ const onFresh = async (ref, arrayRef, shouldStop, chart) => {
     chart.data.datasets.forEach(function (dataset) {
       dataset.data.push({
         x: Date.now(),
-        y: data.id % 100,
+        y: (data.id % 50) + 50,
       });
       dataset.segment.backgroundColor = chartColors.yellow;
 

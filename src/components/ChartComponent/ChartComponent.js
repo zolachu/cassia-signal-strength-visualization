@@ -29,8 +29,8 @@ const ChartComponent = (props) => {
         label: "Sensor Data",
         data: [],
         fill: true,
-        backgroundColor: chartColors.blue,
-        borderColor: "rgb(75, 192, 192)",
+        backgroundColor: chartColors.green,
+        borderColor: chartColors.green,
         segment: {},
       },
     ],
@@ -41,6 +41,18 @@ const ChartComponent = (props) => {
       streaming: {
         frameRate: 5, // chart is drawn 5 times every second
       },
+      legend: {
+        labels: {
+          // This more specific font property overrides the global property
+          font: {
+            size: 14,
+          },
+        },
+      },
+    },
+    title: {
+      display: true,
+      text: "Sensor Data",
     },
     scales: {
       xAxes: [

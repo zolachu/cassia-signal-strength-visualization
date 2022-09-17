@@ -1,7 +1,12 @@
 .timerContainer {
     position: relative;
+    display: flex;
+    flex-flow: column ;
+    justify-content:center;
+    align-items: center;
     padding: 1rem; 
     text-align: center;
+    font-weight: bold;
 }
   
 .timerCircle {
@@ -22,6 +27,6 @@
       );
 }
   
-.timerCount {
+.timerText {
     font-size: 2rem;
 }

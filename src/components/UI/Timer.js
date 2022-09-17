@@ -12,16 +12,10 @@ const ElapsedTimer = (props) => {
   }, [props.timer, reset]);
 
   return (
-    // <div className={styles.timerContainer}>
-    //       <div className={styles.timerCircle}>
-    //         <ElapsedTimer timer={timerStart}></ElapsedTimer>
-    //       </div>
-    //     </div>
-    // <div>
     <div className={styles.timerContainer}>
       <p>Timer</p>
       <div className={styles.timerCircle}>
-        <div className={styles.timerCount}>{elapsedTime.toFixed(2)}</div>
+        <div className={styles.timerText}>{elapsedTime.toFixed(2)}</div>
       </div>
     </div>
   );
