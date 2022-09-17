@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
-
 import { useElapsedTime } from "use-elapsed-time";
+import styles from "./Timer.module.css";
 
 const ElapsedTimer = (props) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -12,9 +12,17 @@ const ElapsedTimer = (props) => {
   }, [props.timer, reset]);
 
   return (
-    <div>
-      <p>Timer</p>
-      <div style={{ fontSize: 56 }}>{elapsedTime.toFixed(2)}</div>
+    // <div className={styles.timerContainer}>
+    //       <div className={styles.timerCircle}>
+    //         <ElapsedTimer timer={timerStart}></ElapsedTimer>
+    //       </div>
+    //     </div>
+    // <div>
+    <div className={styles.timerContainer}>
+      <div className={styles.timerCircle}>
+        <p>Timer</p>
+        <div className={styles.timerCount}>{elapsedTime.toFixed(2)}</div>
+      </div>
     </div>
   );
 };

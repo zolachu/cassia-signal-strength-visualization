@@ -35,7 +35,6 @@ const App = () => {
         <div className={styles.chart}>
           <ChartComponent
             onReceiveData={receiveDataHandler}
-            // onTimer={timerHandler}
             shouldStop={stop}
           ></ChartComponent>
         </div>

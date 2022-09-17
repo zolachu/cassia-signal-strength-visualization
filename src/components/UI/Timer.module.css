@@ -1,0 +1,20 @@
+.timerContainer {
+    position: relative;
+    padding: 30px; 
+}
+  
+  .timerCircle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    color: black;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(255,113,12,0) 60%, rgba(green,1) 51.5%);
+  }
+  
+.timerCount {
+    font-size: 5rem;
+}
