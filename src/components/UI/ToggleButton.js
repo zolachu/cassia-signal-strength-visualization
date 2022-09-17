@@ -10,7 +10,11 @@ const ToggleButton = (props) => {
     props.onClick();
   }
 
-  return <button onClick={clickHandler}>{isToggled}</button>;
+  return (
+    <button onClick={clickHandler} disabled={props.disable}>
+      {isToggled}
+    </button>
+  );
 };
 
 export default ToggleButton;

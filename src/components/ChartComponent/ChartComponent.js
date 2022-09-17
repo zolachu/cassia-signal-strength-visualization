@@ -81,7 +81,7 @@ const ChartComponent = (props) => {
         />
       </div>
       <div className="actions">
-        <ToggleButton onClick={clickToggleHandler} />
+        <ToggleButton onClick={clickToggleHandler} disable={props.shouldStop} />
         <input onChange={changeInputHandler} type="number" placeholder="0" />
       </div>
     </div>
