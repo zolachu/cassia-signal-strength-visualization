@@ -12,7 +12,7 @@ import styles from "./App.module.css";
 const App = () => {
   const [data, setData] = useState([]);
   const [timerStart, setTimerStart] = useState(false);
-  const [stop, setStop] = useState(false);
+  const [stop, setStop] = useState(true);
 
   const receiveDataHandler = useCallback((data, timerStart) => {
     setData((prevData) => {
@@ -32,29 +32,36 @@ const App = () => {
   return (
     <div className={styles.app}>
       <div className={styles.border}>
-        <div className={styles.grid}>
-          <Card>
-            <button className={styles.stopButton} onClick={stopButtonHandler}>
-              {stopButtonName}
-            </button>
-          </Card>
-          <Card className={styles.chart}>
-            <ChartComponent
-              onReceiveData={receiveDataHandler}
-              shouldStop={stop}
-            ></ChartComponent>
-          </Card>
-          <Card className={styles.timerContainer}>
-            <div className={styles.timerCircle}>
-              <ElapsedTimer timer={timerStart} shouldStop={stop}></ElapsedTimer>
-            </div>
-          </Card>
-          <div className={styles.stats}>
+        <div className={styles.container}>
+          <div className={styles.leftContainer}>
+            <Card className={styles.closeLiveChart}>
+              <button className={styles.stopButton} onClick={stopButtonHandler}>
+                {stopButtonName}
+              </button>
+            </Card>
+            <Card className={styles.chart}>
+              <ChartComponent
+                onReceiveData={receiveDataHandler}
+                shouldStop={stop}
+              ></ChartComponent>
+            </Card>
+
+            <Card className={styles.timerContainer}>
+              <div className={styles.timerCircle}>
+                <ElapsedTimer
+                  timer={timerStart}
+                  shouldStop={stop}
+                ></ElapsedTimer>
+              </div>
+            </Card>
+          </div>
+
+          <div className={styles.rightContainer}>
             <Card className={styles.listData}>
               <ListDataComponent data={data}></ListDataComponent>
             </Card>
 
-            <Card>
+            <Card className={styles.barChart}>
               <BarChartComponent data={data} />
             </Card>
           </div>

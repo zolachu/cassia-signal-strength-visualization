@@ -13,14 +13,12 @@ const BarChartComponent = (props) => {
   const arrayY = props.data.map((item) => item.y);
 
   const map = findDistinctElements(arrayY);
+  console.log(map);
 
-  const labels = [];
-  const distinctData = [];
-  map.forEach((item, key) => labels.push(item.toString()));
-  console.log(labels);
-  map.forEach((item) => distinctData.push(map.get(item)));
+  const distinctData = Array.from(map.values());
+  const labels = Array.from(map.keys());
   console.log(distinctData);
-
+  console.log(labels);
   const data = {
     labels: labels,
     datasets: [

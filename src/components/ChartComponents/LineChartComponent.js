@@ -8,6 +8,7 @@ import config from "../chartConfig/configLine";
 import styles from "./LineChartComponent.module.css";
 
 const ChartComponent = (props) => {
+  console.log("should still render");
   const toggleRef = useRef(false);
   const chartRef = useRef();
   const arrayRef = useRef([]);

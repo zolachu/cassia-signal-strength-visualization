@@ -17,7 +17,7 @@ const findDistinctElements = (array) => {
     if (!map.has(array[i])) map[array[i]] = 0;
     map[array[i]]++;
   }
-  console.log(map);
+
   return map;
 };
 
