@@ -51,17 +51,14 @@ const ChartComponent = (props) => {
     },
   };
 
-  const chart = (
-    <Line
-      ref={chartRef}
-      datasetKeyProvider={datasetKeyProvider}
-      data={data}
-      options={options}
-    />
-  );
   return (
     <>
-      <div>{chart}</div>
+      <Line
+        ref={chartRef}
+        datasetKeyProvider={datasetKeyProvider}
+        data={data}
+        options={options}
+      />
       <Button text="aa" onClick={clickHandler} />
       {/* <DataPoints array={[...arrayRef.current]}>""</DataPoints> */}
     </>
