@@ -19,8 +19,8 @@ const ElapsedTimer = (props) => {
     //     </div>
     // <div>
     <div className={styles.timerContainer}>
+      <p>Timer</p>
       <div className={styles.timerCircle}>
-        <p>Timer</p>
         <div className={styles.timerCount}>{elapsedTime.toFixed(2)}</div>
       </div>
     </div>
