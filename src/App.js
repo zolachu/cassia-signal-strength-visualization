@@ -29,6 +29,9 @@ const App = () => {
   return (
     <div className={styles.border}>
       <div className={styles.grid}>
+        <div>
+          <button onClick={stopButtonHandler}>{stopButtonName}</button>
+        </div>
         <div className={styles.chart}>
           <ChartComponent
             onReceiveData={receiveDataHandler}
@@ -36,12 +39,14 @@ const App = () => {
             shouldStop={stop}
           ></ChartComponent>
         </div>
-        <ElapsedTimer timer={timerStart}></ElapsedTimer>
+        <div className={styles.timerContainer}>
+          <div className={styles.timerCircle}>
+            <ElapsedTimer timer={timerStart}></ElapsedTimer>
+          </div>
+        </div>
+
         <div className={styles.listData}>
           <ListDataComponent data={data}></ListDataComponent>
-        </div>
-        <div>
-          <button onClick={stopButtonHandler}>{stopButtonName}</button>
         </div>
       </div>
     </div>

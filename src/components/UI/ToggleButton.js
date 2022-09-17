@@ -4,8 +4,8 @@ const ToggleButton = (props) => {
   const [isToggled, setIsToggled] = useState("Start");
 
   function clickHandler() {
-    setIsToggled((v) => {
-      return v === "Start" ? "End" : "Start";
+    setIsToggled((prevButtonState) => {
+      return prevButtonState === "Start" ? "End" : "Start";
     });
     props.onClick();
   }

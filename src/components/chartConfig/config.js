@@ -1,6 +1,6 @@
-import React, { useRef, useState, useMemo } from "react";
-import { Line, Chart } from "react-chartjs-2";
+import { Chart } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
+
 var chartColors = {
   red: "rgb(255, 99, 132)",
   orange: "rgb(255, 159, 64)",
@@ -13,7 +13,6 @@ var chartColors = {
 var color = Chart.helpers.color;
 
 const onFresh = async (ref, arrayRef, shouldStop, chart) => {
-  console.log(shouldStop);
   if (shouldStop) return;
   try {
     const response = await fetch(

@@ -12,19 +12,10 @@ const ChartComponent = (props) => {
   const chartRef = useRef();
   const arrayRef = useRef([]);
 
-  console.log(props.shouldStop, " ... shoould stop");
-
   const clickToggleHandler = () => {
     toggleRef.current = !toggleRef.current;
 
     props.onReceiveData(arrayRef.current, toggleRef.current);
-    // props.onTimer(toggleRef.current);
-    // if (inputRef.current > 0 && !toggleRef.current) {
-    //   toggleRef.current = true;
-    //   setTimeout(() => {
-    //     toggleRef.current = false;
-    //   }, inputRef.current * 1000);
-    // }
   };
 
   const changeInputHandler = () => {};
