@@ -12,8 +12,9 @@ var chartColors = {
 };
 var color = Chart.helpers.color;
 
-const onFresh = async (chart) => {
+const onFresh = async (ref, arrayRef, chart) => {
   try {
+    console.log(ref, "hhh");
     const response = await fetch(
       "https://random-data-api.com/api/users/random_user"
     );
@@ -25,9 +26,18 @@ const onFresh = async (chart) => {
     chart.data.datasets.forEach(function (dataset) {
       dataset.data.push({
         x: Date.now(),
-
         y: data.id % 100,
       });
+      dataset.segment.backgroundColor = chartColors.yellow;
+
+      //if button is toggled, push new [x,y] point to arrayRef.current
+      if (ref.current) {
+        arrayRef.current.push({
+          x: Date.now(),
+          y: data.id % 100,
+        });
+        console.log(arrayRef.current.length, " ... ");
+      }
     });
   } catch (error) {
     console.log("error ", error);
@@ -37,5 +47,5 @@ const datasetKeyProvider = () => {
   return (Math.random() + 1).toString(36).substring(0, 12);
 };
 
-const config = { chartColors, datasetKeyProvider, onFresh, color };
+const config = [chartColors, datasetKeyProvider, onFresh, color];
 export default config;
