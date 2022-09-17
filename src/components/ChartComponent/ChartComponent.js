@@ -16,9 +16,8 @@ const ChartComponent = (props) => {
   const clickToggleHandler = () => {
     toggleRef.current = !toggleRef.current;
     props.onReceiveData(arrayRef.current, toggleRef.current);
+    console.log(inputRef.current.value);
   };
-
-  const changeInputHandler = () => {};
 
   //chart component
   const [chartColors, datasetKeyProvider, onFresh] = config;
@@ -95,7 +94,6 @@ const ChartComponent = (props) => {
         <ToggleButton onClick={clickToggleHandler} disable={props.shouldStop} />
         <label htmlFor="inputDistance">Distance</label>
         <input
-          onChange={changeInputHandler}
           type="number"
           // placeholder="distance in feet"
           id="inputDistance"

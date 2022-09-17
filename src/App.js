@@ -45,7 +45,7 @@ const App = () => {
           </Card>
           <Card className={styles.timerContainer}>
             <div className={styles.timerCircle}>
-              <ElapsedTimer timer={timerStart}></ElapsedTimer>
+              <ElapsedTimer timer={timerStart} shouldStop={stop}></ElapsedTimer>
             </div>
           </Card>
 

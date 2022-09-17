@@ -14,6 +14,7 @@ var color = Chart.helpers.color;
 
 const onFresh = async (ref, arrayRef, shouldStop, distance, chart) => {
   if (shouldStop) return;
+  console.log(distance, ref);
   try {
     const response = await fetch(
       "https://random-data-api.com/api/users/random_user"

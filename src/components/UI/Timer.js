@@ -7,9 +7,9 @@ const ElapsedTimer = (props) => {
   const { elapsedTime, reset } = useElapsedTime({ isPlaying });
 
   useEffect(() => {
-    setIsPlaying(props.timer);
-    if (props.timer) reset();
-  }, [props.timer, reset]);
+    setIsPlaying(props.timer && !props.shouldStop);
+    if (props.timer || props.shouldStop) reset();
+  }, [props.timer, props.shouldStop, reset]);
 
   return (
     <div className={styles.timerContainer}>
