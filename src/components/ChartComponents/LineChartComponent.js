@@ -44,7 +44,7 @@ const ChartComponent = (props) => {
         labels: {
           // This more specific font property overrides the global property
           font: {
-            size: 14,
+            size: 20,
           },
         },
       },
@@ -77,6 +77,12 @@ const ChartComponent = (props) => {
           scaleLabel: {
             display: true,
             labelString: "Signal Strength",
+          },
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function (value) {
+              return "-" + value;
+            },
           },
         },
       ],

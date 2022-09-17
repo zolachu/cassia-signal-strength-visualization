@@ -3,16 +3,20 @@ import "chartjs-plugin-streaming";
 import ToggleButton from "../UI/ToggleButton";
 import { Bar } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
-import config from "../chartConfig/configLine";
+import config from "../chartConfig/configBar";
 
 import styles from "./LineChartComponent.module.css";
 
 const BarChartComponent = (props) => {
   //chart component
-  const [chartColors, datasetKeyProvider, onFresh] = config;
+  const [chartColors, datasetKeyProvider, findDistinctElements] = config;
+
   console.log(props.data.length);
   const arrayY = props.data.map((item) => item.y);
   console.log(arrayY);
+
+  const map = findDistinctElements(arrayY);
+  console.log(map);
 
   const labels = ["January", "February", "March", "April", "May", "June"];
   const data = {
