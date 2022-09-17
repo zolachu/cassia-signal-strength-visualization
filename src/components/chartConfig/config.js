@@ -21,7 +21,7 @@ const onFresh = async (ref, arrayRef, chart) => {
       console.log("error! with request");
     }
     const data = await response.json();
-    // console.log(data);
+
     chart.data.datasets.forEach(function (dataset) {
       dataset.data.push({
         x: Date.now(),

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "chartjs-plugin-streaming";
-import Button from "../UI/Button";
+import ToggleButton from "../UI/ToggleButton";
 import { Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../chartConfig/config";
@@ -64,7 +64,7 @@ const ChartComponent = (props) => {
         />
       </div>
       <div>
-        <Button text="aa" onClick={clickHandler} />
+        <ToggleButton onClick={clickHandler} />
       </div>
     </div>
   );
