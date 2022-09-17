@@ -1,30 +1,32 @@
-import React, { useRef } from "react";
+import React from "react";
 import "chartjs-plugin-streaming";
-import ToggleButton from "../UI/ToggleButton";
 import { Bar } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../chartConfig/configBar";
 
-import styles from "./LineChartComponent.module.css";
+import styles from "./BarChartComponent.module.css";
 
 const BarChartComponent = (props) => {
   //chart component
   const [chartColors, datasetKeyProvider, findDistinctElements] = config;
 
-  console.log(props.data.length);
   const arrayY = props.data.map((item) => item.y);
-  console.log(arrayY);
 
   const map = findDistinctElements(arrayY);
-  console.log(map);
 
-  const labels = ["January", "February", "March", "April", "May", "June"];
+  const labels = [];
+  const distinctData = [];
+  map.forEach((item, key) => labels.push(item.toString()));
+  console.log(labels);
+  map.forEach((item) => distinctData.push(map.get(item)));
+  console.log(distinctData);
+
   const data = {
     labels: labels,
     datasets: [
       {
         label: "Distance",
-        data: props.data,
+        data: distinctData,
         fill: true,
         backgroundColor: chartColors.red,
         borderColor: chartColors.red,
@@ -53,12 +55,24 @@ const BarChartComponent = (props) => {
       text: "Sensor Data",
     },
     scales: {
-      xAxes: [{}],
+      xAxes: [
+        {
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function (value) {
+              return "-" + value;
+            },
+
+            min: 0,
+            max: 250,
+          },
+        },
+      ],
       yAxes: [
         {
           scaleLabel: {
             display: true,
-            labelString: "Signal Strength",
+            labelString: "Frequency",
           },
         },
       ],
