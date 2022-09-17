@@ -12,7 +12,7 @@ var chartColors = {
 };
 var color = Chart.helpers.color;
 
-const onFresh = async (ref, arrayRef, shouldStop, chart) => {
+const onFresh = async (ref, arrayRef, shouldStop, distance, chart) => {
   if (shouldStop) return;
   try {
     const response = await fetch(
@@ -27,7 +27,7 @@ const onFresh = async (ref, arrayRef, shouldStop, chart) => {
       const dataPoint = {
         x: Date.now(),
         y: (data.id % 50) + 50,
-        distance: 5,
+        distance: distance,
       };
       dataset.data.push(dataPoint);
       dataset.segment.backgroundColor = chartColors.yellow;

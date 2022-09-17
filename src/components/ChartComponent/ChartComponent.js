@@ -11,6 +11,7 @@ const ChartComponent = (props) => {
   const toggleRef = useRef(false);
   const chartRef = useRef();
   const arrayRef = useRef([]);
+  const inputRef = useRef(0);
 
   const clickToggleHandler = () => {
     toggleRef.current = !toggleRef.current;
@@ -62,7 +63,8 @@ const ChartComponent = (props) => {
               null,
               toggleRef,
               arrayRef,
-              props.shouldStop
+              props.shouldStop,
+              inputRef.current.value
             ),
             delay: 2000,
           },
@@ -91,7 +93,15 @@ const ChartComponent = (props) => {
       </div>
       <div className="actions">
         <ToggleButton onClick={clickToggleHandler} disable={props.shouldStop} />
-        <input onChange={changeInputHandler} type="number" placeholder="0" />
+        <label htmlFor="inputDistance">Distance</label>
+        <input
+          onChange={changeInputHandler}
+          type="number"
+          // placeholder="distance in feet"
+          id="inputDistance"
+          ref={inputRef}
+          disabled={props.shouldStop}
+        />
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./ListDataComponent.module.css";
+import SingleDataComponent from "../SingleDataComponent/SingleDataComponent";
 
 const DataPoints = (props) => {
   let sum = 0;
@@ -8,7 +9,12 @@ const DataPoints = (props) => {
     sum += point.y;
     arrayY.push(point.y);
     const pointXY = `${new Date(point.x)} ${point.y} ${point.distance}`;
-    return <li key={Math.random()}>{pointXY}</li>;
+    return (
+      <SingleDataComponent
+        key={Math.random()}
+        point={point}
+      ></SingleDataComponent>
+    );
   });
 
   const min = arrayY.length > 0 ? Math.max(...arrayY) : 0;
