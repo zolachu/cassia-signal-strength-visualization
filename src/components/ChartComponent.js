@@ -1,19 +1,18 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import "chartjs-plugin-streaming";
-import Button from "./components/UI/Button";
+import Button from "./UI/Button";
 import { Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
-import config from "./components/chartConfig/config";
-import DataPoints from "./components/data/DataPoints";
+import config from "./chartConfig/config";
 
-const App = () => {
+const ChartComponent = (props) => {
   const toggleRef = useRef(false);
   const chartRef = useRef();
   const arrayRef = useRef([]);
-  let copyArr = [];
+  // props.onReceiveData();
   const clickHandler = () => {
     toggleRef.current = !toggleRef.current;
-    copyArr = [...arrayRef.current];
+    props.onReceiveData(arrayRef.current);
   };
 
   //chart component
@@ -59,11 +58,10 @@ const App = () => {
   return (
     <>
       <div>{chart}</div>
-      {/* <ChartComponent ref={toggleRef}></ChartComponent> */}
       <Button text="aa" onClick={clickHandler} />
-      <DataPoints array={[...arrayRef.current]}>""</DataPoints>
+      {/* <DataPoints array={[...arrayRef.current]}>""</DataPoints> */}
     </>
   );
 };
 
-export default App;
+export default React.memo(ChartComponent);

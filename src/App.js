@@ -1,67 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import "chartjs-plugin-streaming";
-import Button from "./components/UI/Button";
-import { Line } from "react-chartjs-2";
-import "chartjs-plugin-streaming";
-import config from "./components/chartConfig/config";
-import DataPoints from "./components/data/DataPoints";
+import DataPoints from "./components/ShowData/DataPoints";
+import ChartComponent from "./components/ChartComponent";
 
 const App = () => {
-  const toggleRef = useRef(false);
-  const chartRef = useRef();
-  const arrayRef = useRef([]);
-  let copyArr = [];
-  const clickHandler = () => {
-    toggleRef.current = !toggleRef.current;
-    copyArr = [...arrayRef.current];
-  };
+  const [data, setData] = useState([]);
+  const receiveDataHandler = useCallback((data) => {
+    console.log(data);
 
-  //chart component
-  const [chartColors, datasetKeyProvider, onFresh, color] = config;
-
-  const chart = (
-    <Line
-      ref={chartRef}
-      datasetKeyProvider={datasetKeyProvider}
-      data={{
-        datasets: [
-          {
-            label: "Sensor Data",
-            data: [],
-            fill: true,
-            backgroundColor: chartColors.red,
-            borderColor: "rgb(75, 192, 192)",
-            segment: {},
-          },
-        ],
-      }}
-      options={{
-        plugins: {
-          streaming: {
-            frameRate: 5, // chart is drawn 5 times every second
-          },
-        },
-        scales: {
-          xAxes: [
-            {
-              type: "realtime",
-              realtime: {
-                onRefresh: onFresh.bind(null, toggleRef, arrayRef),
-                delay: 2000,
-              },
-            },
-          ],
-          yAxes: [{}],
-        },
-      }}
-    />
-  );
+    setData((prevData) => {
+      return [...prevData, ...data];
+    });
+  }, []);
   return (
     <>
-      <div>{chart}</div>
-      {/* <ChartComponent ref={toggleRef}></ChartComponent> */}
-      <Button text="aa" onClick={clickHandler} />
-      <DataPoints array={[...arrayRef.current]}>""</DataPoints>
+      <ChartComponent onReceiveData={receiveDataHandler}></ChartComponent>
+      <DataPoints data={data}></DataPoints>
     </>
   );
 };
