@@ -16,10 +16,16 @@ const App = () => {
     });
   }, []);
   return (
-    <>
-      <ChartComponent onReceiveData={receiveDataHandler}></ChartComponent>
-      <ListDataComponent data={data}></ListDataComponent>
-    </>
+    <div className={styles.border}>
+      <div className={styles.grid}>
+        <div className={styles.chart}>
+          <ChartComponent onReceiveData={receiveDataHandler}></ChartComponent>
+        </div>
+        <div className={styles.listData}>
+          <ListDataComponent data={data}></ListDataComponent>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -54,7 +54,7 @@ const ChartComponent = (props) => {
   };
 
   return (
-    <>
+    <div>
       <div className={styles["chart-container"]}>
         <Line
           ref={chartRef}
@@ -63,9 +63,10 @@ const ChartComponent = (props) => {
           options={options}
         />
       </div>
-
-      <Button text="aa" onClick={clickHandler} />
-    </>
+      <div>
+        <Button text="aa" onClick={clickHandler} />
+      </div>
+    </div>
   );
 };
 

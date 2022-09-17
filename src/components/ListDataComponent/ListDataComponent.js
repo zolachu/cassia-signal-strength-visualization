@@ -19,13 +19,13 @@ const DataPoints = (props) => {
   average.toFixed(4);
   const count = arrayY.length > 0 ? arrayY.length : 0;
   return (
-    <>
+    <div>
       <div>MIN: {min}</div>
       <div>MAX: {max}</div>
       <div>AVERAGE: {average}</div>
       <div>COUNT: {count}</div>
       <ul>{list}</ul>
-    </>
+    </div>
   );
 };
 
