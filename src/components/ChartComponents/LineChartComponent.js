@@ -83,6 +83,9 @@ const ChartComponent = (props) => {
             callback: function (value) {
               return "-" + value;
             },
+
+            min: 0,
+            max: 250,
           },
         },
       ],
