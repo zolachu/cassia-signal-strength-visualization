@@ -12,7 +12,7 @@ const DataStatsComponent = (props) => {
   const count = arrayY.length > 0 ? arrayY.length : "Calculating...";
 
   return (
-    <div className={styles.dataStats}>
+    <div className={`styles.dataStats ${props.className}`}>
       <div>MIN: {min}</div>
       <div>MAX: {max}</div>
       <div>AVERAGE: {average}</div>

@@ -1,3 +1,22 @@
 .container {
     margin-bottom: 20px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
 }
+
+
+.dataStats {
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.deleteButton {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.deleteButton {
+    transform: scale(1.8);
+  }

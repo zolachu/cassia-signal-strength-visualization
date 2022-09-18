@@ -1,6 +1,8 @@
 import DataStats from "../DataStatsComponent/DataStatsComponent";
 import Card from "../UI/Card/Card";
 import styles from "./SingleDataComponent.module.css";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { sizing } from "@mui/system";
 
 const SingleDataComponent = (props) => {
   console.log(props.data);
@@ -14,12 +16,17 @@ const SingleDataComponent = (props) => {
   return (
     <li>
       <Card onClick={clickHandler} className={styles.container}>
-        <div>x</div>
         <DataStats
+          className={styles.dataStats}
           array={arrayY}
           timer={props.timer}
           distance={distance}
         ></DataStats>
+        <DeleteForeverIcon
+          className={styles.deleteButton}
+          color="warning"
+          width="30px"
+        />
       </Card>
     </li>
   );
