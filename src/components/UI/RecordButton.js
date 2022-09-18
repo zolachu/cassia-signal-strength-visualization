@@ -11,7 +11,7 @@ const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
 const theme = createTheme({
   palette: {
     anger: createColor("#EB1D36"),
-    apple: createColor("#7fff00"),
+    apple: createColor("#00e676"),
     steelBlue: createColor("#5C76B7"),
     violet: createColor("#BC00A3"),
   },

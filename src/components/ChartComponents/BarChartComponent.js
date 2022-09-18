@@ -52,7 +52,21 @@ const BarChartComponent = (props) => {
       text: "Sensor Data",
     },
     scales: {
-      xAxes: [{}],
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: "Timeline",
+          },
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function (value) {
+              const d = new Date(value);
+              return `${d.getMinutes()}:${d.getSeconds()}`;
+            },
+          },
+        },
+      ],
       yAxes: [
         {
           scaleLabel: {

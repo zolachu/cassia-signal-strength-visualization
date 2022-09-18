@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 
 const SingleDataComponent = (props) => {
   //   console.log(props.data);
-
+  //   props.isTimerRunning
   const arrayY = props.data.map((element) => element.y);
   const distance = props.data.length > 0 ? props.data[0].distance : undefined;
 
@@ -23,11 +23,17 @@ const SingleDataComponent = (props) => {
           onClick={() => props.onDelete(props.id)}
           color="warning"
           className={styles.deleteButton}
+          disabled={props.isTimerRunning}
         >
           delete
-          <DeleteForeverIcon color="warning" />
+          <DeleteForeverIcon color={!props.isTimerRunning ? "warning" : ""} />
         </Button>
-        <Button onClick={() => props.onShow(props.data)}> Show Details</Button>
+        <Button
+          onClick={() => props.onShow(props.data)}
+          disabled={props.isTimerRunning}
+        >
+          Show Details
+        </Button>
       </Card>
     </li>
   );

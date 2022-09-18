@@ -8,30 +8,29 @@ import BarChartComponent from "./components/ChartComponents/BarChartComponent";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import PauseIcon from "@mui/icons-material/Pause";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 
 import styles from "./App.module.css";
 
 const App = () => {
   const [data, setData] = useState([]);
-  const [timerStart, setTimerStart] = useState(false);
+  const [IsTimerRunning, setIsTimerStart] = useState(false);
   const [stopFetching, setStopFetching] = useState(true);
   const [disableFetchButton, setDisableFetchButton] = useState(false);
   const [showRecordedDataInstance, setRecordedDataInstance] = useState(null);
 
-  const receiveDataHandler = useCallback((data, timerStart) => {
+  const receiveDataHandler = useCallback((data, setStopAll) => {
     setData((prevData) => {
       // return [...prevData, ...data];
       return [...data];
     });
-    setTimerStart(timerStart);
-    setDisableFetchButton(timerStart);
+    setIsTimerStart(setStopAll);
+    setDisableFetchButton(setStopAll);
   }, []);
 
   const stopButtonHandler = useCallback(() => {
     setStopFetching((prevState) => {
       if (!prevState) {
-        setTimerStart(false);
+        setIsTimerStart(false);
       }
       return !prevState;
     });
@@ -71,7 +70,7 @@ const App = () => {
             <div className={styles.timerContainer}>
               <div className={styles.timerCircle}>
                 <ElapsedTimer
-                  timer={timerStart}
+                  timer={IsTimerRunning}
                   shouldStop={stopFetching}
                 ></ElapsedTimer>
               </div>
@@ -82,7 +81,7 @@ const App = () => {
             <Card className={styles.listData}>
               <ListDataComponent
                 dataArray={data}
-                timer={timerStart}
+                isTimerRunning={IsTimerRunning}
                 onShow={clickListDataHandler}
               ></ListDataComponent>
             </Card>

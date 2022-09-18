@@ -16,7 +16,7 @@ const DataPoints = (props) => {
     console.log(newData.length);
     setData(newData);
   };
-
+  console.log(props.isTimerRunning);
   return (
     <ul className={styles.container}>
       {data
@@ -25,6 +25,7 @@ const DataPoints = (props) => {
         .map((item, index) => {
           return (
             <SingleDataComponent
+              isTimerRunning={props.isTimerRunning}
               data={item}
               key={Math.random()}
               id={index}
