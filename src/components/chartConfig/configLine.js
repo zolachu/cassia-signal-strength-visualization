@@ -35,7 +35,14 @@ const onFresh = async (recordRef, arrayRef, shouldStop, distanceRef, chart) => {
 
       //if button is toggled, push new [x,y] point to arrayRef.current
       if (recordRef.current) {
-        arrayRef.current.push(dataPoint);
+        const lastElement = arrayRef.current[arrayRef.current.length - 1];
+
+        lastElement.push(dataPoint);
+      } else {
+        if (arrayRef.current[arrayRef.current.length - 1].length > 0) {
+          arrayRef.current.push([]);
+          console.log("pushed");
+        }
       }
     });
   } catch (error) {

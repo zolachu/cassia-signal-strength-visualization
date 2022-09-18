@@ -8,12 +8,14 @@ const DataStatsComponent = (props) => {
     arrayY.length > 0 ? arrayY.reduce((a, b) => a + b, 0) / arrayY.length : 0;
   average.toFixed(4);
   const count = arrayY.length > 0 ? arrayY.length : 0;
+
   return (
     <div className={styles.dataStats}>
       <div>MIN: {min}</div>
       <div>MAX: {max}</div>
       <div>AVERAGE: {average.toFixed(2)}</div>
       <div>COUNT: {count}</div>
+      <div>DISTANCE: {props.distance}</div>
     </div>
   );
 };

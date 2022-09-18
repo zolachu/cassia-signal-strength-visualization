@@ -11,7 +11,7 @@ const ChartComponent = (props) => {
   console.log("should still render");
   const toggleRef = useRef(false);
   const chartRef = useRef();
-  const arrayRef = useRef([]);
+  const arrayRef = useRef([[]]);
   const inputRef = useRef(0);
 
   const clickToggleHandler = () => {
@@ -32,7 +32,6 @@ const ChartComponent = (props) => {
         backgroundColor: chartColors.green,
         borderColor: chartColors.green,
         segment: {},
-        // yAxisID: "y-1",
       },
     ],
   };
@@ -80,7 +79,6 @@ const ChartComponent = (props) => {
           scaleLabel: {
             display: true,
             labelString: "Signal Strength",
-            // yAxisID: "y-1",
           },
 
           ticks: {

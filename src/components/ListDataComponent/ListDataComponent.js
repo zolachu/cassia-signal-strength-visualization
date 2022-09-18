@@ -5,11 +5,14 @@ import DataStats from "../DataStatsComponent/DataStatsComponent";
 
 const DataPoints = (props) => {
   const arrayY = [];
+
+  const distance = props.data.length > 0 ? props.data[0].distance : undefined;
   const list = props.data.map((point) => {
     arrayY.push(point.y);
 
     return (
       <SingleDataComponent
+        onClick={props.onClick}
         key={Math.random()}
         point={point}
       ></SingleDataComponent>
@@ -18,7 +21,11 @@ const DataPoints = (props) => {
 
   return (
     <div>
-      <DataStats array={arrayY} timer={props.timer}></DataStats>
+      <DataStats
+        array={arrayY}
+        timer={props.timer}
+        distance={distance}
+      ></DataStats>
       <ul>{list}</ul>
     </div>
   );

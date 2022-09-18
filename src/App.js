@@ -15,6 +15,7 @@ const App = () => {
   const [data, setData] = useState([]);
   const [timerStart, setTimerStart] = useState(false);
   const [stopFetching, setStopFetching] = useState(true);
+  // const [toggleData, setToggleData] = useState(false);
 
   const receiveDataHandler = useCallback((data, timerStart) => {
     setData((prevData) => {
@@ -27,7 +28,14 @@ const App = () => {
 
   const stopButtonHandler = useCallback(() => {
     setStopFetching((v) => !v);
+    // console.log("clicked");
+    // setToggleData(false);
   }, []);
+
+  const clickListDataHandler = () => {
+    // setToggleData((v) => true);
+    // setStopFetching((v) => true);
+  };
 
   const stopButtonName = stopFetching
     ? "START FETCHING DATA"
@@ -52,6 +60,10 @@ const App = () => {
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
               ></ChartComponent>
+              {/* )}
+              {toggleData && (
+                <BarChartComponent data={data}></BarChartComponent>
+              )} */}
             </Card>
 
             <div className={styles.timerContainer}>
@@ -69,6 +81,7 @@ const App = () => {
               <ListDataComponent
                 data={data}
                 timer={timerStart}
+                onClick={clickListDataHandler}
               ></ListDataComponent>
             </Card>
 
