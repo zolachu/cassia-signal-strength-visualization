@@ -18,31 +18,36 @@ const theme = createTheme({
 });
 
 const ToggleButton = (props) => {
-  const [isToggled, setIsToggled] = useState(true);
+  const [isRecording, setIsRecording] = useState(true);
+  const [buttonText, setButtonText] = useState("RECORD");
+  const [buttonColor, setButtonColor] = useState("apple");
+  console.log(props.disable);
 
   function clickHandler() {
-    setIsToggled((prevButtonState) => {
+    setButtonText((prevText) => {
+      return prevText === "RECORD" ? "STOP" : "RECORD";
+    });
+    setButtonColor((prevColor) => {
+      return prevColor === "apple" ? "anger" : "apple";
+    });
+    setIsRecording((prevButtonState) => {
       return !prevButtonState;
     });
     props.onClick();
   }
-  const buttonText = !isToggled ? "STOP  " : "RECORD";
-
-  const color = !isToggled ? "anger" : "apple";
 
   return (
     <ThemeProvider theme={theme}>
       <Button
         onClick={clickHandler}
-        disabled={props.disable}
-        color={color}
+        color={buttonColor}
         variant="contained"
-        // size="small"
+        disabled={props.disable}
         style={{ width: "15%" }}
       >
         <span className={styles.buttonText}>
           {buttonText}
-          {!isToggled ? (
+          {!isRecording ? (
             <StopIcon size="small" />
           ) : (
             <RadioButtonCheckedIcon size="small" />

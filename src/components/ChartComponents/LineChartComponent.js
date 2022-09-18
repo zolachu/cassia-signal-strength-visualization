@@ -11,12 +11,12 @@ const ChartComponent = (props) => {
   console.log("should still render");
   const toggleRef = useRef(false);
   const chartRef = useRef();
-  const arrayRef = useRef([[]]);
+  const arrayOfRecordedDataRef = useRef([[]]);
   const inputRef = useRef(0);
 
   const clickToggleHandler = () => {
     toggleRef.current = !toggleRef.current;
-    props.onReceiveData(arrayRef.current, toggleRef.current);
+    props.onReceiveData(arrayOfRecordedDataRef.current, toggleRef.current);
     console.log(inputRef.current.value);
   };
 
@@ -63,7 +63,7 @@ const ChartComponent = (props) => {
             onRefresh: onFresh.bind(
               null,
               toggleRef,
-              arrayRef,
+              arrayOfRecordedDataRef,
               props.shouldStop,
               inputRef
             ),
@@ -106,15 +106,20 @@ const ChartComponent = (props) => {
         />
       </div>
       <div className="actions">
-        <RecordButton onClick={clickToggleHandler} disable={props.shouldStop} />
-        <label htmlFor="inputDistance">Distance</label>
-        <input
-          type="number"
-          // placeholder="distance in feet"
-          id="inputDistance"
-          ref={inputRef}
-          disabled={props.shouldStop}
-        />
+        <div>
+          <RecordButton
+            onClick={clickToggleHandler}
+            disable={props.shouldStop}
+          />
+          <label htmlFor="inputDistance">Distance</label>
+          <input
+            type="number"
+            placeholder="distance in feet"
+            id="inputDistance"
+            ref={inputRef}
+            disabled={props.shouldStop}
+          />
+        </div>
       </div>
     </div>
   );

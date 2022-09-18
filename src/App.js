@@ -27,7 +27,13 @@ const App = () => {
   }, []);
 
   const stopButtonHandler = useCallback(() => {
-    setStopFetching((v) => !v);
+    setStopFetching((v) => {
+      if (!v) {
+        setTimerStart(false);
+      }
+      return !v;
+    });
+
     // console.log("clicked");
     // setToggleData(false);
   }, []);
@@ -79,7 +85,7 @@ const App = () => {
           <div className={styles.rightContainer}>
             <Card className={styles.listData}>
               <ListDataComponent
-                data={data}
+                dataArray={data}
                 timer={timerStart}
                 onClick={clickListDataHandler}
               ></ListDataComponent>
