@@ -4,11 +4,11 @@
   
     flex-direction: row;
     align-items: center;
-    /* font-size: 1.5vw; */
+    font-size: 1vw;
    
 }
 @media screen and (max-width: 700px) {
     .buttonText {
-        font-size: 2vw;
+        /* font-size: 1vw; */
     }
 }

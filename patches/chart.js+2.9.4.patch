@@ -1,0 +1,30 @@
+diff --git a/node_modules/chart.js/dist/Chart.js b/node_modules/chart.js/dist/Chart.js
+index 7a1a28d..2ae6ef9 100755
+--- a/node_modules/chart.js/dist/Chart.js
++++ b/node_modules/chart.js/dist/Chart.js
+@@ -6726,12 +6726,20 @@ function getRelativePosition(e, chart) {
+  */
+ function parseVisibleItems(chart, handler) {
+ 	var metasets = chart._getSortedVisibleDatasetMetas();
+-	var metadata, i, j, ilen, jlen, element;
++	var datasets = chart.data.datasets;
++	var meta, i, j, ilen, jlen;
+ 
+-	for (i = 0, ilen = metasets.length; i < ilen; ++i) {
+-		metadata = metasets[i].data;
+-		for (j = 0, jlen = metadata.length; j < jlen; ++j) {
+-			element = metadata[j];
++	for (i = 0, ilen = datasets.length; i < ilen; ++i) {
++		if (!chart.isDatasetVisible(i)) {
++			continue;
++		}
++
++		meta = chart.getDatasetMeta(i);
++		for (j = 0, jlen = meta.data.length; j < jlen; ++j) {
++			var element = meta.data[j];
++			if (!element.hasOwnProperty('_view')) {
++				continue;
++			}
+ 			if (!element._view.skip) {
+ 				handler(element);
+ 			}
