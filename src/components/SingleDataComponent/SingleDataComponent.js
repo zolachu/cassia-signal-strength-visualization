@@ -20,13 +20,14 @@ const SingleDataComponent = (props) => {
           distance={distance}
         ></DataStats>
         <Button
-          onClick={() => props.onClick(props.id)}
+          onClick={() => props.onDelete(props.id)}
           color="warning"
           className={styles.deleteButton}
         >
           delete
           <DeleteForeverIcon color="warning" />
         </Button>
+        <Button onClick={() => props.onShow(props.data)}> Show Details</Button>
       </Card>
     </li>
   );

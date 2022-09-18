@@ -3,11 +3,12 @@ import "chartjs-plugin-streaming";
 import ListDataComponent from "./components/ListDataComponent/ListDataComponent";
 import ChartComponent from "./components/ChartComponents/LineChartComponent";
 import ElapsedTimer from "./components/UI/Timer";
-import ToggleButton from "./components/UI/RecordButton";
 import Card from "./components/UI/Card/Card";
 import BarChartComponent from "./components/ChartComponents/BarChartComponent";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import PauseIcon from "@mui/icons-material/Pause";
+import Button from "@mui/material/Button";
+import StaticLineChart from "./components/ChartComponents/StaticLineChart";
 
 import styles from "./App.module.css";
 
@@ -15,7 +16,8 @@ const App = () => {
   const [data, setData] = useState([]);
   const [timerStart, setTimerStart] = useState(false);
   const [stopFetching, setStopFetching] = useState(true);
-  const [disable, setDisable] = useState(false);
+  const [disableFetchButton, setDisableFetchButton] = useState(false);
+  const [showRecordedDataInstance, setRecordedDataInstance] = useState(null);
 
   const receiveDataHandler = useCallback((data, timerStart) => {
     setData((prevData) => {
@@ -23,7 +25,7 @@ const App = () => {
       return [...data];
     });
     setTimerStart(timerStart);
-    setDisable(timerStart);
+    setDisableFetchButton(timerStart);
   }, []);
 
   const stopButtonHandler = useCallback(() => {
@@ -35,14 +37,14 @@ const App = () => {
     });
   }, []);
 
-  const clickListDataHandler = () => {
+  const clickListDataHandler = (data) => {
     // setToggleData((v) => true);
     // setStopFetching((v) => true);
+
+    setRecordedDataInstance((prev) => data);
   };
 
-  const stopButtonName = stopFetching
-    ? "START FETCHING DATA"
-    : "STOP FETCHING DATA";
+  const stopButtonName = stopFetching ? "START LIVE DATA" : "STOP LIVE DATA";
 
   return (
     <div className={styles.app}>
@@ -50,27 +52,23 @@ const App = () => {
         <div className={styles.container}>
           <div className={styles.leftContainer}>
             <div className={styles.closeLiveChart}>
-              <button
+              <Button
                 className={styles.stopButton}
                 onClick={stopButtonHandler}
-                disabled={disable}
+                disabled={disableFetchButton}
               >
                 {stopButtonName}
                 {stopFetching && (
                   <PlayCircleFilledIcon className={styles.closeButton} />
                 )}
                 {!stopFetching && <PauseIcon />}
-              </button>
+              </Button>
             </div>
             <Card className={styles.chart}>
               <ChartComponent
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
               ></ChartComponent>
-              {/* )}
-              {toggleData && (
-                <BarChartComponent data={data}></BarChartComponent>
-              )} */}
             </Card>
 
             <div className={styles.timerContainer}>
@@ -88,12 +86,12 @@ const App = () => {
               <ListDataComponent
                 dataArray={data}
                 timer={timerStart}
-                onClick={clickListDataHandler}
+                onShow={clickListDataHandler}
               ></ListDataComponent>
             </Card>
 
             <Card className={styles.barChart}>
-              <BarChartComponent data={data} />
+              <StaticLineChart data={showRecordedDataInstance} />
             </Card>
           </div>
         </div>

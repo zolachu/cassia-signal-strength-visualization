@@ -28,7 +28,8 @@ const DataPoints = (props) => {
               data={item}
               key={Math.random()}
               id={index}
-              onClick={deleteItemHandler}
+              onDelete={deleteItemHandler}
+              onShow={(data) => props.onShow(data)}
             ></SingleDataComponent>
           );
         })}
