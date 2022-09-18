@@ -13,7 +13,7 @@
 .border {
   position: relative;
   background-color: #EFF2F5;
-  padding: 1rem;
+  padding: 0.5rem;
   height: 100%;
 }
 
@@ -43,7 +43,10 @@
 }
 
 
-@media  screen and (min-width: 950px) {
+@media  screen and (min-width: 800px) {
+  .border {
+    padding: 2rem;
+  }
   .container {
     display: grid;
     width: 100%;
