@@ -14,10 +14,9 @@ const ChartComponent = (props) => {
   const arrayOfRecordedDataRef = useRef([[]]);
   const inputRef = useRef(0);
 
-  const clickToggleHandler = () => {
-    toggleRef.current = !toggleRef.current;
+  const clickToggleHandler = (shouldRecord) => {
+    toggleRef.current = shouldRecord;
     props.onReceiveData(arrayOfRecordedDataRef.current, toggleRef.current);
-    console.log(inputRef.current.value);
   };
 
   //chart component

@@ -15,27 +15,24 @@ const App = () => {
   const [data, setData] = useState([]);
   const [timerStart, setTimerStart] = useState(false);
   const [stopFetching, setStopFetching] = useState(true);
-  // const [toggleData, setToggleData] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const receiveDataHandler = useCallback((data, timerStart) => {
     setData((prevData) => {
       // return [...prevData, ...data];
       return [...data];
     });
-
     setTimerStart(timerStart);
+    setDisable(timerStart);
   }, []);
 
   const stopButtonHandler = useCallback(() => {
-    setStopFetching((v) => {
-      if (!v) {
+    setStopFetching((prevState) => {
+      if (!prevState) {
         setTimerStart(false);
       }
-      return !v;
+      return !prevState;
     });
-
-    // console.log("clicked");
-    // setToggleData(false);
   }, []);
 
   const clickListDataHandler = () => {
@@ -53,7 +50,11 @@ const App = () => {
         <div className={styles.container}>
           <div className={styles.leftContainer}>
             <div className={styles.closeLiveChart}>
-              <button className={styles.stopButton} onClick={stopButtonHandler}>
+              <button
+                className={styles.stopButton}
+                onClick={stopButtonHandler}
+                disabled={disable}
+              >
                 {stopButtonName}
                 {stopFetching && (
                   <PlayCircleFilledIcon className={styles.closeButton} />

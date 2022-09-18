@@ -3,6 +3,7 @@
     display: flex;
     width: 100%;
     flex-direction: row;
+    /* position: relative; */
 }
 
 
@@ -14,9 +15,6 @@
 
 .deleteButton {
     justify-content: flex-start;
-    align-items: center;
+    /* align-items: center; */
+    /* transform: scale(0.5); */
 }
-
-.deleteButton {
-    transform: scale(1.8);
-  }

@@ -18,36 +18,36 @@ const theme = createTheme({
 });
 
 const ToggleButton = (props) => {
-  const [isRecording, setIsRecording] = useState(true);
-  const [buttonText, setButtonText] = useState("RECORD");
-  const [buttonColor, setButtonColor] = useState("apple");
+  const [isRecording, setIsRecording] = useState(false);
   console.log(props.disable);
 
+  React.useEffect(() => {
+    if (props.disable) {
+      setIsRecording(false);
+    }
+    // setIsRecording(props.disable);
+  }, [props.disable]);
+
   function clickHandler() {
-    setButtonText((prevText) => {
-      return prevText === "RECORD" ? "STOP" : "RECORD";
-    });
-    setButtonColor((prevColor) => {
-      return prevColor === "apple" ? "anger" : "apple";
-    });
     setIsRecording((prevButtonState) => {
+      props.onClick(!prevButtonState);
       return !prevButtonState;
     });
-    props.onClick();
+    // props.onClick();
   }
 
   return (
     <ThemeProvider theme={theme}>
       <Button
         onClick={clickHandler}
-        color={buttonColor}
+        color={isRecording ? "anger" : "apple"}
         variant="contained"
         disabled={props.disable}
         style={{ width: "15%" }}
       >
         <span className={styles.buttonText}>
-          {buttonText}
-          {!isRecording ? (
+          {isRecording ? "STOP" : "RECORD"}
+          {isRecording ? (
             <StopIcon size="small" />
           ) : (
             <RadioButtonCheckedIcon size="small" />
