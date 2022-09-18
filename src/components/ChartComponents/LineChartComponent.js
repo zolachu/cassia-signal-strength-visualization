@@ -32,11 +32,13 @@ const ChartComponent = (props) => {
         backgroundColor: chartColors.green,
         borderColor: chartColors.green,
         segment: {},
+        // yAxisID: "y-1",
       },
     ],
   };
 
   const options = {
+    events: [],
     plugins: {
       streaming: {
         // frameRate: 5, // chart is drawn 5 times every second
@@ -78,7 +80,9 @@ const ChartComponent = (props) => {
           scaleLabel: {
             display: true,
             labelString: "Signal Strength",
+            // yAxisID: "y-1",
           },
+
           ticks: {
             // Include a dollar sign in the ticks
             callback: function (value) {
