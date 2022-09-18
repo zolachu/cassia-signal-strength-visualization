@@ -12,38 +12,50 @@ var chartColors = {
 };
 var color = Chart.helpers.color;
 
-const onFresh = async (recordRef, arrayRef, shouldStop, distanceRef, chart) => {
-  if (shouldStop) return;
-  // console.log("a");
+const onFresh = async (
+  recordRef,
+  arrayRef,
+  shouldStop,
+  distanceRef,
+  evtSource,
+  chart
+) => {
+  // const evtSource = new EventSource(
+  //   "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*"
+  // );
+
+  if (shouldStop) {
+    evtSource.close();
+    return;
+  }
+
   try {
-    const response = await fetch(
-      "https://random-data-api.com/api/users/random_user"
-    );
-    if (!response.ok) {
-      console.log("error! with request");
-    }
-    const data = await response.json();
+    evtSource.onmessage = (event) => {
+      // console.log(event.data);
 
-    chart.data.datasets.forEach(function (dataset) {
-      const dataPoint = {
-        x: Date.now(),
-        y: data.id % 250,
-        distance: distanceRef.current.value,
-      };
-      dataset.data.push(dataPoint);
-      dataset.segment.backgroundColor = chartColors.yellow;
+      const data = JSON.parse(event.data);
 
-      //if button is toggled, push new [x,y] point to arrayRef.current
-      if (recordRef.current) {
-        const lastElement = arrayRef.current[arrayRef.current.length - 1];
-        lastElement.push(dataPoint);
-      } else {
-        if (arrayRef.current[arrayRef.current.length - 1].length > 0) {
-          arrayRef.current.push([]);
-          console.log("pushed");
+      console.log(data["rssi"], "<---");
+      chart.data.datasets.forEach(function (dataset) {
+        const dataPoint = {
+          x: Date.now(),
+          y: -data["rssi"],
+          distance: distanceRef.current.value,
+        };
+        dataset.data.push(dataPoint);
+        dataset.segment.backgroundColor = chartColors.yellow;
+
+        //if button is toggled, push new [x,y] point to arrayRef.current
+        if (recordRef.current) {
+          const lastElement = arrayRef.current[arrayRef.current.length - 1];
+          lastElement.push(dataPoint);
+        } else {
+          if (arrayRef.current[arrayRef.current.length - 1].length > 0) {
+            arrayRef.current.push([]);
+          }
         }
-      }
-    });
+      });
+    };
   } catch (error) {
     console.log("error ", error);
   }

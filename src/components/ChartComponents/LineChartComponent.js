@@ -23,6 +23,10 @@ const ChartComponent = (props) => {
   //chart component
   const [chartColors, datasetKeyProvider, onFresh] = config;
 
+  const evtSource = new EventSource(
+    "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*"
+  );
+
   const data = {
     datasets: [
       {
@@ -65,12 +69,13 @@ const ChartComponent = (props) => {
               toggleRef,
               arrayOfRecordedDataRef,
               props.shouldStop,
-              inputRef
+              inputRef,
+              evtSource
             ),
 
             duration: 2000,
             refresh: 400,
-            delay: 1000,
+            delay: 8000,
           },
         },
       ],

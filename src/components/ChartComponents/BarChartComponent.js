@@ -49,7 +49,7 @@ const BarChartComponent = (props) => {
     },
     title: {
       display: true,
-      text: "Sensor Data",
+      text: "Recorded Data",
     },
     scales: {
       xAxes: [
@@ -79,8 +79,8 @@ const BarChartComponent = (props) => {
               return "-" + value;
             },
 
-            min: 0,
-            max: 250,
+            // min: 0,
+            // max: 250,
           },
         },
       ],
