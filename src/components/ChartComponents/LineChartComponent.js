@@ -4,6 +4,7 @@ import RecordButton from "../UI/RecordButton";
 import { Bar, Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../chartConfig/configLine";
+import TextField from "@mui/material/TextField";
 
 import styles from "./LineChartComponent.module.css";
 
@@ -111,11 +112,13 @@ const ChartComponent = (props) => {
             disable={props.shouldStop}
           />
           <label htmlFor="inputDistance">Distance</label>
-          <input
+          <TextField
+            id="inputDistance"
+            label="Distance"
+            variant="outlined"
             type="number"
             placeholder="distance in feet"
-            id="inputDistance"
-            ref={inputRef}
+            inputRef={inputRef}
             disabled={props.shouldStop}
           />
         </div>

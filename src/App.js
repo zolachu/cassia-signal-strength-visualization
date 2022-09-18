@@ -8,7 +8,7 @@ import BarChartComponent from "./components/ChartComponents/BarChartComponent";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import PauseIcon from "@mui/icons-material/Pause";
 import Button from "@mui/material/Button";
-import StaticLineChart from "./components/ChartComponents/StaticLineChart";
+import TextField from "@mui/material/TextField";
 
 import styles from "./App.module.css";
 

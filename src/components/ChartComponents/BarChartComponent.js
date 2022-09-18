@@ -59,6 +59,15 @@ const BarChartComponent = (props) => {
             display: true,
             labelString: "Signal Strength",
           },
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function (value) {
+              return "-" + value;
+            },
+
+            min: 0,
+            max: 250,
+          },
         },
       ],
     },
