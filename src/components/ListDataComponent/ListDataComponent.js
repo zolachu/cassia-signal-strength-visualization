@@ -4,16 +4,19 @@ import SingleDataComponent from "../SingleDataComponent/SingleDataComponent";
 import DataStats from "../DataStatsComponent/DataStatsComponent";
 
 const DataPoints = (props) => {
-  const list = props.dataArray.map((data) => {
-    return (
-      <SingleDataComponent
-        data={data}
-        key={Math.random()}
-      ></SingleDataComponent>
-    );
-  });
+  const list = props.dataArray
+    .slice(0)
+    .reverse()
+    .map((data) => {
+      return (
+        <SingleDataComponent
+          data={data}
+          key={Math.random()}
+        ></SingleDataComponent>
+      );
+    });
 
-  return <ul>{list}</ul>;
+  return <ul className={styles.container}>{list}</ul>;
 };
 
 export default DataPoints;
