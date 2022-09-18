@@ -14,6 +14,7 @@ const SingleDataComponent = (props) => {
   return (
     <li>
       <Card onClick={clickHandler} className={styles.container}>
+        <div>x</div>
         <DataStats
           array={arrayY}
           timer={props.timer}
