@@ -14,7 +14,7 @@ import styles from "./App.module.css";
 const App = () => {
   const [data, setData] = useState([]);
   const [timerStart, setTimerStart] = useState(false);
-  const [stop, setStop] = useState(true);
+  const [stopFetching, setStopFetching] = useState(true);
 
   const receiveDataHandler = useCallback((data, timerStart) => {
     setData((prevData) => {
@@ -26,10 +26,12 @@ const App = () => {
   }, []);
 
   const stopButtonHandler = useCallback(() => {
-    setStop((v) => !v);
+    setStopFetching((v) => !v);
   }, []);
 
-  const stopButtonName = stop ? "START FETCHING DATA" : "STOP FETCHING DATA";
+  const stopButtonName = stopFetching
+    ? "START FETCHING DATA"
+    : "STOP FETCHING DATA";
 
   return (
     <div className={styles.app}>
@@ -39,16 +41,16 @@ const App = () => {
             <div className={styles.closeLiveChart}>
               <button className={styles.stopButton} onClick={stopButtonHandler}>
                 {stopButtonName}
-                {stop && (
+                {stopFetching && (
                   <PlayCircleFilledIcon className={styles.closeButton} />
                 )}
-                {!stop && <PauseIcon />}
+                {!stopFetching && <PauseIcon />}
               </button>
             </div>
             <Card className={styles.chart}>
               <ChartComponent
                 onReceiveData={receiveDataHandler}
-                shouldStop={stop}
+                shouldStop={stopFetching}
               ></ChartComponent>
             </Card>
 
@@ -56,7 +58,7 @@ const App = () => {
               <div className={styles.timerCircle}>
                 <ElapsedTimer
                   timer={timerStart}
-                  shouldStop={stop}
+                  shouldStop={stopFetching}
                 ></ElapsedTimer>
               </div>
             </div>
@@ -64,7 +66,10 @@ const App = () => {
 
           <div className={styles.rightContainer}>
             <Card className={styles.listData}>
-              <ListDataComponent data={data}></ListDataComponent>
+              <ListDataComponent
+                data={data}
+                timer={timerStart}
+              ></ListDataComponent>
             </Card>
 
             <Card className={styles.barChart}>

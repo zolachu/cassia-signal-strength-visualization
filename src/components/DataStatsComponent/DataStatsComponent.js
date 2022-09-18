@@ -1,3 +1,5 @@
+import styles from "./DataStatsComponent.module.css";
+
 const DataStatsComponent = (props) => {
   const arrayY = props.array;
   const min = arrayY.length > 0 ? Math.max(...arrayY) : 0;
@@ -7,12 +9,12 @@ const DataStatsComponent = (props) => {
   average.toFixed(4);
   const count = arrayY.length > 0 ? arrayY.length : 0;
   return (
-    <>
+    <div className={styles.dataStats}>
       <div>MIN: {min}</div>
       <div>MAX: {max}</div>
       <div>AVERAGE: {average.toFixed(2)}</div>
       <div>COUNT: {count}</div>
-    </>
+    </div>
   );
 };
 

@@ -18,7 +18,7 @@ const DataPoints = (props) => {
 
   return (
     <div>
-      <DataStats array={arrayY}></DataStats>
+      <DataStats array={arrayY} timer={props.timer}></DataStats>
       <ul>{list}</ul>
     </div>
   );
