@@ -62,7 +62,7 @@ const BarChartComponent = (props) => {
             // Include a dollar sign in the ticks
             callback: function (value) {
               const d = new Date(value);
-              return `${d.getMinutes()}:${d.getSeconds()}`;
+              return d.toLocaleTimeString();
             },
           },
         },

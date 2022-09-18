@@ -37,9 +37,13 @@
 .rightContainer {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-rows: repeat(auto, minmax(0, 1fr));
 }
 .leftContainer {
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-rows: repeat(auto, minmax(0, 1fr));
 }
 
 .timerContainer {
@@ -47,6 +51,7 @@
 }
 .chart {
   position: relative;
+  grid-row: 2/ span 4;
 }
 
 @media  screen and (min-width: 800px) {
