@@ -38,9 +38,6 @@ const App = () => {
   }, []);
 
   const clickListDataHandler = (data) => {
-    // setToggleData((v) => true);
-    // setStopFetching((v) => true);
-
     setRecordedDataInstance((prev) => data);
   };
 
@@ -91,7 +88,7 @@ const App = () => {
             </Card>
 
             <Card className={styles.barChart}>
-              <StaticLineChart data={showRecordedDataInstance} />
+              <BarChartComponent data={showRecordedDataInstance} />
             </Card>
           </div>
         </div>

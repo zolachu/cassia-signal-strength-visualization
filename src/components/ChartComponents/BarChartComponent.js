@@ -1,6 +1,6 @@
 import React from "react";
 import "chartjs-plugin-streaming";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../chartConfig/configBar";
 
@@ -9,22 +9,21 @@ import styles from "./BarChartComponent.module.css";
 const BarChartComponent = (props) => {
   //chart component
   const [chartColors, datasetKeyProvider, findDistinctElements] = config;
+  if (!props.data) return <></>;
+  let distinctData = [];
+  let labels = [];
+  if (props.data) {
+    labels = props.data.map((element) => element.x);
+    console.log(distinctData);
+    console.log(labels);
+  }
 
-  const arrayY = props.data.map((item) => item.y);
-
-  const map = findDistinctElements(arrayY);
-  console.log(map);
-
-  const distinctData = Array.from(map.values());
-  const labels = Array.from(map.keys());
-  console.log(distinctData);
-  console.log(labels);
   const data = {
     labels: labels,
     datasets: [
       {
         label: "Distance",
-        data: distinctData,
+        data: props.data,
         fill: true,
         backgroundColor: chartColors.red,
         borderColor: chartColors.red,
@@ -53,24 +52,12 @@ const BarChartComponent = (props) => {
       text: "Sensor Data",
     },
     scales: {
-      xAxes: [
-        {
-          ticks: {
-            // Include a dollar sign in the ticks
-            callback: function (value) {
-              return "-" + value;
-            },
-
-            min: 0,
-            max: 250,
-          },
-        },
-      ],
+      xAxes: [{}],
       yAxes: [
         {
           scaleLabel: {
             display: true,
-            labelString: "Frequency",
+            labelString: "Signal Strength",
           },
         },
       ],
@@ -80,7 +67,7 @@ const BarChartComponent = (props) => {
   return (
     <div>
       <div className={styles["chart-container"]}>
-        <Bar
+        <Line
           datasetKeyProvider={datasetKeyProvider}
           data={data}
           options={options}

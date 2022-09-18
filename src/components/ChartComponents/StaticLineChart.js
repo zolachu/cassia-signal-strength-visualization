@@ -1,21 +1,53 @@
 import React, { useRef } from "react";
-import "chartjs-plugin-streaming";
 import { Line } from "react-chartjs-2";
-import config from "../chartConfig/configLine";
 
-export const options = {
-  responsive: true,
+const options = {
+  //   responsive: true,
+
   plugins: {
     legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
+      labels: {
+        // This more specific font property overrides the global property
+        font: {
+          size: 20,
+        },
+      },
     },
   },
-};
+  title: {
+    display: true,
+    text: "Sensor Data",
+  },
+  scales: {
+    xAxes: [
+      {
+        type: "time",
+        title: {
+          display: true,
+          text: "Date",
+        },
+      },
+    ],
+    yAxes: [
+      {
+        scaleLabel: {
+          display: true,
+          labelString: "Signal Strength",
+        },
 
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value) {
+            return "-" + value;
+          },
+
+          min: 0,
+          max: 250,
+        },
+      },
+    ],
+  },
+};
 const StaticLineChart = (props) => {
   console.log(props.data);
   const data = {
