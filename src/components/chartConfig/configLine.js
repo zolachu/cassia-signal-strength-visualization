@@ -37,7 +37,6 @@ const onFresh = async (
       // evtSource.close();
       const data = JSON.parse(event.data);
 
-      console.log(data["rssi"], "<---");
       chart.data.datasets.forEach(function (dataset) {
         const dataPoint = {
           x: Date.now(),

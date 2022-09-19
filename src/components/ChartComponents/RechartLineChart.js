@@ -11,7 +11,6 @@ import {
 } from "recharts";
 import { AreaChart, Area, ResponsiveContainer, ComposedChart } from "recharts";
 import RecordButton from "../UI/RecordButton";
-import config from "../chartConfig/configLine";
 import TextField from "@mui/material/TextField";
 import styles from "./LineChartComponent.module.css";
 
@@ -21,7 +20,7 @@ const LineChartComponent = (props) => {
   const toggleRef = useRef(false);
   const inputRef = useRef(0);
   const [series, setSeries] = useState([[]]);
-  const [tempSeries, setTempSeries] = useState(null);
+  const [graphPoints, updateGraphPoints] = useState(null);
 
   const clickToggleHandler = (shouldRecord) => {
     toggleRef.current = shouldRecord;
@@ -39,7 +38,7 @@ const LineChartComponent = (props) => {
       const data = JSON.parse(e.data);
 
       //update line chart
-      setTempSeries((prev) => {
+      updateGraphPoints((prev) => {
         let newSeries = prev ? [...prev] : [];
 
         const x = new Date();
@@ -63,8 +62,6 @@ const LineChartComponent = (props) => {
         const y = data.rssi;
         //update area chart
         if (toggleRef.current) {
-          console.log("recording");
-          console.log(newSeries);
           // get the last area series.
           newSeries[newSeries.length - 1].push({
             x: x,
@@ -74,9 +71,7 @@ const LineChartComponent = (props) => {
         } else {
           if (lastData.length !== 0) {
             newSeries.push([]);
-            console.log("pushed");
           }
-          console.log("no empty area was added");
         }
         return newSeries;
       });
@@ -97,22 +92,21 @@ const LineChartComponent = (props) => {
         <div>
           <h1>Sensor Data</h1>
           <ResponsiveContainer width="99%" aspect={3}>
-            <ComposedChart width={1000} height={400} data={tempSeries}>
-              {/* <Line data={series[0].data}> */}
+            <ComposedChart width={1000} height={400} data={graphPoints}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
               <YAxis type="number" domain={["auto", "auto"]} />
               <Tooltip />
               <Legend />
               <Bar
-                //   type="monotone"
+                type="monotone"
                 isAnimationActive={false}
                 dataKey="rssi"
                 stroke="#82ca9d"
                 fill="#82ca9d"
               />
               <Bar
-                //   type="monotone"
+                type="monotone"
                 dataKey="recordedRssi"
                 isAnimationActive={false}
                 fill="#D21404"
