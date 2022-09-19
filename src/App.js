@@ -22,6 +22,8 @@ const App = () => {
   const receiveDataHandler = useCallback((data, setStopAll) => {
     setData((prevData) => {
       // return [...prevData, ...data];
+      console.log(data);
+
       return [...data];
     });
     setIsTimerStart(setStopAll);

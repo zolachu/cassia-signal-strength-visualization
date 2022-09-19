@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 const SingleDataComponent = (props) => {
   //   console.log(props.data);
   //   props.isTimerRunning
+  console.log("here in single data p");
+  console.log(props.data);
   const arrayY = props.data.map((element) => element.y);
   const distance = props.data.length > 0 ? props.data[0].distance : undefined;
 

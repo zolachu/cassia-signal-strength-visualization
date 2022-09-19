@@ -10,18 +10,23 @@ import {
   Legend,
 } from "recharts";
 import { AreaChart, Area, ResponsiveContainer, ComposedChart } from "recharts";
+import RecordButton from "../UI/RecordButton";
+import config from "../chartConfig/configLine";
+import TextField from "@mui/material/TextField";
+import styles from "./LineChartComponent.module.css";
 
 const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
 
-const LineChartComponent = () => {
-  const [series, setSeries] = useState([
-    { type: "line", data: [] },
-    { type: "area", data: [] },
-  ]);
-
+const LineChartComponent = (props) => {
+  const toggleRef = useRef(false);
+  const inputRef = useRef(0);
+  const [series, setSeries] = useState([[]]);
   const [tempSeries, setTempSeries] = useState(null);
 
-  const isToggledRef = useRef(false);
+  const clickToggleHandler = (shouldRecord) => {
+    toggleRef.current = shouldRecord;
+    props.onReceiveData(series, toggleRef.current);
+  };
 
   useEffect(() => {
     const eventSource = new EventSource(serverBaseURL);
@@ -29,27 +34,21 @@ const LineChartComponent = () => {
     eventSource.addEventListener("open", () => {
       console.log("SSE opened!");
     });
-    console.log(eventSource.message);
-    eventSource.onmessage = (e) => {
-      console.log("update Data BEING FIRED");
 
+    eventSource.onmessage = (e) => {
       const data = JSON.parse(e.data);
-      console.log(data);
+
       //update line chart
       setTempSeries((prev) => {
-        console.log(prev);
-        let newSeries = [];
-        if (prev) {
-          newSeries = [...prev];
-        }
+        let newSeries = prev ? [...prev] : [];
 
         const x = new Date();
         const y = data.rssi;
 
-        if (isToggledRef.current) {
-          newSeries.push({ date: x, rssi: y });
+        if (toggleRef.current) {
+          newSeries.push({ date: x, recordedRssi: y });
         } else {
-          newSeries.push({ date: x, areaRssi: y });
+          newSeries.push({ date: x, rssi: y });
         }
         if (newSeries.length > 10) newSeries.shift();
         return newSeries;
@@ -57,44 +56,31 @@ const LineChartComponent = () => {
 
       setSeries((prevSeries) => {
         let newSeries = [...prevSeries];
-
+        const lastData = prevSeries[prevSeries.length - 1];
         // update the line chart (add one more data)
-        const prevData = newSeries[0].data;
+        // const prevData = newSeries[0].data;
         const x = new Date();
         const y = data.rssi;
-
-        let array = [
-          ...prevData,
-          { date: x, rssi: y, areaRssi: null, line: true },
-        ];
-        //shift the array
-        // TODO: must delete this line!
-        // if (array.length > 10) array.shift();
-        // array.shift();
-        newSeries[0] = { type: "line", data: array };
-
         //update area chart
-        if (isToggledRef.current) {
+        if (toggleRef.current) {
+          console.log("recording");
+          console.log(newSeries);
           // get the last area series.
-          const lastAreaData = prevSeries[prevSeries.length - 1].data;
-          // console.log(lastAreaData);
-          console.log(lastAreaData);
-          let array = [...lastAreaData, { date: x, areaRssi: y, area: true }];
-
-          newSeries[prevSeries.length - 1] = { type: "area", data: array };
+          newSeries[newSeries.length - 1].push({
+            x: x,
+            y: y,
+            distance: inputRef.current.value,
+          });
         } else {
-          console.log("NO!");
-          console.log(prevSeries.length);
-          const last = prevSeries[prevSeries.length - 1];
-          if (last.data.length !== 0 && last.type === "area") {
-            console.log("replaced last series point with empty area");
-            newSeries.push({ type: "area", data: [] });
-            // newSeries[newSeries.length - 1] = { type: "area", data: [] };
+          if (lastData.length !== 0) {
+            newSeries.push([]);
+            console.log("pushed");
           }
           console.log("no empty area was added");
         }
         return newSeries;
       });
+
       console.log("new message");
     };
 
@@ -103,47 +89,57 @@ const LineChartComponent = () => {
     };
   }, []);
 
-  const [buttonToggle, setButtonToggle] = useState(false);
-  const toggleHandler = () => {
-    isToggledRef.current = !isToggledRef.current;
-    setButtonToggle((v) => !v);
-  };
+  console.log(series);
 
   return (
-    <div
-    // style={{
-    //   display: "grid",
-    //   placeItems: "center",
-    //   position: "relative",
-    //   width: "100%",
-    // }}
-    >
-      <h1>Sensor Data</h1>
-      <ResponsiveContainer width="99%" aspect={3}>
-        <ComposedChart width={1000} height={400} data={tempSeries}>
-          {/* <Line data={series[0].data}> */}
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis type="number" domain={["auto", "auto"]} />
-          <Tooltip />
-          <Legend />
-          <Bar
-            //   type="monotone"
-            isAnimationActive={false}
-            dataKey="rssi"
-            stroke="#8884d8"
-            fill="#82ca9d"
+    <div>
+      <div className={styles["chart-container"]}>
+        <div>
+          <h1>Sensor Data</h1>
+          <ResponsiveContainer width="99%" aspect={3}>
+            <ComposedChart width={1000} height={400} data={tempSeries}>
+              {/* <Line data={series[0].data}> */}
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis type="number" domain={["auto", "auto"]} />
+              <Tooltip />
+              <Legend />
+              <Bar
+                //   type="monotone"
+                isAnimationActive={false}
+                dataKey="rssi"
+                stroke="#82ca9d"
+                fill="#82ca9d"
+              />
+              <Bar
+                //   type="monotone"
+                dataKey="recordedRssi"
+                isAnimationActive={false}
+                fill="#D21404"
+                stroke="#D21404"
+              />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+      <div className="actions">
+        <div>
+          <RecordButton
+            onClick={clickToggleHandler}
+            disable={props.shouldStop}
           />
-          <Bar
-            //   type="monotone"
-            dataKey="areaRssi"
-            isAnimationActive={false}
-            fill="#413ea0"
-            stroke="#82ca9d"
+          <label htmlFor="inputDistance">Distance</label>
+          <TextField
+            id="inputDistance"
+            label="Distance"
+            variant="outlined"
+            type="number"
+            placeholder="distance in feet"
+            inputRef={inputRef}
+            disabled={props.shouldStop}
           />
-        </ComposedChart>
-      </ResponsiveContainer>
-      <button onClick={toggleHandler}>{!buttonToggle ? "Start" : "End"}</button>
+        </div>
+      </div>
     </div>
   );
 };

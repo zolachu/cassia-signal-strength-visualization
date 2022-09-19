@@ -5,7 +5,7 @@ import SingleDataComponent from "../SingleDataComponent/SingleDataComponent";
 const DataPoints = (props) => {
   console.log(props.dataArray.length, "arr length");
   const [data, setData] = useState(props.dataArray);
-
+  console.log("INSIDE DATA POINTS", props.dataArray.length);
   React.useEffect(() => {
     setData(props.dataArray);
   }, [props.dataArray]);
@@ -16,7 +16,9 @@ const DataPoints = (props) => {
     console.log(newData.length);
     setData(newData);
   };
+  console.log(props.dataArray);
   console.log(props.isTimerRunning);
+
   return (
     <ul className={styles.container}>
       {data
