@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   LineChart,
   Line,
@@ -26,6 +26,11 @@ const LineChartComponent = (props) => {
     toggleRef.current = shouldRecord;
     props.onReceiveData(series, toggleRef.current);
   };
+
+  const display = React.useMemo(
+    () => props.displayThisInstance,
+    [props.displayThisInstance]
+  );
 
   useEffect(() => {
     // if (props.shouldStop)
@@ -58,7 +63,6 @@ const LineChartComponent = (props) => {
         let newSeries = [...prevSeries];
         const lastData = prevSeries[prevSeries.length - 1];
         // update the line chart (add one more data)
-        // const prevData = newSeries[0].data;
         const x = new Date();
         const y = data.rssi;
         //update area chart
@@ -71,7 +75,7 @@ const LineChartComponent = (props) => {
           });
         } else {
           if (lastData.length !== 0) {
-            props.displayThisInstance(newSeries[newSeries.length - 1]);
+            display(newSeries[newSeries.length - 1]);
             newSeries.push([]);
           }
         }
@@ -84,7 +88,7 @@ const LineChartComponent = (props) => {
     return () => {
       eventSource.close();
     };
-  }, []);
+  }, [display]);
 
   console.log(series);
 

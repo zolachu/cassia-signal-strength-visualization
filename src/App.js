@@ -19,9 +19,9 @@ const App = () => {
   const [disableFetchButton, setDisableFetchButton] = useState(false);
   const [showRecordedDataInstance, setRecordedDataInstance] = useState(null);
 
-  const displayThisInstanceHandler = (data) => {
+  const displayThisInstanceHandler = useCallback((data) => {
     setRecordedDataInstance(data);
-  };
+  }, []);
 
   const receiveDataHandler = useCallback((data, setStopAll) => {
     setData((prevData) => {
