@@ -12,6 +12,10 @@ const SingleDataComponent = (props) => {
   const arrayY = props.data.map((element) => element.y);
   const distance = props.data.length > 0 ? props.data[0].distance : undefined;
 
+  const buttonClickHandler = () => {
+    props.onShow(props.data);
+  };
+
   return (
     <li>
       <Card className={styles.container}>
@@ -30,10 +34,7 @@ const SingleDataComponent = (props) => {
           delete
           <DeleteForeverIcon color={!props.isTimerRunning ? "warning" : ""} />
         </Button> */}
-        <Button
-          onClick={() => props.onShow(props.data)}
-          disabled={props.isTimerRunning}
-        >
+        <Button onClick={buttonClickHandler} disabled={props.isTimerRunning}>
           Show Details
         </Button>
       </Card>

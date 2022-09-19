@@ -1,3 +1,16 @@
 .chart-container {
     /* height: 50px; */
 }
+
+.actions {
+    /* display: flex; */
+    /* flex-direction:row; */
+    /* justify-content: space-around; */
+}
+
+.actions  label {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+

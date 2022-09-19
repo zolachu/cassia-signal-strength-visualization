@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import {
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  BarChart,
+} from "recharts";
 import { ResponsiveContainer, ComposedChart } from "recharts";
 import RecordButton from "../UI/RecordButton";
 import TextField from "@mui/material/TextField";
@@ -90,8 +98,8 @@ const LineChartComponent = (props) => {
         <div>
           <h1>Sensor Data</h1>
           <ResponsiveContainer width="99%" aspect={2}>
-            <ComposedChart width={600} height={400} data={graphPoints}>
-              <CartesianGrid strokeDasharray="3 3" />
+            <BarChart width={600} height={400} data={graphPoints}>
+              <CartesianGrid strokeDasharray="11 10" />
               <XAxis dataKey="date" />
               <YAxis type="number" domain={["auto", "auto"]} />
               <Tooltip />
@@ -110,11 +118,11 @@ const LineChartComponent = (props) => {
                 fill="#D21404"
                 stroke="#D21404"
               />
-            </ComposedChart>
+            </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
-      <div className="actions">
+      <div className={styles.actions}>
         <div>
           <RecordButton
             onClick={clickToggleHandler}
