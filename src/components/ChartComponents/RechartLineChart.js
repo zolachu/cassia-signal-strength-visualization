@@ -28,6 +28,7 @@ const LineChartComponent = (props) => {
   };
 
   useEffect(() => {
+    // if (props.shouldStop)
     const eventSource = new EventSource(serverBaseURL);
 
     eventSource.addEventListener("open", () => {
@@ -70,6 +71,7 @@ const LineChartComponent = (props) => {
           });
         } else {
           if (lastData.length !== 0) {
+            props.displayThisInstance(newSeries[newSeries.length - 1]);
             newSeries.push([]);
           }
         }

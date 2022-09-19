@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import "chartjs-plugin-streaming";
 import ListDataComponent from "./components/ListDataComponent/ListDataComponent";
 import ChartComponent from "./components/ChartComponents/LineChartComponent";
@@ -18,6 +18,10 @@ const App = () => {
   const [stopFetching, setStopFetching] = useState(true);
   const [disableFetchButton, setDisableFetchButton] = useState(false);
   const [showRecordedDataInstance, setRecordedDataInstance] = useState(null);
+
+  const displayThisInstanceHandler = (data) => {
+    setRecordedDataInstance(data);
+  };
 
   const receiveDataHandler = useCallback((data, setStopAll) => {
     setData((prevData) => {
@@ -71,6 +75,7 @@ const App = () => {
               <RechartLineChart
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
+                displayThisInstance={displayThisInstanceHandler}
               />
             </Card>
 
