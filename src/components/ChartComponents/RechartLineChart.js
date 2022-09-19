@@ -1,15 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  LineChart,
-  Line,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from "recharts";
-import { AreaChart, Area, ResponsiveContainer, ComposedChart } from "recharts";
+import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import { ResponsiveContainer, ComposedChart } from "recharts";
 import RecordButton from "../UI/RecordButton";
 import TextField from "@mui/material/TextField";
 import styles from "./LineChartComponent.module.css";
@@ -24,6 +15,7 @@ const LineChartComponent = (props) => {
 
   const clickToggleHandler = (shouldRecord) => {
     toggleRef.current = shouldRecord;
+
     props.onReceiveData(series, toggleRef.current, inputRef.current.value);
   };
 
