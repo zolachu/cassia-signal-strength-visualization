@@ -21,7 +21,7 @@ const SingleDataComponent = (props) => {
           timer={props.timer}
           distance={distance}
         ></DataStats>
-        <Button
+        {/* <Button
           onClick={() => props.onDelete(props.id)}
           color="warning"
           className={styles.deleteButton}
@@ -29,7 +29,7 @@ const SingleDataComponent = (props) => {
         >
           delete
           <DeleteForeverIcon color={!props.isTimerRunning ? "warning" : ""} />
-        </Button>
+        </Button> */}
         <Button
           onClick={() => props.onShow(props.data)}
           disabled={props.isTimerRunning}

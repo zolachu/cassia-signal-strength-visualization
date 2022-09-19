@@ -136,7 +136,7 @@ const LineChartComponent = (props) => {
             type="number"
             placeholder="distance in feet"
             inputRef={inputRef}
-            disabled={props.shouldStop}
+            disabled={props.shouldStop || toggleRef.current}
           />
         </div>
       </div>
