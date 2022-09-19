@@ -1,7 +1,6 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import "chartjs-plugin-streaming";
 import ListDataComponent from "./components/ListDataComponent/ListDataComponent";
-import ChartComponent from "./components/ChartComponents/LineChartComponent";
 import ElapsedTimer from "./components/UI/Timer";
 import Card from "./components/UI/Card/Card";
 import BarChartComponent from "./components/ChartComponents/BarChartComponent";
@@ -23,10 +22,8 @@ const App = () => {
     setRecordedDataInstance(data);
   }, []);
 
-  const receiveDataHandler = useCallback((data, setStopAll, distance) => {
-    setData((prevData) => {
-      return [...data];
-    });
+  const receiveDataHandler = useCallback((data, setStopAll) => {
+    setData([...data]);
     setIsTimerStart(setStopAll);
     setDisableFetchButton(setStopAll);
   }, []);
@@ -65,10 +62,6 @@ const App = () => {
               </Button>
             </div>
             <Card className={styles.chart}>
-              {/* <ChartComponent
-                onReceiveData={receiveDataHandler}
-                shouldStop={stopFetching}
-              ></ChartComponent> */}
               <RechartLineChart
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
