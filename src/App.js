@@ -14,7 +14,7 @@ import styles from "./App.module.css";
 const App = () => {
   const [data, setData] = useState([]);
   const [IsTimerRunning, setIsTimerStart] = useState(false);
-  const [stopFetching, setStopFetching] = useState(true);
+  const [stopFetching, setStopFetching] = useState(false);
   const [disableFetchButton, setDisableFetchButton] = useState(false);
   const [showRecordedDataInstance, setRecordedDataInstance] = useState(null);
 
@@ -48,7 +48,8 @@ const App = () => {
       <div className={styles.border}>
         <div className={styles.container}>
           <div className={styles.leftContainer}>
-            <div className={styles.closeLiveChart}>
+            {/* <div className={styles.closeLiveChart}></div> */}
+            <Card className={styles.chart}>
               <Button
                 className={styles.stopButton}
                 onClick={stopButtonHandler}
@@ -60,8 +61,6 @@ const App = () => {
                 )}
                 {!stopFetching && <PauseIcon />}
               </Button>
-            </div>
-            <Card className={styles.chart}>
               <RechartLineChart
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}

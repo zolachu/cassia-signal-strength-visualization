@@ -89,8 +89,8 @@ const LineChartComponent = (props) => {
       <div className={styles["chart-container"]}>
         <div>
           <h1>Sensor Data</h1>
-          <ResponsiveContainer width="99%" aspect={3}>
-            <ComposedChart width={1000} height={400} data={graphPoints}>
+          <ResponsiveContainer width="99%" aspect={2}>
+            <ComposedChart width={600} height={400} data={graphPoints}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
               <YAxis type="number" domain={["auto", "auto"]} />

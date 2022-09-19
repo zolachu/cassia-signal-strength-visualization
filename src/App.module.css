@@ -1,6 +1,7 @@
 .app {
   height: 100%;
   width: 100%;
+  min-width: 100%; 
   position: relative;
   background-color: #141B2C;
   margin: 0;
@@ -15,6 +16,7 @@
   background-color: #EFF2F5;
   padding: 0.5rem;
   height: 100%;
+  width: 100%;
 }
 
 .container {
@@ -51,7 +53,7 @@
 }
 .chart {
   position: relative;
-  grid-row: 2/ span 4;
+  grid-row: 1/ span 4;
 }
 
 @media  screen and (min-width: 800px) {
