@@ -9,13 +9,14 @@ import styles from "./BarChartComponent.module.css";
 const BarChartComponent = (props) => {
   //chart component
   const [chartColors, datasetKeyProvider, findDistinctElements] = config;
-  if (!props.data) return <></>;
-  let distinctData = [];
+  // if (!props.data) return <></>;
+
   let labels = [];
+  let distance = null;
+
   if (props.data) {
     labels = props.data.map((element) => element.x);
-    console.log(distinctData);
-    console.log(labels);
+    distance = props.data[0].distance;
   }
 
   const data = {
@@ -89,6 +90,7 @@ const BarChartComponent = (props) => {
 
   return (
     <div>
+      <div>Distance : {distance}</div>
       <div className={styles["chart-container"]}>
         <Line
           datasetKeyProvider={datasetKeyProvider}

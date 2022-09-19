@@ -24,7 +24,7 @@ const LineChartComponent = (props) => {
 
   const clickToggleHandler = (shouldRecord) => {
     toggleRef.current = shouldRecord;
-    props.onReceiveData(series, toggleRef.current);
+    props.onReceiveData(series, toggleRef.current, inputRef.current.value);
   };
 
   const display = React.useMemo(

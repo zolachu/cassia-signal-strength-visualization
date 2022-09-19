@@ -23,11 +23,8 @@ const App = () => {
     setRecordedDataInstance(data);
   }, []);
 
-  const receiveDataHandler = useCallback((data, setStopAll) => {
+  const receiveDataHandler = useCallback((data, setStopAll, distance) => {
     setData((prevData) => {
-      // return [...prevData, ...data];
-      console.log(data);
-
       return [...data];
     });
     setIsTimerStart(setStopAll);
@@ -44,7 +41,7 @@ const App = () => {
   }, []);
 
   const clickListDataHandler = (data) => {
-    setRecordedDataInstance((prev) => data);
+    setRecordedDataInstance(data);
   };
 
   const stopButtonName = stopFetching ? "START LIVE DATA" : "STOP LIVE DATA";
