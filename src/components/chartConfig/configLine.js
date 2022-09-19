@@ -25,14 +25,16 @@ const onFresh = async (
   // );
 
   if (shouldStop) {
-    evtSource.close();
+    // evtSource.close();
     return;
   }
 
   try {
-    evtSource.onmessage = (event) => {
-      // console.log(event.data);
+    console.log("didnt close");
+    evtSource.current.onmessage = (event) => {
+      console.log(event.data);
 
+      // evtSource.close();
       const data = JSON.parse(event.data);
 
       console.log(data["rssi"], "<---");

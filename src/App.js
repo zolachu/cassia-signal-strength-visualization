@@ -8,6 +8,7 @@ import BarChartComponent from "./components/ChartComponents/BarChartComponent";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import PauseIcon from "@mui/icons-material/Pause";
 import Button from "@mui/material/Button";
+import RechartLineChart from "./components/ChartComponents/RechartLineChart";
 
 import styles from "./App.module.css";
 
@@ -61,10 +62,14 @@ const App = () => {
               </Button>
             </div>
             <Card className={styles.chart}>
-              <ChartComponent
+              {/* <ChartComponent
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
-              ></ChartComponent>
+              ></ChartComponent> */}
+              <RechartLineChart
+                onReceiveData={receiveDataHandler}
+                shouldStop={stopFetching}
+              />
             </Card>
 
             <div className={styles.timerContainer}>

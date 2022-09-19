@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import "chartjs-plugin-streaming";
 import RecordButton from "../UI/RecordButton";
 import { Bar, Line } from "react-chartjs-2";
@@ -14,19 +14,22 @@ const ChartComponent = (props) => {
   const chartRef = useRef();
   const arrayOfRecordedDataRef = useRef([[]]);
   const inputRef = useRef(0);
-
+  const evtSource = useRef(
+    new EventSource("http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*")
+  );
   const clickToggleHandler = (shouldRecord) => {
     toggleRef.current = shouldRecord;
     props.onReceiveData(arrayOfRecordedDataRef.current, toggleRef.current);
   };
-
+  // useEffect(() => {
+  //   return () => {
+  //     evtSource.current.close();
+  //   };
+  // }, []);
   //chart component
   const [chartColors, datasetKeyProvider, onFresh] = config;
 
-  const evtSource = new EventSource(
-    "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*"
-  );
-
+  if (props.shouldStop) evtSource.current.close();
   const data = {
     datasets: [
       {
@@ -92,8 +95,8 @@ const ChartComponent = (props) => {
               return "-" + value;
             },
 
-            min: 0,
-            max: 250,
+            // min: 0,
+            // max: 250,
           },
         },
       ],
