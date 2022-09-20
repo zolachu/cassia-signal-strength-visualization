@@ -36,6 +36,11 @@
   margin-bottom: 1rem;
 }
 
+
+.barChart {
+  /* min-height: 1000px; */
+}
+
 .rightContainer {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));

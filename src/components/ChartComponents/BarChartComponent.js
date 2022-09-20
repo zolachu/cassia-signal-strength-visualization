@@ -14,7 +14,7 @@ const BarChartComponent = (props) => {
   let labels = [];
   let distance = null;
 
-  if (props.data) {
+  if (props.data && props.data[0]) {
     labels = props.data.map((element) => element.x);
     distance = props.data[0].distance;
   }
@@ -91,8 +91,9 @@ const BarChartComponent = (props) => {
   return (
     <div>
       <div>Distance : {distance}</div>
-      <div className={styles["chart-container"]}>
+      <div>
         <Line
+          height={"200%"}
           datasetKeyProvider={datasetKeyProvider}
           data={data}
           options={options}

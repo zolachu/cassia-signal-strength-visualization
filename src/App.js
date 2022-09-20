@@ -50,7 +50,7 @@ const App = () => {
           <div className={styles.leftContainer}>
             {/* <div className={styles.closeLiveChart}></div> */}
             <Card className={styles.chart}>
-              <Button
+              {/* <Button
                 className={styles.stopButton}
                 onClick={stopButtonHandler}
                 disabled={disableFetchButton}
@@ -60,7 +60,7 @@ const App = () => {
                   <PlayCircleFilledIcon className={styles.closeButton} />
                 )}
                 {!stopFetching && <PauseIcon />}
-              </Button>
+              </Button> */}
               <RechartLineChart
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
