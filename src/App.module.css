@@ -18,7 +18,7 @@
 .container {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(1, minmax(0, 1fr))
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .container > div {
@@ -27,7 +27,7 @@
 
 .listDataContainer {
   position: relative;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   
 }
 
@@ -45,34 +45,29 @@
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   grid-template-rows: repeat(auto, minmax(0, 1fr));
+  row-gap: 1rem;
 }
+
 .leftContainer {
-  /* margin-top: 24px; */
   position: relative;
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
+  row-gap: 1rem;
   /* grid-template-rows: repeat(auto, minmax(0, 1fr)); */
 }
 
 .chart {
   position: relative;
-  grid-row: 1/ span 4;
 }
 
 @media  screen and (min-width: 800px) {
   .border {
     padding: 2rem;
   }
-  
+
   .container {
     display: grid;
-    width: 100%;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-  .leftContainer {
-    grid-column: 1/ span 3;
-  }
-  .rightContainer {
-    grid-column: 4/ span 2;
+    /* width: 100%; */
+    grid-template-columns: 2fr 1fr;
   }
 }

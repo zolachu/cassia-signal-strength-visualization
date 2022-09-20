@@ -77,6 +77,9 @@ const App = () => {
                 displayThisInstance={displayThisInstanceHandler}
               /> */}
             </Card>
+            <Card className={styles.barChart} icon="preview">
+              <PreviewChartComponent data={showRecordedDataInstance} />
+            </Card>
           </div>
 
           <div className={styles.rightContainer}>
