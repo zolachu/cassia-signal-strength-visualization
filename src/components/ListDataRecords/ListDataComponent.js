@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./ListDataComponent.module.css";
-import SingleDataComponent from "../SingleDataComponent/SingleDataComponent";
+import SingleDataComponent from "../SingleDataRecord/SingleDataComponent";
 
 const DataPoints = (props) => {
   console.log(props.dataArray.length, "arr length");

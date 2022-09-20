@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import "chartjs-plugin-streaming";
-import ListDataComponent from "./components/ListDataComponent/ListDataComponent";
+import ListDataComponent from "./components/ListDataRecords/ListDataComponent";
 import ElapsedTimer from "./components/UI/Timer";
 import Card from "./components/UI/Card/Card";
 import PreviewChartComponent from "./components/ChartComponents/PreviewChart/PreviewChartComponent";

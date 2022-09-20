@@ -33,56 +33,6 @@ const PreviewChartComponent = (props) => {
     ],
   };
 
-  // const options = {
-  //   responsive: true,
-  //   maintainAspectRatio: true,
-  //   plugins: {
-  //     legend: {
-  //       labels: {
-  //         // This more specific font property overrides the global property
-  //         font: {
-  //           size: 14,
-  //         },
-  //       },
-  //     },
-  //   },
-  //   title: {
-  //     display: true,
-  //     text: "Recorded Data",
-  //   },
-  //   scales: {
-  //     xAxes: [
-  //       {
-  //         scaleLabel: {
-  //           display: true,
-  //           labelString: "Timeline",
-  //         },
-  //         ticks: {
-  //           // Include a dollar sign in the ticks
-  //           callback: function (value) {
-  //             const d = new Date(value);
-  //             return d.toLocaleTimeString();
-  //           },
-  //         },
-  //       },
-  //     ],
-  //     yAxes: [
-  //       {
-  //         scaleLabel: {
-  //           display: true,
-  //           labelString: "Signal Strength",
-  //         },
-  //         ticks: {
-  //           // Include a dollar sign in the ticks
-  //           callback: function (value) {
-  //             return "-" + value;
-  //           },
-  //         },
-  //       },
-  //     ],
-  //   },
-  // };
-
   return (
     <div>
       <h4>Distance : {distance}</h4>
