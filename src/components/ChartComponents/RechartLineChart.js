@@ -100,7 +100,10 @@ const LineChartComponent = (props) => {
           <ResponsiveContainer width="99%" aspect={2}>
             <BarChart
               data={graphPoints}
-              margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+              margin={{
+                right: 5,
+                left: -35,
+              }}
             >
               <CartesianGrid strokeDasharray="11 10" />
               <XAxis dataKey="date" />
