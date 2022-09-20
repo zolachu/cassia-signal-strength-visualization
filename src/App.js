@@ -1,14 +1,12 @@
 import React, { useState, useCallback } from "react";
-import "chartjs-plugin-streaming";
 import ListDataComponent from "./components/ListDataRecords/ListDataComponent";
-import Timer from "./components/UI/Timer";
+import Timer from "./components/UI/Timer/Timer";
 import Card from "./components/UI/Card/Card";
 import PreviewChartComponent from "./components/ChartComponents/PreviewChart/PreviewChartComponent";
-import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
-import PauseIcon from "@mui/icons-material/Pause";
-import Button from "@mui/material/Button";
 import LiveChartComponent from "./components/ChartComponents/LiveChart/LiveChartComponent";
 import LineChartComponent from "./components/ChartComponents/PreviewChart/LineChartComponent";
+import DetailedListOfSingleDataRecord from "./components/DetailedListOfSingleDataRecord/DetailedListOfSingleDataRecord";
+import LiveStreamButton from "./components/UI/LiveStreamButton/LiveStreamButton";
 
 import styles from "./App.module.css";
 
@@ -25,8 +23,6 @@ const App = () => {
 
   const receiveDataHandler = useCallback((data, setStopAll) => {
     setData([...data]);
-
-    setData((prevData) => [{ x: 1, y: 1, distance: 1 }, prevData]);
 
     setIsTimerStart(setStopAll);
     setDisableFetchButton(setStopAll);
@@ -45,8 +41,6 @@ const App = () => {
     setRecordedDataInstance(data);
   };
 
-  const stopButtonName = stopFetching ? "START LIVE DATA" : "STOP LIVE DATA";
-
   return (
     <div className={styles.app}>
       <div className={styles.border}>
@@ -54,28 +48,22 @@ const App = () => {
           <div className={styles.leftContainer}>
             {/* <div className={styles.closeLiveChart}></div> */}
             <Card className={styles.chart} icon="live" title="Sensor Data">
-              {/* <Button
-                className={styles.stopButton}
+              <LiveStreamButton
                 onClick={stopButtonHandler}
                 disabled={disableFetchButton}
-              >
-                {stopButtonName}
-                {stopFetching && (
-                  <PlayCircleFilledIcon className={styles.closeButton} />
-                )}
-                {!stopFetching && <PauseIcon />}
-              </Button> */}
-              <LiveChartComponent
-                onReceiveData={receiveDataHandler}
-                shouldStop={stopFetching}
-                displayThisInstance={displayThisInstanceHandler}
-              />
-              <Timer timer={IsTimerRunning} shouldStop={stopFetching}></Timer>
-              {/* <LineChartComponent
+                stopFetching={stopFetching}
+              ></LiveStreamButton>
+              {/* <LiveChartComponent
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
                 displayThisInstance={displayThisInstanceHandler}
               /> */}
+              <Timer timer={IsTimerRunning} shouldStop={stopFetching}></Timer>
+              <LineChartComponent
+                onReceiveData={receiveDataHandler}
+                shouldStop={stopFetching}
+                displayThisInstance={displayThisInstanceHandler}
+              />
             </Card>
             <Card
               className={styles.listDataContainer}
@@ -99,7 +87,9 @@ const App = () => {
 
             <Card className={styles.barChart} icon="statistics">
               {/* <PreviewChartComponent data={showRecordedDataInstance} /> */}
-              {showRecordedDataInstance} !!soomething
+              <DetailedListOfSingleDataRecord
+                data={showRecordedDataInstance}
+              ></DetailedListOfSingleDataRecord>
             </Card>
           </div>
         </div>

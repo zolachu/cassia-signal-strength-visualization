@@ -9,7 +9,7 @@ import {
   BarChart,
 } from "recharts";
 import { ResponsiveContainer } from "recharts";
-import RecordButton from "../../UI/RecordButton";
+import RecordButton from "../../UI/RecordButton/RecordButton";
 import TextField from "@mui/material/TextField";
 import styles from "./LiveChartComponent.module.css";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";

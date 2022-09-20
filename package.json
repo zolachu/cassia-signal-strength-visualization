@@ -24,8 +24,10 @@
     "react-scripts": "5.0.1",
     "rechart": "^0.0.1",
     "recharts": "^2.1.14",
+    "shortid": "^2.2.16",
     "styled-components": "^5.3.5",
     "use-elapsed-time": "^3.0.4",
+    "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

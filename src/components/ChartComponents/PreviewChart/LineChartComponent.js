@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import "chartjs-plugin-streaming";
-import RecordButton from "../../UI/RecordButton";
+import RecordButton from "../../UI/RecordButton/RecordButton";
 import { Bar, Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../../chartConfig/configLine";

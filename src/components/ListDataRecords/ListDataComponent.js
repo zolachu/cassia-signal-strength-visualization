@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./ListDataComponent.module.css";
 import SingleDataComponent from "../SingleDataRecord/SingleDataComponent";
 
-const DataPoints = (props) => {
+const ListDataComponent = (props) => {
   console.log(props.dataArray.length, "arr length");
 
   const [data, setData] = useState(props.dataArray);
@@ -34,17 +34,15 @@ const DataPoints = (props) => {
             .reverse()
             .map((item, index) => {
               console.log(item.length);
-              return item.length > 0 ? (
+              return (
                 <SingleDataComponent
                   isTimerRunning={props.isTimerRunning}
                   data={item}
-                  key={Math.random()}
+                  key={Math.random() * 17}
                   id={index}
                   onDelete={deleteItemHandler}
                   onShow={(data) => props.onShow(data)}
                 ></SingleDataComponent>
-              ) : (
-                <></>
               );
             })}
         </ul>
@@ -53,4 +51,4 @@ const DataPoints = (props) => {
   );
 };
 
-export default DataPoints;
+export default ListDataComponent;
