@@ -6,7 +6,7 @@ import "chartjs-plugin-streaming";
 import config from "../../chartConfig/configLine";
 import TextField from "@mui/material/TextField";
 
-import styles from "./BarChartComponent.module.css";
+import styles from "./PreviewChartComponent.module.css";
 
 const ChartComponent = (props) => {
   console.log("should still render");

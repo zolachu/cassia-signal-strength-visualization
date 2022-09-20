@@ -2,13 +2,13 @@ import React from "react";
 import "chartjs-plugin-streaming";
 import { Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
-import config from "../../chartConfig/configBar";
+import config from "../../chartConfig/configPreview";
 
 import styles from "./PreviewChartComponent.module.css";
 
 const PreviewChartComponent = (props) => {
   //chart component
-  const [chartColors, datasetKeyProvider, findDistinctElements] = config;
+  const [chartColors, datasetKeyProvider, options] = config;
   // if (!props.data) return <></>;
 
   let labels = [];
@@ -33,58 +33,55 @@ const PreviewChartComponent = (props) => {
     ],
   };
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: true,
-    plugins: {
-      legend: {
-        labels: {
-          // This more specific font property overrides the global property
-          font: {
-            size: 14,
-          },
-        },
-      },
-    },
-    title: {
-      display: true,
-      text: "Recorded Data",
-    },
-    scales: {
-      xAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: "Timeline",
-          },
-          ticks: {
-            // Include a dollar sign in the ticks
-            callback: function (value) {
-              const d = new Date(value);
-              return d.toLocaleTimeString();
-            },
-          },
-        },
-      ],
-      yAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: "Signal Strength",
-          },
-          ticks: {
-            // Include a dollar sign in the ticks
-            callback: function (value) {
-              return "-" + value;
-            },
-
-            // min: 0,
-            // max: 250,
-          },
-        },
-      ],
-    },
-  };
+  // const options = {
+  //   responsive: true,
+  //   maintainAspectRatio: true,
+  //   plugins: {
+  //     legend: {
+  //       labels: {
+  //         // This more specific font property overrides the global property
+  //         font: {
+  //           size: 14,
+  //         },
+  //       },
+  //     },
+  //   },
+  //   title: {
+  //     display: true,
+  //     text: "Recorded Data",
+  //   },
+  //   scales: {
+  //     xAxes: [
+  //       {
+  //         scaleLabel: {
+  //           display: true,
+  //           labelString: "Timeline",
+  //         },
+  //         ticks: {
+  //           // Include a dollar sign in the ticks
+  //           callback: function (value) {
+  //             const d = new Date(value);
+  //             return d.toLocaleTimeString();
+  //           },
+  //         },
+  //       },
+  //     ],
+  //     yAxes: [
+  //       {
+  //         scaleLabel: {
+  //           display: true,
+  //           labelString: "Signal Strength",
+  //         },
+  //         ticks: {
+  //           // Include a dollar sign in the ticks
+  //           callback: function (value) {
+  //             return "-" + value;
+  //           },
+  //         },
+  //       },
+  //     ],
+  //   },
+  // };
 
   return (
     <div>

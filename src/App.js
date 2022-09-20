@@ -8,7 +8,7 @@ import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import PauseIcon from "@mui/icons-material/Pause";
 import Button from "@mui/material/Button";
 import LiveChartComponent from "./components/ChartComponents/LiveChart/LiveChartComponent";
-// import LineChartComponent from "./components/ChartComponents/PreviewChart/LineChartComponent";
+import LineChartComponent from "./components/ChartComponents/PreviewChart/LineChartComponent";
 
 import styles from "./App.module.css";
 
