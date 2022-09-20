@@ -98,7 +98,10 @@ const LineChartComponent = (props) => {
         <div>
           <h1>Sensor Data</h1>
           <ResponsiveContainer width="99%" aspect={2}>
-            <BarChart width={600} height={400} data={graphPoints}>
+            <BarChart
+              data={graphPoints}
+              margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+            >
               <CartesianGrid strokeDasharray="11 10" />
               <XAxis dataKey="date" />
               <YAxis type="number" domain={["auto", "auto"]} />
