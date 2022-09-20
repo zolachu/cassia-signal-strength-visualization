@@ -29,4 +29,9 @@
   
 .timerText {
     font-size: 2rem;
+    /* color: white; */
+}
+
+.timerContainer p {
+    color: white;
 }
