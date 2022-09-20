@@ -9,13 +9,13 @@ import {
   BarChart,
 } from "recharts";
 import { ResponsiveContainer, ComposedChart } from "recharts";
-import RecordButton from "../UI/RecordButton";
+import RecordButton from "../../UI/RecordButton";
 import TextField from "@mui/material/TextField";
-import styles from "./RechartLineChart.module.css";
+import styles from "./LiveChartComponent.module.css";
 
 const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
 
-const LineChartComponent = (props) => {
+const LiveChartComponent = (props) => {
   const toggleRef = useRef(false);
   const inputRef = useRef(0);
   const [series, setSeries] = useState([[]]);
@@ -148,4 +148,6 @@ const LineChartComponent = (props) => {
   );
 };
 
-export default LineChartComponent;
+// export default React.memo(LineChartComponent);
+
+export default LiveChartComponent;

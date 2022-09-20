@@ -3,11 +3,11 @@ import "chartjs-plugin-streaming";
 import ListDataComponent from "./components/ListDataComponent/ListDataComponent";
 import ElapsedTimer from "./components/UI/Timer";
 import Card from "./components/UI/Card/Card";
-import BarChartComponent from "./components/ChartComponents/BarChartComponent";
+import BarChartComponent from "./components/ChartComponents/PreviewChart/BarChartComponent";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import PauseIcon from "@mui/icons-material/Pause";
 import Button from "@mui/material/Button";
-import RechartLineChart from "./components/ChartComponents/RechartLineChart";
+import RechartLineChart from "./components/ChartComponents/LiveChart/LiveChartComponent";
 
 import styles from "./App.module.css";
 

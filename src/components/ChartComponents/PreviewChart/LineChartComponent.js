@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from "react";
 import "chartjs-plugin-streaming";
-import RecordButton from "../UI/RecordButton";
+import RecordButton from "../../UI/RecordButton";
 import { Bar, Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
-import config from "../chartConfig/configLine";
+import config from "../../chartConfig/configLine";
 import TextField from "@mui/material/TextField";
 
 import styles from "./LineChartComponent.module.css";
@@ -21,12 +21,7 @@ const ChartComponent = (props) => {
     toggleRef.current = shouldRecord;
     props.onReceiveData(arrayOfRecordedDataRef.current, toggleRef.current);
   };
-  // useEffect(() => {
-  //   return () => {
-  //     evtSource.current.close();
-  //   };
-  // }, []);
-  //chart component
+
   const [chartColors, datasetKeyProvider, onFresh] = config;
 
   if (props.shouldStop) evtSource.current.close();

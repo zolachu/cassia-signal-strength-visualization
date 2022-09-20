@@ -2,11 +2,11 @@ import React from "react";
 import "chartjs-plugin-streaming";
 import { Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
-import config from "../chartConfig/configBar";
+import config from "../../chartConfig/configBar";
 
 import styles from "./BarChartComponent.module.css";
 
-const BarChartComponent = (props) => {
+const PreviewChartComponent = (props) => {
   //chart component
   const [chartColors, datasetKeyProvider, findDistinctElements] = config;
   // if (!props.data) return <></>;
@@ -101,4 +101,4 @@ const BarChartComponent = (props) => {
   );
 };
 
-export default React.memo(BarChartComponent);
+export default React.memo(PreviewChartComponent);
