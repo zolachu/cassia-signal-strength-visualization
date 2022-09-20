@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styles from "./ListDataComponent.module.css";
 import SingleDataComponent from "../SingleDataComponent/SingleDataComponent";
-import Card from "../UI/Card/Card";
 
 const DataPoints = (props) => {
   console.log(props.dataArray.length, "arr length");
+
   const [data, setData] = useState(props.dataArray);
   console.log("INSIDE DATA POINTS", props.dataArray.length);
   React.useEffect(() => {
@@ -17,7 +17,7 @@ const DataPoints = (props) => {
     console.log(newData.length);
     setData(newData);
   };
-  console.log(props.dataArray);
+  console.log(props.dataArray, " DATA ARRAY");
   console.log(props.isTimerRunning);
 
   return (
@@ -26,7 +26,7 @@ const DataPoints = (props) => {
         .slice(0)
         .reverse()
         .map((item, index) => {
-          return (
+          return item.length > 0 ? (
             <SingleDataComponent
               isTimerRunning={props.isTimerRunning}
               data={item}
@@ -35,6 +35,8 @@ const DataPoints = (props) => {
               onDelete={deleteItemHandler}
               onShow={(data) => props.onShow(data)}
             ></SingleDataComponent>
+          ) : (
+            <></>
           );
         })}
     </ul>
