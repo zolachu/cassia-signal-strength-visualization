@@ -35,11 +35,14 @@ const LineChartComponent = (props) => {
   useEffect(() => {
     // if (props.shouldStop)
     const eventSource = new EventSource(serverBaseURL);
-
+    eventSource.addEventListener("error", (e) => {
+      eventSource.close();
+      console.log("error occurred");
+    });
     eventSource.addEventListener("open", () => {
       console.log("SSE opened!");
     });
-
+    eventSource.addEventListener("close", () => eventSource.close());
     eventSource.onmessage = (e) => {
       const data = JSON.parse(e.data);
 
