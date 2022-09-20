@@ -19,6 +19,7 @@ const DataPoints = (props) => {
   };
   console.log(props.dataArray, " DATA ARRAY");
   console.log(props.isTimerRunning);
+  console.log("array length ", data.length);
 
   return (
     <ul className={styles.container}>
@@ -26,6 +27,7 @@ const DataPoints = (props) => {
         .slice(0)
         .reverse()
         .map((item, index) => {
+          console.log(item.length);
           return item.length > 0 ? (
             <SingleDataComponent
               isTimerRunning={props.isTimerRunning}
