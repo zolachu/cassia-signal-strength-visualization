@@ -1,8 +1,8 @@
 .app {
   height: 100%;
   width: 100%;
-  min-width: 100%; 
-  min-height: 100vh;
+  /* width: 100vw; 
+  height: 100vh; */
   background-color: #EFF2F5;
   padding-top: 24px;
 }
@@ -33,41 +33,42 @@
 
 .listData {
   overflow: scroll;
-  height: 40vh;
-  /* padding: 40px; */
+  height: 30%;
 }
 
 .barChart {
-  margin-top: 10px;
+  /* height: 70%; */
 }
 
 .rightContainer {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   grid-template-rows: repeat(auto, minmax(0, 1fr));
-  row-gap: 1rem;
+  grid-template-rows: 0.8fr 1fr;
+  row-gap: 2rem;
 }
 
 .leftContainer {
   position: relative;
   display: grid;
+  grid-template-rows: 1fr 0.8fr;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  row-gap: 1rem;
+  row-gap: 2rem;
   /* grid-template-rows: repeat(auto, minmax(0, 1fr)); */
 }
 
-.chart {
-  position: relative;
-}
+
 
 @media  screen and (min-width: 800px) {
   .border {
     padding: 2rem;
   }
+  .leftContainer, .rightContainer {
+    row-gap: 2rem;
+  }
 
   .container {
     display: grid;
-    /* width: 100%; */
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
   }
 }

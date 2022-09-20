@@ -26,7 +26,7 @@ const App = () => {
   const receiveDataHandler = useCallback((data, setStopAll) => {
     setData([...data]);
 
-    // setData((prevData) => [{ x: 1, y: 1, distance: 1 }, prevData]);
+    setData((prevData) => [{ x: 1, y: 1, distance: 1 }, prevData]);
 
     setIsTimerStart(setStopAll);
     setDisableFetchButton(setStopAll);
