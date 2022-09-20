@@ -123,22 +123,17 @@ const LineChartComponent = (props) => {
         </div>
       </div>
       <div className={styles.actions}>
-        <div>
-          <RecordButton
-            onClick={clickToggleHandler}
-            disable={props.shouldStop}
-          />
-          <label htmlFor="inputDistance">Distance</label>
-          <TextField
-            id="inputDistance"
-            label="Distance"
-            variant="outlined"
-            type="number"
-            placeholder="distance in feet"
-            inputRef={inputRef}
-            disabled={props.shouldStop || toggleRef.current}
-          />
-        </div>
+        <RecordButton onClick={clickToggleHandler} disable={props.shouldStop} />
+        <label htmlFor="inputDistance">Distance</label>
+        <TextField
+          id="inputDistance"
+          label="Distance"
+          variant="outlined"
+          type="number"
+          placeholder="distance in feet"
+          inputRef={inputRef}
+          disabled={props.shouldStop || toggleRef.current}
+        />
       </div>
     </div>
   );
