@@ -30,6 +30,7 @@
   margin-bottom: 1rem;
   
 }
+
 .listData {
   overflow: scroll;
   height: 40vh;
@@ -52,7 +53,6 @@
   grid-template-columns: repeat(1, minmax(0, 1fr));
   /* grid-template-rows: repeat(auto, minmax(0, 1fr)); */
 }
-
 
 .chart {
   position: relative;

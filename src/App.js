@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import "chartjs-plugin-streaming";
 import ListDataComponent from "./components/ListDataRecords/ListDataComponent";
-import ElapsedTimer from "./components/UI/Timer";
+import Timer from "./components/UI/Timer";
 import Card from "./components/UI/Card/Card";
 import PreviewChartComponent from "./components/ChartComponents/PreviewChart/PreviewChartComponent";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
@@ -9,8 +9,6 @@ import PauseIcon from "@mui/icons-material/Pause";
 import Button from "@mui/material/Button";
 import LiveChartComponent from "./components/ChartComponents/LiveChart/LiveChartComponent";
 import LineChartComponent from "./components/ChartComponents/PreviewChart/LineChartComponent";
-import IconComponent from "./components/UI/IconContainer/IconComponent";
-import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 
 import styles from "./App.module.css";
 
@@ -72,21 +70,13 @@ const App = () => {
                 shouldStop={stopFetching}
                 displayThisInstance={displayThisInstanceHandler}
               />
+              <Timer timer={IsTimerRunning} shouldStop={stopFetching}></Timer>
               {/* <LineChartComponent
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
                 displayThisInstance={displayThisInstanceHandler}
               /> */}
             </Card>
-
-            <div className={styles.timerContainer}>
-              <div className={styles.timerCircle}>
-                <ElapsedTimer
-                  timer={IsTimerRunning}
-                  shouldStop={stopFetching}
-                ></ElapsedTimer>
-              </div>
-            </div>
           </div>
 
           <div className={styles.rightContainer}>
