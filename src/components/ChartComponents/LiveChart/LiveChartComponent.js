@@ -108,9 +108,17 @@ const LiveChartComponent = (props) => {
               left: -35,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              verticalFill={["#F3F7F9"]}
+              fillOpacity={0.2}
+            />
             <XAxis dataKey="date" />
-            <YAxis type="number" domain={["dataMin - 10", "dataMax + 10"]} />
+            <YAxis
+              type="number"
+              domain={["dataMin - 10", "dataMax + 10"]}
+              tickCount={1}
+            />
             <Tooltip />
             <Legend />
             <Bar
