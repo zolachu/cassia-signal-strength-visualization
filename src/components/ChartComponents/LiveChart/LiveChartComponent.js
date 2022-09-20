@@ -8,10 +8,12 @@ import {
   Legend,
   BarChart,
 } from "recharts";
-import { ResponsiveContainer, ComposedChart } from "recharts";
+import { ResponsiveContainer } from "recharts";
 import RecordButton from "../../UI/RecordButton";
 import TextField from "@mui/material/TextField";
 import styles from "./LiveChartComponent.module.css";
+import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
+import IconComponent from "../../UI/IconContainer/IconComponent";
 
 const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
 
@@ -98,38 +100,35 @@ const LiveChartComponent = (props) => {
   return (
     <div>
       <div className={styles["chart-container"]}>
-        <div>
-          <h1>Sensor Data</h1>
-          <ResponsiveContainer width="99%" aspect={2}>
-            <BarChart
-              data={graphPoints}
-              margin={{
-                right: 5,
-                left: -35,
-              }}
-            >
-              <CartesianGrid strokeDasharray="11 10" />
-              <XAxis dataKey="date" />
-              <YAxis type="number" domain={["auto", "auto"]} />
-              <Tooltip />
-              <Legend />
-              <Bar
-                type="monotone"
-                isAnimationActive={false}
-                dataKey="rssi"
-                stroke="#82ca9d"
-                fill="#82ca9d"
-              />
-              <Bar
-                type="monotone"
-                dataKey="recordedRssi"
-                isAnimationActive={false}
-                fill="#D21404"
-                stroke="#D21404"
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+        <ResponsiveContainer width="99%" aspect={2}>
+          <BarChart
+            data={graphPoints}
+            margin={{
+              right: 5,
+              left: -35,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis type="number" domain={["dataMin - 10", "dataMax + 10"]} />
+            <Tooltip />
+            <Legend />
+            <Bar
+              type="monotone"
+              isAnimationActive={false}
+              dataKey="rssi"
+              stroke="#82ca9d"
+              fill="#82ca9d"
+            />
+            <Bar
+              type="monotone"
+              dataKey="recordedRssi"
+              isAnimationActive={false}
+              fill="#D21404"
+              stroke="#D21404"
+            />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
       <div className={styles.actions}>
         <RecordButton onClick={clickToggleHandler} disable={props.shouldStop} />

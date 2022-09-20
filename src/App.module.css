@@ -3,8 +3,8 @@
   width: 100%;
   min-width: 100%; 
   min-height: 100vh;
-  background-color: #111322;
-  margin: 0;
+  background-color: #EFF2F5;
+  padding-top: 24px;
 }
 
 * {
@@ -28,17 +28,20 @@
   padding: 10px;
 }
 
-.listData {
+.listDataContainer {
   /* background: #FAFAFA; */
-  overflow: scroll;
-  height: 45vh;
+  /* padding: 40px; */
+  position: relative;
+  /* height: 40vh; */
   margin-bottom: 1rem;
+  
+}
+.listData {
+  overflow: scroll;
+  height: 40vh;
+  /* padding: 40px; */
 }
 
-
-.barChart {
-  /* min-height: 1000px; */
-}
 
 .rightContainer {
   display: grid;
@@ -46,15 +49,14 @@
   grid-template-rows: repeat(auto, minmax(0, 1fr));
 }
 .leftContainer {
+  /* margin-top: 24px; */
   position: relative;
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   /* grid-template-rows: repeat(auto, minmax(0, 1fr)); */
 }
 
-.timerContainer {
 
-}
 .chart {
   position: relative;
   grid-row: 1/ span 4;
@@ -64,9 +66,7 @@
   .border {
     padding: 2rem;
   }
-  .app {
-    /* position: fixed; */
-  }
+  
   .container {
     display: grid;
     width: 100%;

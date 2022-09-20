@@ -18,7 +18,7 @@ const SingleDataComponent = (props) => {
 
   return (
     <li>
-      <Card className={styles.container}>
+      <div className={styles.container}>
         <DataStats
           className={styles.dataStats}
           array={arrayY}
@@ -37,7 +37,7 @@ const SingleDataComponent = (props) => {
         <Button onClick={buttonClickHandler} disabled={props.isTimerRunning}>
           Show Details
         </Button>
-      </Card>
+      </div>
     </li>
   );
 };

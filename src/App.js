@@ -9,6 +9,8 @@ import PauseIcon from "@mui/icons-material/Pause";
 import Button from "@mui/material/Button";
 import LiveChartComponent from "./components/ChartComponents/LiveChart/LiveChartComponent";
 import LineChartComponent from "./components/ChartComponents/PreviewChart/LineChartComponent";
+import IconComponent from "./components/UI/IconContainer/IconComponent";
+import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 
 import styles from "./App.module.css";
 
@@ -53,7 +55,7 @@ const App = () => {
         <div className={styles.container}>
           <div className={styles.leftContainer}>
             {/* <div className={styles.closeLiveChart}></div> */}
-            <Card className={styles.chart}>
+            <Card className={styles.chart} icon="live" title="Sensor Data">
               {/* <Button
                 className={styles.stopButton}
                 onClick={stopButtonHandler}
@@ -88,15 +90,22 @@ const App = () => {
           </div>
 
           <div className={styles.rightContainer}>
-            <Card className={styles.listData}>
-              <ListDataComponent
-                dataArray={data}
-                isTimerRunning={IsTimerRunning}
-                onShow={clickListDataHandler}
-              ></ListDataComponent>
-            </Card>
-
-            <Card className={styles.barChart}>
+            <div>
+              <Card
+                className={styles.listDataContainer}
+                icon="live"
+                title="Recorded Data Stats"
+              >
+                <div className={styles.listData}>
+                  <ListDataComponent
+                    dataArray={data}
+                    isTimerRunning={IsTimerRunning}
+                    onShow={clickListDataHandler}
+                  ></ListDataComponent>
+                </div>
+              </Card>
+            </div>
+            <Card className={styles.barChart} icon="live">
               <PreviewChartComponent data={showRecordedDataInstance} />
             </Card>
           </div>
