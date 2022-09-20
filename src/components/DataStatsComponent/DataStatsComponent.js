@@ -10,14 +10,29 @@ const DataStatsComponent = (props) => {
       : "Calculating...";
 
   const count = arrayY.length > 0 ? arrayY.length : "Calculating...";
+  const distance = props.distance ? (
+    props.distance
+  ) : (
+    <span style={{ color: "red", fontWeight: "bold" }}>NONE</span>
+  );
 
   return (
     <div className={`styles.dataStats ${props.className}`}>
-      <div>MIN: {min}</div>
-      <div>MAX: {max}</div>
-      <div>AVERAGE: {average}</div>
-      <div>COUNT: {count}</div>
-      <div>DISTANCE: {props.distance}</div>
+      <div>
+        <strong>MIN:</strong> {min}
+      </div>
+      <div>
+        <strong>MAX:</strong> {max}
+      </div>
+      <div>
+        <strong>AVERAGE:</strong> {average}
+      </div>
+      <div>
+        <strong>COUNT:</strong> {count}
+      </div>
+      <div>
+        <strong>DISTANCE:</strong> {distance}
+      </div>
     </div>
   );
 };
