@@ -1,6 +1,7 @@
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 import HistoryIcon from "@mui/icons-material/History";
 import InsightsIcon from "@mui/icons-material/Insights";
+import FunctionsIcon from "@mui/icons-material/Functions";
 import styles from "./IconComponent.module.css";
 
 const IconComponent = (props) => {
@@ -18,6 +19,10 @@ const IconComponent = (props) => {
     case "preview":
       color += `${styles.preview}`;
       icon = <InsightsIcon />;
+      break;
+    case "statistics":
+      color += `${styles.statistics}`;
+      icon = <FunctionsIcon />;
       break;
     default:
   }

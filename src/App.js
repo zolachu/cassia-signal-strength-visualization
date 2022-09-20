@@ -77,12 +77,6 @@ const App = () => {
                 displayThisInstance={displayThisInstanceHandler}
               /> */}
             </Card>
-            <Card className={styles.barChart} icon="preview">
-              <PreviewChartComponent data={showRecordedDataInstance} />
-            </Card>
-          </div>
-
-          <div className={styles.rightContainer}>
             <Card
               className={styles.listDataContainer}
               icon="record"
@@ -96,9 +90,16 @@ const App = () => {
                 ></ListDataComponent>
               </div>
             </Card>
+          </div>
 
+          <div className={styles.rightContainer}>
             <Card className={styles.barChart} icon="preview">
               <PreviewChartComponent data={showRecordedDataInstance} />
+            </Card>
+
+            <Card className={styles.barChart} icon="statistics">
+              {/* <PreviewChartComponent data={showRecordedDataInstance} /> */}
+              {showRecordedDataInstance} !!soomething
             </Card>
           </div>
         </div>

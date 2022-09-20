@@ -36,3 +36,7 @@
     background: linear-gradient(195deg, rgb(236, 64, 122), rgb(216, 27, 96));
     color:white;
 }
+
+.statistics {
+    background:linear-gradient(195deg,rgb(237, 184, 62),rgb(255, 180, 0));
+}
