@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import ListDataComponent from "./components/ListDataRecords/ListDataComponent";
 import Timer from "./components/UI/Timer/Timer";
 import Card from "./components/UI/Card/Card";
@@ -17,9 +17,14 @@ const App = () => {
   const [disableFetchButton, setDisableFetchButton] = useState(false);
   const [showRecordedDataInstance, setRecordedDataInstance] = useState(null);
 
+  // TODO: uncomment displayThisInstance and commentout useEffect
   const displayThisInstanceHandler = useCallback((data) => {
-    setRecordedDataInstance(data);
+    // setRecordedDataInstance(data);
   }, []);
+
+  useEffect(() => {
+    setRecordedDataInstance(data);
+  }, [data]);
 
   const receiveDataHandler = useCallback((data, setStopAll) => {
     setData([...data]);
@@ -85,11 +90,13 @@ const App = () => {
               <PreviewChartComponent data={showRecordedDataInstance} />
             </Card>
 
-            <Card className={styles.barChart} icon="statistics">
-              {/* <PreviewChartComponent data={showRecordedDataInstance} /> */}
-              <DetailedListOfSingleDataRecord
-                data={showRecordedDataInstance}
-              ></DetailedListOfSingleDataRecord>
+            <Card icon="statistics">
+              <div className={styles.statistics}>
+                {/* <PreviewChartComponent data={showRecordedDataInstance} /> */}
+                <DetailedListOfSingleDataRecord
+                  data={showRecordedDataInstance}
+                ></DetailedListOfSingleDataRecord>
+              </div>
             </Card>
           </div>
         </div>

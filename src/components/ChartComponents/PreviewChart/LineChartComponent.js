@@ -14,13 +14,12 @@ const ChartComponent = (props) => {
   const chartRef = useRef();
   const arrayOfRecordedDataRef = useRef([[]]);
   const inputRef = useRef(0);
+  const [chartColors, datasetKeyProvider, onFresh] = config;
 
   const clickToggleHandler = (shouldRecord) => {
     toggleRef.current = shouldRecord;
     props.onReceiveData(arrayOfRecordedDataRef.current, toggleRef.current);
   };
-
-  const [chartColors, datasetKeyProvider, onFresh] = config;
 
   const data = {
     datasets: [

@@ -33,11 +33,12 @@
 
 .listData {
   overflow: scroll;
-  height: 30%;
+  height: 20rem;
 }
 
-.barChart {
-  /* height: 70%; */
+.statistics {
+  overflow: scroll;
+  height: 30rem;
 }
 
 .rightContainer {
@@ -51,13 +52,11 @@
 .leftContainer {
   position: relative;
   display: grid;
-  grid-template-rows: 1fr 0.8fr;
+  grid-template-rows: 1fr minmax(0.8fr, 300px);
   grid-template-columns: repeat(1, minmax(0, 1fr));
   row-gap: 2rem;
   /* grid-template-rows: repeat(auto, minmax(0, 1fr)); */
 }
-
-
 
 @media  screen and (min-width: 800px) {
   .border {

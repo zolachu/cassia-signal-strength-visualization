@@ -14,11 +14,11 @@
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
+
     color: black;
-    width: 7rem;
-    height: 7rem;
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
-    
     background: radial-gradient(
         circle,
         white 0 60%,
@@ -28,7 +28,7 @@
 }
   
 .timerText {
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
 
 .timerContainer p {

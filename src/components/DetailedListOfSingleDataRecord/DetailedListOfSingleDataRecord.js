@@ -14,9 +14,10 @@ const DetailedListOfSingleDataRecord = (props) => {
       <div>distance: {distance}</div>
       {props.data.map((el) => {
         return (
-          <li key={Math.random() * 101}>
-            {el.x.toString()} {el.y}
-          </li>
+          <span>
+            {/* {el.x ? el.x.toString() : ""} */}
+            {el.y},
+          </span>
         );
       })}
     </div>
