@@ -24,8 +24,15 @@
 
 .live {
     background: linear-gradient(195deg, rgb(102, 187, 106), rgb(67, 160, 71));
+    color:white;
 }
 
 .record {
-    
+    background: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
+    color:white;
+}
+
+.preview {
+    background: linear-gradient(195deg, rgb(236, 64, 122), rgb(216, 27, 96));
+    color:white;
 }

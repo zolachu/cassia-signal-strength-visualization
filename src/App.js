@@ -90,22 +90,21 @@ const App = () => {
           </div>
 
           <div className={styles.rightContainer}>
-            <div>
-              <Card
-                className={styles.listDataContainer}
-                icon="live"
-                title="Recorded Data Stats"
-              >
-                <div className={styles.listData}>
-                  <ListDataComponent
-                    dataArray={data}
-                    isTimerRunning={IsTimerRunning}
-                    onShow={clickListDataHandler}
-                  ></ListDataComponent>
-                </div>
-              </Card>
-            </div>
-            <Card className={styles.barChart} icon="live">
+            <Card
+              className={styles.listDataContainer}
+              icon="record"
+              title="Recorded Data Stats"
+            >
+              <div className={styles.listData}>
+                <ListDataComponent
+                  dataArray={data}
+                  isTimerRunning={IsTimerRunning}
+                  onShow={clickListDataHandler}
+                ></ListDataComponent>
+              </div>
+            </Card>
+
+            <Card className={styles.barChart} icon="preview">
               <PreviewChartComponent data={showRecordedDataInstance} />
             </Card>
           </div>

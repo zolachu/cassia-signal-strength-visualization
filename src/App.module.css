@@ -7,9 +7,6 @@
   padding-top: 24px;
 }
 
-* {
-  box-sizing: border-box;
-}
 
 .border {
   position: relative;
@@ -29,10 +26,7 @@
 }
 
 .listDataContainer {
-  /* background: #FAFAFA; */
-  /* padding: 40px; */
   position: relative;
-  /* height: 40vh; */
   margin-bottom: 1rem;
   
 }
@@ -42,6 +36,9 @@
   /* padding: 40px; */
 }
 
+.barChart {
+  margin-top: 10px;
+}
 
 .rightContainer {
   display: grid;
