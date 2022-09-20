@@ -22,26 +22,29 @@ const DataPoints = (props) => {
   console.log("array length ", data.length);
 
   return (
-    <ul className={styles.container}>
-      {data
-        .slice(0)
-        .reverse()
-        .map((item, index) => {
-          console.log(item.length);
-          return item.length > 0 ? (
-            <SingleDataComponent
-              isTimerRunning={props.isTimerRunning}
-              data={item}
-              key={Math.random()}
-              id={index}
-              onDelete={deleteItemHandler}
-              onShow={(data) => props.onShow(data)}
-            ></SingleDataComponent>
-          ) : (
-            <></>
-          );
-        })}
-    </ul>
+    <div className={styles.container}>
+      <h4>Recorded Data Stats</h4>
+      <ul>
+        {data
+          .slice(0)
+          .reverse()
+          .map((item, index) => {
+            console.log(item.length);
+            return item.length > 0 ? (
+              <SingleDataComponent
+                isTimerRunning={props.isTimerRunning}
+                data={item}
+                key={Math.random()}
+                id={index}
+                onDelete={deleteItemHandler}
+                onShow={(data) => props.onShow(data)}
+              ></SingleDataComponent>
+            ) : (
+              <></>
+            );
+          })}
+      </ul>
+    </div>
   );
 };
 
