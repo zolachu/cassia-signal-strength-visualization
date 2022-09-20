@@ -36,9 +36,6 @@ const BarChartComponent = (props) => {
   const options = {
     responsive: true,
     plugins: {
-      streaming: {
-        // frameRate: 5, // chart is drawn 5 times every second
-      },
       legend: {
         labels: {
           // This more specific font property overrides the global property
