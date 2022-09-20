@@ -13,7 +13,7 @@ const ElapsedTimer = (props) => {
 
   return (
     <div className={styles.timerContainer}>
-      <h3>Timer</h3>
+      <h4>Timer</h4>
       <div className={styles.timerCircle}>
         <div className={styles.timerText}>{elapsedTime.toFixed(2)}</div>
       </div>

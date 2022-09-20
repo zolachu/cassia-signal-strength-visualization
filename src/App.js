@@ -58,17 +58,17 @@ const App = () => {
                 disabled={disableFetchButton}
                 stopFetching={stopFetching}
               ></LiveStreamButton>
-              {/* <LiveChartComponent
-                onReceiveData={receiveDataHandler}
-                shouldStop={stopFetching}
-                displayThisInstance={displayThisInstanceHandler}
-              /> */}
-              <Timer timer={IsTimerRunning} shouldStop={stopFetching}></Timer>
-              <LineChartComponent
+              <LiveChartComponent
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
                 displayThisInstance={displayThisInstanceHandler}
               />
+              <Timer timer={IsTimerRunning} shouldStop={stopFetching}></Timer>
+              {/* <LineChartComponent
+                onReceiveData={receiveDataHandler}
+                shouldStop={stopFetching}
+                displayThisInstance={displayThisInstanceHandler}
+              /> */}
             </Card>
             <Card
               className={styles.listDataContainer}
