@@ -2,7 +2,7 @@
   height: 100%;
   width: 100%;
   min-width: 100%; 
-  position: relative;
+  /* position: fixed; */
   background-color: #141B2C;
   margin: 0;
 }
@@ -32,7 +32,7 @@
 .listData {
   background: #FAFAFA;
   overflow: scroll;
-  height: 30rem;
+  height: 45vh;
   margin-bottom: 1rem;
 }
 
@@ -64,6 +64,9 @@
 @media  screen and (min-width: 800px) {
   .border {
     padding: 2rem;
+  }
+  .app {
+    /* position: fixed; */
   }
   .container {
     display: grid;

@@ -1,5 +1,10 @@
 .chart-container {
     /* height: 50px; */
+    
+}
+.chart-container h1 {
+    font-size: medium;
+    /* font-family: "Lato" ; */
 }
 
 .actions {

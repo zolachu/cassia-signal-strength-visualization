@@ -88,7 +88,7 @@ const BarChartComponent = (props) => {
   return (
     <div>
       <div>Distance : {distance}</div>
-      <div>
+      <div className={styles.container}>
         <Line
           height={"200%"}
           datasetKeyProvider={datasetKeyProvider}
