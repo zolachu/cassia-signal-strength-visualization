@@ -1,4 +1,12 @@
-.container {
+/* .container {
+    flex: 1;
+    flex-direction: column-reverse;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+} */
+
+.container ul {
     flex: 1;
     flex-direction: column-reverse;
     list-style-type: none;
