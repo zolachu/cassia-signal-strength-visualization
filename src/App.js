@@ -29,8 +29,10 @@ const App = () => {
       [
         { x: 1, y: 1, distance: 1 },
         { x: 1, y: 1, distance: 1 },
+        ...prevData[0],
       ],
     ]);
+
     setIsTimerStart(setStopAll);
     setDisableFetchButton(setStopAll);
   }, []);

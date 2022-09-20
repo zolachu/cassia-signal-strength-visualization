@@ -35,6 +35,7 @@ const BarChartComponent = (props) => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         labels: {
@@ -90,7 +91,7 @@ const BarChartComponent = (props) => {
       <h4>Distance : {distance}</h4>
       <div className={styles.container}>
         <Line
-          height={"200%"}
+          height="200"
           datasetKeyProvider={datasetKeyProvider}
           data={data}
           options={options}
