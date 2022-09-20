@@ -3,11 +3,12 @@ import "chartjs-plugin-streaming";
 import ListDataComponent from "./components/ListDataComponent/ListDataComponent";
 import ElapsedTimer from "./components/UI/Timer";
 import Card from "./components/UI/Card/Card";
-import BarChartComponent from "./components/ChartComponents/PreviewChart/BarChartComponent";
+import PreviewChartComponent from "./components/ChartComponents/PreviewChart/PreviewChartComponent";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import PauseIcon from "@mui/icons-material/Pause";
 import Button from "@mui/material/Button";
-import RechartLineChart from "./components/ChartComponents/LiveChart/LiveChartComponent";
+import LiveChartComponent from "./components/ChartComponents/LiveChart/LiveChartComponent";
+// import LineChartComponent from "./components/ChartComponents/PreviewChart/LineChartComponent";
 
 import styles from "./App.module.css";
 
@@ -64,11 +65,16 @@ const App = () => {
                 )}
                 {!stopFetching && <PauseIcon />}
               </Button> */}
-              <RechartLineChart
+              <LiveChartComponent
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
                 displayThisInstance={displayThisInstanceHandler}
               />
+              {/* <LineChartComponent
+                onReceiveData={receiveDataHandler}
+                shouldStop={stopFetching}
+                displayThisInstance={displayThisInstanceHandler}
+              /> */}
             </Card>
 
             <div className={styles.timerContainer}>
@@ -91,7 +97,7 @@ const App = () => {
             </Card>
 
             <Card className={styles.barChart}>
-              <BarChartComponent data={showRecordedDataInstance} />
+              <PreviewChartComponent data={showRecordedDataInstance} />
             </Card>
           </div>
         </div>

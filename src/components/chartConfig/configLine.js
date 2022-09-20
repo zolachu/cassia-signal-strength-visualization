@@ -12,51 +12,32 @@ var chartColors = {
 };
 var color = Chart.helpers.color;
 
-const onFresh = async (
-  recordRef,
-  arrayRef,
-  shouldStop,
-  distanceRef,
-  evtSource,
-  chart
-) => {
-  // const evtSource = new EventSource(
-  //   "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*"
-  // );
-
-  if (shouldStop) {
-    // evtSource.close();
-    return;
-  }
-
+const onFresh = async (recordRef, arrayRef, shouldStop, distanceRef, chart) => {
+  const response = await fetch(
+    "http://www.randomnumberapi.com/api/v1.0/random?min=100&max=1000&count=1"
+  );
   try {
-    console.log("didnt close");
-    evtSource.current.onmessage = (event) => {
-      console.log(event.data);
+    const data = await response.json();
+    console.log(data);
+    chart.data.datasets.forEach(function (dataset) {
+      const dataPoint = {
+        x: Date.now(),
+        y: -data[0],
+        distance: distanceRef.current.value,
+      };
+      dataset.data.push(dataPoint);
+      dataset.segment.backgroundColor = chartColors.yellow;
 
-      // evtSource.close();
-      const data = JSON.parse(event.data);
-
-      chart.data.datasets.forEach(function (dataset) {
-        const dataPoint = {
-          x: Date.now(),
-          y: -data["rssi"],
-          distance: distanceRef.current.value,
-        };
-        dataset.data.push(dataPoint);
-        dataset.segment.backgroundColor = chartColors.yellow;
-
-        //if button is toggled, push new [x,y] point to arrayRef.current
-        if (recordRef.current) {
-          const lastElement = arrayRef.current[arrayRef.current.length - 1];
-          lastElement.push(dataPoint);
-        } else {
-          if (arrayRef.current[arrayRef.current.length - 1].length > 0) {
-            arrayRef.current.push([]);
-          }
+      //if button is toggled, push new [x,y] point to arrayRef.current
+      if (recordRef.current) {
+        const lastElement = arrayRef.current[arrayRef.current.length - 1];
+        lastElement.push(dataPoint);
+      } else {
+        if (arrayRef.current[arrayRef.current.length - 1].length > 0) {
+          arrayRef.current.push([]);
         }
-      });
-    };
+      }
+    });
   } catch (error) {
     console.log("error ", error);
   }

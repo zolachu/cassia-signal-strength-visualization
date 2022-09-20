@@ -6,7 +6,7 @@ import "chartjs-plugin-streaming";
 import config from "../../chartConfig/configLine";
 import TextField from "@mui/material/TextField";
 
-import styles from "./LineChartComponent.module.css";
+import styles from "./BarChartComponent.module.css";
 
 const ChartComponent = (props) => {
   console.log("should still render");
@@ -14,9 +14,7 @@ const ChartComponent = (props) => {
   const chartRef = useRef();
   const arrayOfRecordedDataRef = useRef([[]]);
   const inputRef = useRef(0);
-  const evtSource = useRef(
-    new EventSource("http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*")
-  );
+
   const clickToggleHandler = (shouldRecord) => {
     toggleRef.current = shouldRecord;
     props.onReceiveData(arrayOfRecordedDataRef.current, toggleRef.current);
@@ -24,7 +22,6 @@ const ChartComponent = (props) => {
 
   const [chartColors, datasetKeyProvider, onFresh] = config;
 
-  if (props.shouldStop) evtSource.current.close();
   const data = {
     datasets: [
       {
@@ -67,8 +64,7 @@ const ChartComponent = (props) => {
               toggleRef,
               arrayOfRecordedDataRef,
               props.shouldStop,
-              inputRef,
-              evtSource
+              inputRef
             ),
 
             duration: 2000,
@@ -89,9 +85,6 @@ const ChartComponent = (props) => {
             callback: function (value) {
               return "-" + value;
             },
-
-            // min: 0,
-            // max: 250,
           },
         },
       ],

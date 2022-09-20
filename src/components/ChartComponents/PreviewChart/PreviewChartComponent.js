@@ -4,7 +4,7 @@ import { Line } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../../chartConfig/configBar";
 
-import styles from "./BarChartComponent.module.css";
+import styles from "./PreviewChartComponent.module.css";
 
 const PreviewChartComponent = (props) => {
   //chart component
