@@ -4,6 +4,7 @@ import "chartjs-plugin-datalabels";
 
 var chartColors = {
   red: "rgb(255, 99, 132)",
+  pink: "rgb(255, 8, 132)",
   orange: "rgb(255, 159, 64)",
   yellow: "rgb(255, 205, 86)",
   green: "rgb(75, 192, 192)",
@@ -27,7 +28,8 @@ const options = {
   maintainAspectRatio: true,
   plugins: {
     datalabels: {
-      color: "black",
+      align: "start",
+      anchor: "start",
     },
     legend: {
       labels: {
@@ -68,6 +70,8 @@ const options = {
         },
         ticks: {
           stepSize: 1,
+          suggestedMax: -70,
+          suggestedMin: -100,
         },
       },
     ],

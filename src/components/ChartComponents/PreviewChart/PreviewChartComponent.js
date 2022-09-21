@@ -3,6 +3,7 @@ import "chartjs-plugin-streaming";
 import { Line, Bar } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../../chartConfig/configPreview";
+import PreviewComponent from "./PreviewComponent";
 
 import styles from "./PreviewChartComponent.module.css";
 
@@ -26,9 +27,9 @@ const PreviewChartComponent = (props) => {
       {
         label: "Distance",
         data: props.data,
-        fill: true,
+        // fill: true,
         backgroundColor: chartColors.red,
-        borderColor: chartColors.red,
+        borderColor: chartColors.pink,
         segment: {},
       },
     ],
@@ -59,22 +60,12 @@ const PreviewChartComponent = (props) => {
       </div>
       <h4>Distance : {distance}</h4>
       <div className={styles.container}>
-        {radioValue === "Line" && (
-          <Line
-            height={200}
-            datasetKeyProvider={datasetKeyProvider}
-            data={data}
-            options={options}
-          />
-        )}
-        {radioValue === "Bar" && (
-          <Bar
-            height={200}
-            datasetKeyProvider={datasetKeyProvider}
-            data={data}
-            options={options}
-          />
-        )}
+        <PreviewComponent
+          datasetKeyProvider={datasetKeyProvider}
+          data={data}
+          options={options}
+          radioValue={radioValue}
+        />
       </div>
     </div>
   );
