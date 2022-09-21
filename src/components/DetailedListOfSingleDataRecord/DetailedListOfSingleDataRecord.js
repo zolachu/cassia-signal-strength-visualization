@@ -12,14 +12,16 @@ const DetailedListOfSingleDataRecord = (props) => {
     <div>
       <div>time elapsed:{props.timer}</div>
       <div>distance: {distance}</div>
-      {props.data.map((el) => {
-        return (
-          <span>
-            {/* {el.x ? el.x.toString() : ""} */}
-            {el.y},
-          </span>
-        );
-      })}
+      <ul>
+        {props.data.map((el) => {
+          return (
+            <li key={Math.random()}>
+              {/* {el.x ? el.x.toString() : ""} */}
+              {el.y},
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

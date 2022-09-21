@@ -16,15 +16,27 @@ const App = () => {
   const [stopFetching, setStopFetching] = useState(false);
   const [disableFetchButton, setDisableFetchButton] = useState(false);
   const [showRecordedDataInstance, setRecordedDataInstance] = useState(null);
+  const [rssi, setRssi] = useState(null);
+
+  // useEffect(() => {
+  //   const fetch = async () => {
+  //     const response = await fetch("/");
+  //     const data = await response.json();
+  //   };
+  // }, []);
 
   // TODO: uncomment displayThisInstance and commentout useEffect
   const displayThisInstanceHandler = useCallback((data) => {
-    // setRecordedDataInstance(data);
+    setRecordedDataInstance(data);
   }, []);
 
-  useEffect(() => {
-    setRecordedDataInstance(data);
-  }, [data]);
+  // useEffect(() => {
+  //   setRecordedDataInstance(data);
+  // }, [data]);
+
+  const newRSSIHandler = useCallback((newRssi) => {
+    setRssi(newRssi);
+  }, []);
 
   const receiveDataHandler = useCallback((data, setStopAll) => {
     setData([...data]);
@@ -53,17 +65,19 @@ const App = () => {
           <div className={styles.leftContainer}>
             {/* <div className={styles.closeLiveChart}></div> */}
             <Card className={styles.chart} icon="live" title="Sensor Data">
-              <LiveStreamButton
+              {/* <LiveStreamButton
                 onClick={stopButtonHandler}
                 disabled={disableFetchButton}
                 stopFetching={stopFetching}
-              ></LiveStreamButton>
+              ></LiveStreamButton> */}
               <LiveChartComponent
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}
                 displayThisInstance={displayThisInstanceHandler}
+                newRSSI={newRSSIHandler}
               />
               <Timer timer={IsTimerRunning} shouldStop={stopFetching}></Timer>
+              {/* <span>{rssi}</span> */}
               {/* <LineChartComponent
                 onReceiveData={receiveDataHandler}
                 shouldStop={stopFetching}

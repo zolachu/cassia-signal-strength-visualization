@@ -1,6 +1,6 @@
 import React from "react";
 import "chartjs-plugin-streaming";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
 import config from "../../chartConfig/configPreview";
 
@@ -37,7 +37,7 @@ const PreviewChartComponent = (props) => {
     <div>
       <h4>Distance : {distance}</h4>
       <div className={styles.container}>
-        <Line
+        <Bar
           height="200"
           datasetKeyProvider={datasetKeyProvider}
           data={data}

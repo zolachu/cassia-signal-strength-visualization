@@ -62,9 +62,9 @@ const options = {
         },
         ticks: {
           // Include a dollar sign in the ticks
-          callback: function (value) {
-            return "-" + value;
-          },
+          // callback: function (value) {
+          //   return "-" + value;
+          // },
         },
       },
     ],

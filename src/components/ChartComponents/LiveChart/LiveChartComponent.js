@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   Bar,
+  LabelList,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -15,7 +16,9 @@ import styles from "./LiveChartComponent.module.css";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 import IconComponent from "../../UI/IconContainer/IconComponent";
 
-const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
+// const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
+const serverBaseURL =
+  "http://10.1.10.150/gap/nodes?event=1&filter_mac=C8:D0:83:E2:7A*";
 
 const LiveChartComponent = (props) => {
   const toggleRef = useRef(false);
@@ -54,6 +57,7 @@ const LiveChartComponent = (props) => {
 
         const x = new Date();
         const y = data.rssi;
+        props.newRSSI(y);
 
         if (toggleRef.current) {
           newSeries.push({ date: x, recordedRssi: y });
@@ -113,11 +117,11 @@ const LiveChartComponent = (props) => {
               verticalFill={["#F3F7F9"]}
               fillOpacity={0.2}
             />
-            <XAxis dataKey="date" />
+            <XAxis dataKey="date" sclaeToFit="true" />
             <YAxis
               type="number"
               domain={["dataMin - 10", "dataMax + 10"]}
-              tickCount={1}
+              // tickCount={1}
             />
             <Tooltip />
             <Legend />
@@ -127,14 +131,26 @@ const LiveChartComponent = (props) => {
               dataKey="rssi"
               stroke="#82ca9d"
               fill="#82ca9d"
-            />
+            >
+              <LabelList
+                dataKey="rssi"
+                position="insideRight"
+                style={{ fill: "white" }}
+              />
+            </Bar>
             <Bar
               type="monotone"
               dataKey="recordedRssi"
               isAnimationActive={false}
               fill="#D21404"
               stroke="#D21404"
-            />
+            >
+              <LabelList
+                dataKey="recordedRssi"
+                position="insideRight"
+                style={{ fill: "white" }}
+              />
+            </Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
