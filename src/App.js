@@ -18,29 +18,24 @@ const App = () => {
   const [showRecordedDataInstance, setRecordedDataInstance] = useState(null);
   const [rssi, setRssi] = useState(null);
 
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     const response = await fetch("/");
-  //     const data = await response.json();
-  //   };
-  // }, []);
-
   // TODO: uncomment displayThisInstance and commentout useEffect
   const displayThisInstanceHandler = useCallback((data) => {
     setRecordedDataInstance(data);
   }, []);
 
-  // useEffect(() => {
-  //   setRecordedDataInstance(data);
-  // }, [data]);
+  useEffect(() => {
+    // setRecordedDataInstance(data);
+  }, [data]);
 
   const newRSSIHandler = useCallback((newRssi) => {
     setRssi(newRssi);
   }, []);
 
-  const receiveDataHandler = useCallback((data, setStopAll) => {
+  const receiveDataHandler = useCallback((data) => {
     setData([...data]);
+  }, []);
 
+  const timerHandler = useCallback((setStopAll) => {
     setIsTimerStart(setStopAll);
     setDisableFetchButton(setStopAll);
   }, []);
@@ -72,6 +67,7 @@ const App = () => {
               ></LiveStreamButton> */}
               <LiveChartComponent
                 onReceiveData={receiveDataHandler}
+                onTimerRefresh={timerHandler}
                 shouldStop={stopFetching}
                 displayThisInstance={displayThisInstanceHandler}
                 newRSSI={newRSSIHandler}

@@ -13,8 +13,6 @@ import { ResponsiveContainer } from "recharts";
 import RecordButton from "../../UI/RecordButton/RecordButton";
 import TextField from "@mui/material/TextField";
 import styles from "./LiveChartComponent.module.css";
-import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
-import IconComponent from "../../UI/IconContainer/IconComponent";
 
 // const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
 const serverBaseURL =
@@ -23,22 +21,20 @@ const serverBaseURL =
 const LiveChartComponent = (props) => {
   const toggleRef = useRef(false);
   const inputRef = useRef(0);
-  const [series, setSeries] = useState([[]]);
+  const series = useRef([[]]);
   const [graphPoints, updateGraphPoints] = useState(null);
 
   const clickToggleHandler = (shouldRecord) => {
     toggleRef.current = shouldRecord;
-
-    props.onReceiveData(series, toggleRef.current, inputRef.current.value);
+    if (!shouldRecord) {
+      props.displayThisInstance(series.current[series.current.length - 1]);
+      props.onReceiveData(series.current);
+      series.current = [...series.current, []];
+    }
+    props.onTimerRefresh(toggleRef.current);
   };
 
-  const display = React.useMemo(
-    () => props.displayThisInstance,
-    [props.displayThisInstance]
-  );
-
   useEffect(() => {
-    // if (props.shouldStop)
     const eventSource = new EventSource(serverBaseURL);
     eventSource.addEventListener("error", (e) => {
       eventSource.close();
@@ -57,7 +53,6 @@ const LiveChartComponent = (props) => {
 
         const x = new Date();
         const y = data.rssi;
-        props.newRSSI(y);
 
         if (toggleRef.current) {
           newSeries.push({ date: x, recordedRssi: y });
@@ -67,37 +62,22 @@ const LiveChartComponent = (props) => {
         if (newSeries.length > 10) newSeries.shift();
         return newSeries;
       });
-
-      setSeries((prevSeries) => {
-        let newSeries = [...prevSeries];
-        const lastData = prevSeries[prevSeries.length - 1];
-        // update the line chart (add one more data)
-        const x = new Date();
-        const y = data.rssi;
-        //update area chart
-        if (toggleRef.current) {
-          // get the last area series.
-          newSeries[newSeries.length - 1].push({
-            x: x,
-            y: y,
-            distance: inputRef.current.value,
-          });
-        } else {
-          if (lastData.length !== 0) {
-            display(newSeries[newSeries.length - 1]);
-            newSeries.push([]);
-          }
-        }
-        return newSeries;
-      });
-
+      if (toggleRef.current) {
+        let newSeries = [...series.current];
+        newSeries[newSeries.length - 1].push({
+          x: new Date(),
+          y: data.rssi,
+          distance: inputRef.current.value,
+        });
+        series.current = newSeries;
+      }
       console.log("new message");
     };
 
     return () => {
       eventSource.close();
     };
-  }, [display]);
+  }, []);
 
   // console.log(series);
 
@@ -117,10 +97,11 @@ const LiveChartComponent = (props) => {
               verticalFill={["#F3F7F9"]}
               fillOpacity={0.2}
             />
-            <XAxis dataKey="date" sclaeToFit="true" />
+            <XAxis dataKey="date" scaleToFit="true" />
             <YAxis
               type="number"
-              domain={["dataMin - 10", "dataMax + 10"]}
+              domain={["dataMin - 10", 0]}
+              tick={{ fontSize: 14, width: 250 }}
               // tickCount={1}
             />
             <Tooltip />
@@ -134,8 +115,8 @@ const LiveChartComponent = (props) => {
             >
               <LabelList
                 dataKey="rssi"
-                position="insideRight"
-                style={{ fill: "white" }}
+                position="top"
+                style={{ fill: "black" }}
               />
             </Bar>
             <Bar
@@ -147,8 +128,8 @@ const LiveChartComponent = (props) => {
             >
               <LabelList
                 dataKey="recordedRssi"
-                position="insideRight"
-                style={{ fill: "white" }}
+                position="top"
+                style={{ fill: "black" }}
               />
             </Bar>
           </BarChart>
