@@ -103,7 +103,7 @@ const LiveChartComponent = (props) => {
             <XAxis dataKey="date" scaleToFit="true" />
             <YAxis
               type="number"
-              domain={["dataMin - 10", 0]}
+              domain={["dataMin - 5", "dataMax + 10"]}
               tick={{ fontSize: 15, width: 250 }}
               // tickCount={1}
             />

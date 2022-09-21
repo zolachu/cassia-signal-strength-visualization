@@ -6,7 +6,6 @@ import PreviewChartComponent from "./components/ChartComponents/PreviewChart/Pre
 import LiveChartComponent from "./components/ChartComponents/LiveChart/LiveChartComponent";
 import LineChartComponent from "./components/ChartComponents/PreviewChart/LineChartComponent";
 import DetailedListOfSingleDataRecord from "./components/DetailedListOfSingleDataRecord/DetailedListOfSingleDataRecord";
-import LiveStreamButton from "./components/UI/LiveStreamButton/LiveStreamButton";
 
 import styles from "./App.module.css";
 
@@ -16,7 +15,6 @@ const App = () => {
   const [stopFetching, setStopFetching] = useState(false);
   const [disableFetchButton, setDisableFetchButton] = useState(false);
   const [showRecordedDataInstance, setRecordedDataInstance] = useState(null);
-  const [rssi, setRssi] = useState(null);
 
   // TODO: uncomment displayThisInstance and commentout useEffect
   const displayThisInstanceHandler = useCallback((data) => {
@@ -27,10 +25,6 @@ const App = () => {
     // setRecordedDataInstance(data);
   }, [data]);
 
-  const newRSSIHandler = useCallback((newRssi) => {
-    setRssi(newRssi);
-  }, []);
-
   const receiveDataHandler = useCallback((data) => {
     setData([...data]);
   }, []);
@@ -38,15 +32,6 @@ const App = () => {
   const timerHandler = useCallback((setStopAll) => {
     setIsTimerStart(setStopAll);
     setDisableFetchButton(setStopAll);
-  }, []);
-
-  const stopButtonHandler = useCallback(() => {
-    setStopFetching((prevState) => {
-      if (!prevState) {
-        setIsTimerStart(false);
-      }
-      return !prevState;
-    });
   }, []);
 
   const clickListDataHandler = (data) => {
@@ -70,7 +55,6 @@ const App = () => {
                 onTimerRefresh={timerHandler}
                 shouldStop={stopFetching}
                 displayThisInstance={displayThisInstanceHandler}
-                newRSSI={newRSSIHandler}
               />
               <Timer timer={IsTimerRunning} shouldStop={stopFetching}></Timer>
               {/* <span>{rssi}</span> */}
