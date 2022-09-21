@@ -27,8 +27,10 @@ const LiveChartComponent = (props) => {
   const clickToggleHandler = (shouldRecord) => {
     toggleRef.current = shouldRecord;
     if (!shouldRecord) {
-      // if (series.current)
-      props.displayThisInstance(series.current[series.current.length - 1]);
+      if (series.current[series.current.length - 1].length > 0) {
+        props.displayThisInstance(series.current[series.current.length - 1]);
+      }
+
       props.onReceiveData(series.current);
       series.current = [...series.current, []];
     }
