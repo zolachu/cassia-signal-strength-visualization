@@ -22,11 +22,12 @@ const LiveChartComponent = (props) => {
   const toggleRef = useRef(false);
   const inputRef = useRef(0);
   const series = useRef([[]]);
-  const [graphPoints, updateGraphPoints] = useState(null);
+  const [graphPoints, updateGraphPoints] = useState([]);
 
   const clickToggleHandler = (shouldRecord) => {
     toggleRef.current = shouldRecord;
     if (!shouldRecord) {
+      // if (series.current)
       props.displayThisInstance(series.current[series.current.length - 1]);
       props.onReceiveData(series.current);
       series.current = [...series.current, []];
@@ -101,7 +102,7 @@ const LiveChartComponent = (props) => {
             <YAxis
               type="number"
               domain={["dataMin - 10", 0]}
-              tick={{ fontSize: 14, width: 250 }}
+              tick={{ fontSize: 15, width: 250 }}
               // tickCount={1}
             />
             <Tooltip />

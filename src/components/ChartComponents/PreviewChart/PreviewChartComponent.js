@@ -8,6 +8,7 @@ import styles from "./PreviewChartComponent.module.css";
 
 const PreviewChartComponent = (props) => {
   //chart component
+  const [radioValue, setRadioValue] = React.useState("Bar");
   const [chartColors, datasetKeyProvider, options] = config;
   // if (!props.data) return <></>;
 
@@ -33,16 +34,47 @@ const PreviewChartComponent = (props) => {
     ],
   };
 
+  const changeValueHandler = (event) => {
+    setRadioValue(event.target.value);
+  };
+
   return (
     <div>
+      <div onChange={changeValueHandler}>
+        <input
+          type="radio"
+          value="Bar"
+          name="chartType"
+          checked={"Bar" === radioValue}
+        />
+        Bar
+        {/* <input type="radio" value="Area" name="chartType" /> Female */}
+        <input
+          type="radio"
+          value="Line"
+          name="chartType"
+          checked={"Line" === radioValue}
+        />
+        Line
+      </div>
       <h4>Distance : {distance}</h4>
       <div className={styles.container}>
-        <Bar
-          height="200"
-          datasetKeyProvider={datasetKeyProvider}
-          data={data}
-          options={options}
-        />
+        {radioValue === "Line" && (
+          <Line
+            height={200}
+            datasetKeyProvider={datasetKeyProvider}
+            data={data}
+            options={options}
+          />
+        )}
+        {radioValue === "Bar" && (
+          <Bar
+            height={200}
+            datasetKeyProvider={datasetKeyProvider}
+            data={data}
+            options={options}
+          />
+        )}
       </div>
     </div>
   );

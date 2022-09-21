@@ -1,5 +1,6 @@
 import { Chart } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
+import "chartjs-plugin-datalabels";
 
 var chartColors = {
   red: "rgb(255, 99, 132)",
@@ -25,6 +26,9 @@ const options = {
   responsive: true,
   maintainAspectRatio: true,
   plugins: {
+    datalabels: {
+      color: "black",
+    },
     legend: {
       labels: {
         // This more specific font property overrides the global property
@@ -38,6 +42,8 @@ const options = {
     display: true,
     text: "Recorded Data",
   },
+  // pointBackgroundColor: "#fff",
+  // radius: 100,
   scales: {
     xAxes: [
       {
@@ -61,10 +67,7 @@ const options = {
           labelString: "Signal Strength",
         },
         ticks: {
-          // Include a dollar sign in the ticks
-          // callback: function (value) {
-          //   return "-" + value;
-          // },
+          stepSize: 1,
         },
       },
     ],

@@ -35,14 +35,16 @@ const ListDataComponent = (props) => {
             .map((item, index) => {
               console.log(item.length);
               return (
-                <SingleDataComponent
-                  isTimerRunning={props.isTimerRunning}
-                  data={item}
-                  key={Math.random() * 17}
-                  id={index}
-                  onDelete={deleteItemHandler}
-                  onShow={(data) => props.onShow(data)}
-                ></SingleDataComponent>
+                item.length !== 0 && (
+                  <SingleDataComponent
+                    isTimerRunning={props.isTimerRunning}
+                    data={item}
+                    key={Math.random() * 17}
+                    id={index}
+                    onDelete={deleteItemHandler}
+                    onShow={(data) => props.onShow(data)}
+                  ></SingleDataComponent>
+                )
               );
             })}
         </ul>
