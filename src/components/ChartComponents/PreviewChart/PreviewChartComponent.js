@@ -2,12 +2,17 @@ import React from "react";
 import "chartjs-plugin-streaming";
 import config from "../../chartConfig/configPreview";
 import PreviewComponent from "./PreviewComponent";
+import {
+  BoxPlotController,
+  BoxAndWiskers,
+} from "@sgratzl/chartjs-chart-boxplot";
+import { BoxPlotChart } from "@sgratzl/chartjs-chart-boxplot";
 
 import styles from "./PreviewChartComponent.module.css";
 
 const PreviewChartComponent = (props) => {
   //chart component
-  const [radioValue, setRadioValue] = React.useState("Bar");
+  const [radioValue, setRadioValue] = React.useState("bar");
   const [chartColors, datasetKeyProvider, options] = config;
   // if (!props.data) return <></>;
 
@@ -42,17 +47,17 @@ const PreviewChartComponent = (props) => {
       <div onChange={changeChartTypeHandler}>
         <input
           type="radio"
-          value="Bar"
+          value="bar"
           name="chartType"
-          defaultChecked={"Bar" === radioValue}
+          defaultChecked={"bar" === radioValue}
         />
         Bar
         {/* <input type="radio" value="Area" name="chartType" /> Female */}
         <input
           type="radio"
-          value="Line"
+          value="line"
           name="chartType"
-          defaultChecked={"Line" === radioValue}
+          defaultChecked={"line" === radioValue}
         />
         Line
       </div>

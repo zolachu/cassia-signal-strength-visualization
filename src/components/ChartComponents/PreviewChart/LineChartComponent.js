@@ -1,8 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import "chartjs-plugin-streaming";
 import RecordButton from "../../UI/RecordButton/RecordButton";
 import { Bar, Line } from "react-chartjs-2";
-import "chartjs-plugin-streaming";
 import config from "../../chartConfig/configLine";
 import TextField from "@mui/material/TextField";
 
