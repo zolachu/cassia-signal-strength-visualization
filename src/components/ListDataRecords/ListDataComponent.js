@@ -3,23 +3,17 @@ import styles from "./ListDataComponent.module.css";
 import SingleDataComponent from "../SingleDataRecord/SingleDataComponent";
 
 const ListDataComponent = (props) => {
-  console.log(props.dataArray.length, "arr length");
+  const dataList = props.data;
+  const [data, setData] = useState(dataList);
 
-  const [data, setData] = useState(props.dataArray);
-  console.log("INSIDE DATA POINTS", props.dataArray.length);
   React.useEffect(() => {
-    setData(props.dataArray);
-  }, [props.dataArray]);
+    setData(dataList);
+  }, [dataList]);
 
   const deleteItemHandler = (id) => {
-    console.log("removing");
-    const newData = data.splice(id, 1);
-    console.log(newData.length);
+    const newData = data.filter((item) => item.id !== id);
     setData(newData);
   };
-  console.log(props.dataArray, " DATA ARRAY");
-  console.log(props.isTimerRunning);
-  console.log("array length ", data.length);
 
   return (
     <div className={styles.container}>
@@ -27,28 +21,27 @@ const ListDataComponent = (props) => {
       {/* {data[0].length === 0 ? (
         <h5 style={{ color: "rgb(0,0,0)" }}> No Data Records Available</h5>
       ) : ( */}
-      <div>
-        <ul>
-          {data
-            .slice(0)
-            .reverse()
-            .map((item, index) => {
-              console.log(item.length);
-              return (
-                item.length !== 0 && (
-                  <SingleDataComponent
-                    isTimerRunning={props.isTimerRunning}
-                    data={item}
-                    key={Math.random() * 17}
-                    id={index}
-                    onDelete={deleteItemHandler}
-                    onShow={(data) => props.onShow(data)}
-                  ></SingleDataComponent>
-                )
-              );
-            })}
-        </ul>
-      </div>
+      {/* <div> */}
+      <ul>
+        {data
+          .slice(0)
+          .reverse()
+          .map((item, index) => {
+            console.log(item.length);
+            return (
+              item.data.length !== 0 && (
+                <SingleDataComponent
+                  isTimerRunning={props.isTimerRunning}
+                  data={item}
+                  key={Math.random() * 17}
+                  id={index}
+                  onDelete={deleteItemHandler}
+                  onShow={(item) => props.onShow(item)}
+                ></SingleDataComponent>
+              )
+            );
+          })}
+      </ul>
     </div>
   );
 };

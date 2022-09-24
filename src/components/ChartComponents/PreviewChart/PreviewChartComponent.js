@@ -46,7 +46,7 @@ const PreviewChartComponent = (props) => {
           type="radio"
           value="Bar"
           name="chartType"
-          checked={"Bar" === radioValue}
+          defaultChecked={"Bar" === radioValue}
         />
         Bar
         {/* <input type="radio" value="Area" name="chartType" /> Female */}
@@ -54,7 +54,7 @@ const PreviewChartComponent = (props) => {
           type="radio"
           value="Line"
           name="chartType"
-          checked={"Line" === radioValue}
+          defaultChecked={"Line" === radioValue}
         />
         Line
       </div>

@@ -15,8 +15,9 @@ import TextField from "@mui/material/TextField";
 import styles from "./LiveChartComponent.module.css";
 
 // const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
-const serverBaseURL =
-  "http://10.1.10.150/gap/nodes?event=1&filter_mac=C8:D0:83:E2:7A*";
+// const serverBaseURL =
+// "http://10.1.10.150/gap/nodes?event=1&filter_mac=C8:D0:83:E2:7A*";
+const serverBaseURL = "http://10";
 
 const LiveChartComponent = (props) => {
   const toggleRef = useRef(false);

@@ -26,7 +26,19 @@ const App = () => {
   }, [data]);
 
   const receiveDataHandler = useCallback((data) => {
-    setData([...data]);
+    setData([
+      {
+        data: [
+          { x: 1, y: 1, distance: 1 },
+          { x: 1, y: 1, distance: 1 },
+          { x: 1, y: 1, distance: 1 },
+        ],
+        id: 1,
+      },
+      { data: [{ x: 1, y: 1, distance: 1 }], id: 2 },
+      { data: [{ x: 1, y: 1, distance: 1 }], id: 3 },
+    ]);
+    // setData([...data]);
   }, []);
 
   const timerHandler = useCallback((setStopAll) => {
@@ -71,7 +83,7 @@ const App = () => {
             >
               <div className={styles.listData}>
                 <ListDataComponent
-                  dataArray={data}
+                  data={data}
                   isTimerRunning={IsTimerRunning}
                   onShow={clickListDataHandler}
                 ></ListDataComponent>
