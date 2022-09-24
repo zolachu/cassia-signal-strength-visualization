@@ -15,6 +15,25 @@ const ListDataComponent = (props) => {
     setData(newData);
   };
 
+  const list = data
+    .slice(0)
+    .reverse()
+    .map((item, index) => {
+      console.log(item.length);
+      return (
+        item.data.length !== 0 && (
+          <SingleDataComponent
+            isTimerRunning={props.isTimerRunning}
+            data={item}
+            key={item.id}
+            id={item.id}
+            onDelete={deleteItemHandler}
+            onShow={(item) => props.onShow(item)}
+          ></SingleDataComponent>
+        )
+      );
+    });
+
   return (
     <div className={styles.container}>
       {/* <h4>Recorded Data Stats</h4> */}
@@ -22,26 +41,7 @@ const ListDataComponent = (props) => {
         <h5 style={{ color: "rgb(0,0,0)" }}> No Data Records Available</h5>
       ) : ( */}
       {/* <div> */}
-      <ul>
-        {data
-          .slice(0)
-          .reverse()
-          .map((item, index) => {
-            console.log(item.length);
-            return (
-              item.data.length !== 0 && (
-                <SingleDataComponent
-                  isTimerRunning={props.isTimerRunning}
-                  data={item}
-                  key={Math.random() * 17}
-                  id={index}
-                  onDelete={deleteItemHandler}
-                  onShow={(item) => props.onShow(item)}
-                ></SingleDataComponent>
-              )
-            );
-          })}
-      </ul>
+      <ul>{list}</ul>
     </div>
   );
 };

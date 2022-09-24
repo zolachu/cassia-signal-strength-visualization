@@ -21,10 +21,6 @@ const App = () => {
     setRecordedInstance(data);
   }, []);
 
-  useEffect(() => {
-    // setRecordedDataInstance(data);
-  }, [data]);
-
   const receiveDataHandler = useCallback((data) => {
     setData([
       {

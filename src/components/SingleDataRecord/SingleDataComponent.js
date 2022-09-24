@@ -6,8 +6,7 @@ import Button from "@mui/material/Button";
 const SingleDataComponent = (props) => {
   const data = props.data.data;
   const id = props.data.id;
-  console.log("here in single data p");
-  console.log(data);
+
   const arrayY = data.map((element) => element.y);
   const distance = data.length > 0 ? data[0].distance : undefined;
 
@@ -30,11 +29,11 @@ const SingleDataComponent = (props) => {
           className={styles.deleteButton}
           disabled={props.isTimerRunning}
         >
-          delete
+          DELETE
           <DeleteForeverIcon color={!props.isTimerRunning ? "warning" : ""} />
         </Button>
         <Button onClick={buttonClickHandler} disabled={props.isTimerRunning}>
-          Show Details
+          SHOW DETAILS
         </Button>
       </div>
     </li>
