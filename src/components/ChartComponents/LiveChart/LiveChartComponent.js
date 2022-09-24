@@ -1,18 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Bar,
-  LabelList,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  BarChart,
-} from "recharts";
-import { ResponsiveContainer } from "recharts";
 import RecordButton from "../../UI/RecordButton/RecordButton";
 import TextField from "@mui/material/TextField";
 import styles from "./LiveChartComponent.module.css";
+import LiveChart from "./LiveChart";
 
 // const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
 // const serverBaseURL =
@@ -30,11 +20,8 @@ const LiveChartComponent = (props) => {
     if (!shouldRecord) {
       // This part sends the most current data to Preview Component.
       // If the length is more than zero then send to Preview
-      if (series.current[series.current.length - 1].length > 0) {
-        props.displayThisInstance(
-          series.current[series.current.length - 1].data
-        );
-      }
+      const latestData = series.current[series.current.length - 1];
+      if (latestData.length > 0) props.displayThisInstance(latestData.data);
 
       props.onReceiveData(series.current);
       series.current = [...series.current, { data: [], id: Math.random() }];
@@ -79,7 +66,6 @@ const LiveChartComponent = (props) => {
         });
         series.current = newSeries;
       }
-      console.log("new message");
     };
 
     return () => {
@@ -90,56 +76,7 @@ const LiveChartComponent = (props) => {
   return (
     <div>
       <div className={styles["chart-container"]}>
-        <ResponsiveContainer width="99%" aspect={2}>
-          <BarChart
-            data={graphPoints}
-            margin={{
-              right: 5,
-              left: -35,
-            }}
-          >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              verticalFill={["#F3F7F9"]}
-              fillOpacity={0.2}
-            />
-            <XAxis dataKey="date" scaleToFit="true" />
-            <YAxis
-              type="number"
-              domain={["dataMin - 5", "dataMax + 10"]}
-              tick={{ fontSize: 15, width: 250 }}
-              // tickCount={1}
-            />
-            <Tooltip />
-            <Legend />
-            <Bar
-              type="monotone"
-              isAnimationActive={false}
-              dataKey="rssi"
-              stroke="#82ca9d"
-              fill="#82ca9d"
-            >
-              <LabelList
-                dataKey="rssi"
-                position="top"
-                style={{ fill: "black" }}
-              />
-            </Bar>
-            <Bar
-              type="monotone"
-              dataKey="recordedRssi"
-              isAnimationActive={false}
-              fill="#D21404"
-              stroke="#D21404"
-            >
-              <LabelList
-                dataKey="recordedRssi"
-                position="top"
-                style={{ fill: "black" }}
-              />
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+        <LiveChart graphPoints={graphPoints} />
       </div>
       <div className={styles.actions}>
         <RecordButton onClick={clickToggleHandler} disable={props.shouldStop} />

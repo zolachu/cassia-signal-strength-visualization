@@ -1,7 +1,5 @@
 import React from "react";
 import "chartjs-plugin-streaming";
-import { Line, Bar } from "react-chartjs-2";
-import "chartjs-plugin-streaming";
 import config from "../../chartConfig/configPreview";
 import PreviewComponent from "./PreviewComponent";
 

@@ -14,11 +14,11 @@ const App = () => {
   const [IsTimerRunning, setIsTimerStart] = useState(false);
   const [stopFetching, setStopFetching] = useState(false);
   const [disableFetchButton, setDisableFetchButton] = useState(false);
-  const [showRecordedDataInstance, setRecordedDataInstance] = useState(null);
+  const [recordedInstance, setRecordedInstance] = useState(null);
 
   // TODO: uncomment displayThisInstance and commentout useEffect
   const displayThisInstanceHandler = useCallback((data) => {
-    setRecordedDataInstance(data);
+    setRecordedInstance(data);
   }, []);
 
   useEffect(() => {
@@ -30,13 +30,13 @@ const App = () => {
       {
         data: [
           { x: 1, y: 1, distance: 1 },
-          { x: 1, y: 1, distance: 1 },
-          { x: 1, y: 1, distance: 1 },
+          { x: 2, y: 3, distance: 1 },
+          { x: 4, y: 4, distance: 1 },
         ],
-        id: 1,
+        id: Math.random(),
       },
-      { data: [{ x: 1, y: 1, distance: 1 }], id: 2 },
-      { data: [{ x: 1, y: 1, distance: 1 }], id: 3 },
+      { data: [{ x: 1, y: 1, distance: 3 }], id: Math.random() },
+      { data: [{ x: 5, y: 4, distance: 1 }], id: Math.random() },
     ]);
     // setData([...data]);
   }, []);
@@ -47,7 +47,7 @@ const App = () => {
   }, []);
 
   const clickListDataHandler = (data) => {
-    setRecordedDataInstance(data);
+    setRecordedInstance(data);
   };
 
   return (
@@ -93,14 +93,14 @@ const App = () => {
 
           <div className={styles.rightContainer}>
             <Card className={styles.barChart} icon="preview">
-              <PreviewChartComponent data={showRecordedDataInstance} />
+              <PreviewChartComponent data={recordedInstance} />
             </Card>
 
             <Card icon="statistics">
               <div className={styles.statistics}>
                 {/* <PreviewChartComponent data={showRecordedDataInstance} /> */}
                 <DetailedListOfSingleDataRecord
-                  data={showRecordedDataInstance}
+                  data={recordedInstance}
                 ></DetailedListOfSingleDataRecord>
               </div>
             </Card>
