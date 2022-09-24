@@ -7,7 +7,7 @@ import styles from "./PreviewChartComponent.module.css";
 
 const PreviewChartComponent = (props) => {
   //chart component
-  const [radioValue, setRadioValue] = React.useState("bar");
+  const [radioValue, setRadioValue] = React.useState("line");
   const [chartColors, datasetKeyProvider, options] = config;
   // if (!props.data) return <></>;
 
@@ -34,30 +34,36 @@ const PreviewChartComponent = (props) => {
   };
 
   const changeChartTypeHandler = (event) => {
+    console.log(event.target.value);
     setRadioValue(event.target.value);
   };
 
   return (
     <div>
-      <div onChange={changeChartTypeHandler}>
-        <input
-          type="radio"
-          value="bar"
-          name="chartType"
-          defaultChecked={"bar" === radioValue}
-        />
-        Bar
-        {/* <input type="radio" value="Area" name="chartType" /> Female */}
-        <input
-          type="radio"
-          value="line"
-          name="chartType"
-          defaultChecked={"line" === radioValue}
-        />
-        Line
-        <input type="radio" value="boxplot" name="chartType" />
-        BoxPlot
-      </div>
+      <input
+        type="radio"
+        value="bar"
+        name="chartType"
+        onChange={changeChartTypeHandler}
+        checked={"bar" === radioValue}
+      />
+      Bar
+      <input
+        type="radio"
+        value="line"
+        name="chartType"
+        onChange={changeChartTypeHandler}
+        checked={"line" === radioValue}
+      />
+      Line
+      <input
+        type="radio"
+        value="boxplot"
+        name="chartType"
+        checked={"boxplot" === radioValue}
+        onChange={changeChartTypeHandler}
+      />
+      BoxPlot
       <h4>Distance : {distance}</h4>
       <div className={styles.container}>
         <PreviewComponent
@@ -71,4 +77,4 @@ const PreviewChartComponent = (props) => {
   );
 };
 
-export default React.memo(PreviewChartComponent);
+export default PreviewChartComponent;

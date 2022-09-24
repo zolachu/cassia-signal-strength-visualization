@@ -31,7 +31,7 @@ const App = () => {
           { x: 1, y: 4, distance: 1 },
           { x: 2, y: 5, distance: 3 },
           { x: 4, y: 10, distance: 5 },
-          { x: 1, y: 115, distance: 1 },
+          { x: 1, y: 11, distance: 1 },
           { x: 2, y: 33, distance: 3 },
           { x: 4, y: 40, distance: 5 },
         ],
