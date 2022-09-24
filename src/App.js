@@ -26,13 +26,13 @@ const App = () => {
       {
         data: [
           { x: 1, y: 1, distance: 1 },
-          { x: 2, y: 3, distance: 1 },
-          { x: 4, y: 4, distance: 1 },
+          { x: 2, y: 3, distance: 3 },
+          { x: 4, y: 4, distance: 5 },
         ],
         id: Math.random(),
       },
-      { data: [{ x: 1, y: 1, distance: 3 }], id: Math.random() },
-      { data: [{ x: 5, y: 4, distance: 1 }], id: Math.random() },
+      { data: [{ x: 1, y: 1, distance: 5 }], id: Math.random() },
+      { data: [{ x: 5, y: 4, distance: 2 }], id: Math.random() },
     ]);
     // setData([...data]);
   }, []);

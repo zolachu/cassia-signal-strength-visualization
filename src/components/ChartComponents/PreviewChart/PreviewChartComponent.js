@@ -33,13 +33,13 @@ const PreviewChartComponent = (props) => {
     ],
   };
 
-  const changeValueHandler = (event) => {
+  const changeChartTypeHandler = (event) => {
     setRadioValue(event.target.value);
   };
 
   return (
     <div>
-      <div onChange={changeValueHandler}>
+      <div onChange={changeChartTypeHandler}>
         <input
           type="radio"
           value="Bar"
