@@ -42,7 +42,7 @@ const App = () => {
     setDisableFetchButton(setStopAll);
   }, []);
 
-  const clickListDataHandler = (data) => {
+  const showInstanceHandler = (data) => {
     setRecordedInstance(data);
   };
 
@@ -81,7 +81,7 @@ const App = () => {
                 <ListDataComponent
                   data={data}
                   isTimerRunning={IsTimerRunning}
-                  onShow={clickListDataHandler}
+                  onShow={showInstanceHandler}
                 ></ListDataComponent>
               </div>
             </Card>
