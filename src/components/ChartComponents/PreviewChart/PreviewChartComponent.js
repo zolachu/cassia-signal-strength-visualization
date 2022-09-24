@@ -2,11 +2,6 @@ import React from "react";
 import "chartjs-plugin-streaming";
 import config from "../../chartConfig/configPreview";
 import PreviewComponent from "./PreviewComponent";
-import {
-  BoxPlotController,
-  BoxAndWiskers,
-} from "@sgratzl/chartjs-chart-boxplot";
-import { BoxPlotChart } from "@sgratzl/chartjs-chart-boxplot";
 
 import styles from "./PreviewChartComponent.module.css";
 
@@ -60,6 +55,8 @@ const PreviewChartComponent = (props) => {
           defaultChecked={"line" === radioValue}
         />
         Line
+        <input type="radio" value="boxplot" name="chartType" />
+        BoxPlot
       </div>
       <h4>Distance : {distance}</h4>
       <div className={styles.container}>
