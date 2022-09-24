@@ -22,18 +22,22 @@ const serverBaseURL = "http://10";
 const LiveChartComponent = (props) => {
   const toggleRef = useRef(false);
   const inputRef = useRef(0);
-  const series = useRef([[]]);
+  const series = useRef([{ data: [], id: Math.random() }]);
   const [graphPoints, updateGraphPoints] = useState([]);
 
   const clickToggleHandler = (shouldRecord) => {
     toggleRef.current = shouldRecord;
     if (!shouldRecord) {
+      // This part sends the most current data to Preview Component.
+      // If the length is more than zero then send to Preview
       if (series.current[series.current.length - 1].length > 0) {
-        props.displayThisInstance(series.current[series.current.length - 1]);
+        props.displayThisInstance(
+          series.current[series.current.length - 1].data
+        );
       }
 
       props.onReceiveData(series.current);
-      series.current = [...series.current, []];
+      series.current = [...series.current, { data: [], id: Math.random() }];
     }
     props.onTimerRefresh(toggleRef.current);
   };
@@ -53,22 +57,22 @@ const LiveChartComponent = (props) => {
 
       //update line chart
       updateGraphPoints((prev) => {
-        let newSeries = prev ? [...prev] : [];
+        let newChartPoints = prev ? [...prev] : [];
 
         const x = new Date();
         const y = data.rssi;
 
         if (toggleRef.current) {
-          newSeries.push({ date: x, recordedRssi: y });
+          newChartPoints.push({ date: x, recordedRssi: y });
         } else {
-          newSeries.push({ date: x, rssi: y });
+          newChartPoints.push({ date: x, rssi: y });
         }
-        if (newSeries.length > 10) newSeries.shift();
-        return newSeries;
+        if (newChartPoints.length > 10) newChartPoints.shift();
+        return newChartPoints;
       });
       if (toggleRef.current) {
         let newSeries = [...series.current];
-        newSeries[newSeries.length - 1].push({
+        newSeries[newSeries.length - 1].data.push({
           x: new Date(),
           y: data.rssi,
           distance: inputRef.current.value,
@@ -82,8 +86,6 @@ const LiveChartComponent = (props) => {
       eventSource.close();
     };
   }, []);
-
-  // console.log(series);
 
   return (
     <div>
