@@ -23,12 +23,20 @@
     flex-direction:row;
     align-items: center;
     margin-top: 5px;
+    flex-flow: row-wrap;
     /* justify-content: space-around; */
 }
 
 .actions  label {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+@media  screen and (max-width: 400px) {
+    .actions {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 

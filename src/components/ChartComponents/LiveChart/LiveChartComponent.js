@@ -92,6 +92,7 @@ const LiveChartComponent = (props) => {
           inputRef={inputRef}
           disabled={props.shouldStop || toggleRef.current}
         />
+        <label htmlFor="devicemac">Mac</label>
         <TextField
           id="devicemac"
           label="Mac Address"
