@@ -8,7 +8,7 @@ const DetailedListOfSingleDataRecord = (props) => {
   }
   const distance = props.data.length > 0 ? props.data[0].distance : undefined;
   const macAddress =
-    props.data.length > 0 ? props.data[0].macAddress : undefined;
+    props.data.length > 0 ? props.data[0].devicemac : undefined;
   return (
     <div>
       <div>time elapsed:{props.timer}</div>

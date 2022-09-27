@@ -100,8 +100,8 @@ const LiveChartComponent = (props) => {
       if (toggleRef.current) {
         let newSeries = [...series.current];
         newSeries[newSeries.length - 1].data.push({
-          timestamp_unix: new Date(),
-          rssi: data.rssi,
+          x: new Date(),
+          y: data.rssi,
           distance: inputRef.current.value,
           macaddress: macAddressRef.current.value,
         });

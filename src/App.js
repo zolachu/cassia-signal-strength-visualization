@@ -28,20 +28,20 @@ const App = () => {
         key: 0.1423798154941256,
         data: [
           {
-            timestamp_unix: Date(),
-            rssi: 2,
+            x: Date(),
+            y: 2,
             distance: 1,
             devicemac: 3,
           },
           {
-            timestamp_unix: Date(),
-            rssi: 24,
+            x: Date(),
+            y: 24,
             distance: 1,
             devicemac: 366,
           },
           {
-            timestamp_unix: Date(),
-            rssi: 20,
+            x: Date(),
+            y: 20,
             distance: 1,
             devicemac: 32342,
           },
@@ -51,20 +51,20 @@ const App = () => {
         key: 0.27523359884517085,
         data: [
           {
-            timestamp_unix: Date(),
-            rssi: 2,
+            x: Date(),
+            y: 2,
             distance: 1,
             devicemac: 3,
           },
           {
-            timestamp_unix: Date(),
-            rssi: 24,
+            x: Date(),
+            y: 24,
             distance: 1,
             devicemac: 366,
           },
           {
-            timestamp_unix: Date(),
-            rssi: 20,
+            x: Date(),
+            y: 20,
             distance: 1,
             devicemac: 32342,
           },

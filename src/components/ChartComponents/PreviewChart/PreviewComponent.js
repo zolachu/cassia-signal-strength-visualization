@@ -12,7 +12,7 @@ const PreviewComponent = (props) => {
   let arrayRSSI = [];
 
   if (props.data && props.data.datasets && props.data.datasets[0].data) {
-    arrayRSSI = props.data.datasets[0].data.map((item) => item.rssi);
+    arrayRSSI = props.data.datasets[0].data.map((item) => item.y);
   }
   console.log(arrayRSSI);
   const boxplotData = {

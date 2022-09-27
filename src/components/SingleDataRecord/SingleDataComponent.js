@@ -9,9 +9,9 @@ const SingleDataComponent = (props) => {
   const disable = props.isTimerRunning;
   const color = !props.isTimerRunning ? "warning" : "";
 
-  const arrayY = data.map((element) => element.rssi);
+  const arrayY = data.map((element) => element.y);
   const distance = data.length > 0 ? data[0].distance : undefined;
-  const macAddress = data.length > 0 ? data[0].macAddress : undefined;
+  const macAddress = data.length > 0 ? data[0].devicemac : undefined;
 
   console.log(dataKey);
   return (
