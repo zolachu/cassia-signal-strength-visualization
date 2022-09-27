@@ -15,6 +15,11 @@ const DataStatsComponent = (props) => {
   ) : (
     <span style={{ color: "red", fontWeight: "bold" }}>NONE</span>
   );
+  const macAddress = props.macAddress ? (
+    props.macAddress
+  ) : (
+    <span style={{ color: "red", fontWeight: "bold" }}>NONE</span>
+  );
 
   return (
     <div className={`styles.dataStats ${props.className}`}>
@@ -32,6 +37,9 @@ const DataStatsComponent = (props) => {
       </div>
       <div>
         <strong>DISTANCE:</strong> {distance}
+      </div>
+      <div>
+        <strong>MAC ADDRESS:</strong> {macAddress}
       </div>
     </div>
   );

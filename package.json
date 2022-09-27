@@ -18,6 +18,7 @@
     "chart.js": "^2.9.4",
     "chartjs-adapter-luxon": "^1.2.0",
     "chartjs-chart-box-and-violin-plot": "^4.0.0",
+    "chartjs-plugin-annotation": "^0.5.7",
     "chartjs-plugin-datalabels": "^2.1.0",
     "luxon": "^3.0.3",
     "moment": "^2.29.4",

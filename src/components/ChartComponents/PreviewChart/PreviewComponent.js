@@ -1,10 +1,15 @@
 import React from "react";
 import "chartjs-plugin-streaming";
 import { Line, Bar, Box } from "react-chartjs-2";
-import "chartjs-plugin-streaming";
 
 import Chart from "react-chartjs-2";
 import "chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot.js";
+
+import { Chart as Chartjs } from "chart.js";
+import annotationPlugin from "chartjs-plugin-annotation";
+Chartjs.pluginService.register(annotationPlugin);
+// Chartjs.register(annotationPlugin);
+// Chart.register(annotationPlugin);
 
 const PreviewComponent = (props) => {
   console.log("render", props.radioValue);
@@ -14,11 +19,22 @@ const PreviewComponent = (props) => {
   if (props.radioValue === "boxplot") {
     console.log("inside boxplot");
     options = {
-      responsive: true,
-      title: {
-        display: true,
-        text: "Box Plot Chart",
-      },
+      // annotation: {
+      //   annotations: {
+      //     annotation1: {
+      //       type: "line",
+      //       scaleID: "y",
+      //       borderWidth: 3,
+      //       borderColor: "black",
+      //       value: 20,
+      //       label: {
+      //         rotation: "auto",
+      //         content: "Line at y=5",
+      //         display: true,
+      //       },
+      //     },
+      //   },
+      // },
     };
   }
 

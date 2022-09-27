@@ -12,6 +12,7 @@ const serverBaseURL = "http://10";
 const LiveChartComponent = (props) => {
   const toggleRef = useRef(false);
   const inputRef = useRef(0);
+  const macAddressRef = useRef(0);
   const series = useRef([{ data: [], id: Math.random() }]);
   const [graphPoints, updateGraphPoints] = useState([]);
 
@@ -63,6 +64,7 @@ const LiveChartComponent = (props) => {
           x: new Date(),
           y: data.rssi,
           distance: inputRef.current.value,
+          macaddress: macAddressRef.current.value,
         });
         series.current = newSeries;
       }
@@ -88,6 +90,15 @@ const LiveChartComponent = (props) => {
           type="number"
           placeholder="distance in feet"
           inputRef={inputRef}
+          disabled={props.shouldStop || toggleRef.current}
+        />
+        <TextField
+          id="devicemac"
+          label="Mac Address"
+          variant="outlined"
+          // type="string"
+          placeholder="mac address"
+          inputRef={macAddressRef}
           disabled={props.shouldStop || toggleRef.current}
         />
       </div>

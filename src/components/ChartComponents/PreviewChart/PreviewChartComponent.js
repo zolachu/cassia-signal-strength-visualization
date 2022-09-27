@@ -13,10 +13,12 @@ const PreviewChartComponent = (props) => {
 
   let labels = [];
   let distance = null;
+  let macAddress = null;
 
   if (props.data && props.data[0]) {
     labels = props.data.map((element) => element.x);
     distance = props.data[0].distance;
+    macAddress = props.data[0].macAddress;
   }
 
   const data = {
@@ -64,7 +66,8 @@ const PreviewChartComponent = (props) => {
         onChange={changeChartTypeHandler}
       />
       BoxPlot
-      <h4>Distance : {distance}</h4>
+      <h4>Distance: {distance}</h4>
+      <h4>Mac Address: {macAddress}</h4>
       <div className={styles.container}>
         <PreviewComponent
           datasetKeyProvider={datasetKeyProvider}
