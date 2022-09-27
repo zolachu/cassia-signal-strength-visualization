@@ -24,8 +24,47 @@ const LiveChartComponent = (props) => {
       const latestData = series.current[series.current.length - 1];
       if (latestData.length > 0) props.displayThisInstance(latestData.data);
 
+      const key = Math.random();
       props.onReceiveData(series.current);
-      series.current = [...series.current, { data: [], id: Math.random() }];
+      // let body = [];
+      // for (let data in latestData.data) {
+      //   body.push({ key: key, ...data });
+      // }
+      const body = [
+        {
+          key: key,
+          timestamp_unix: 1,
+          rssi: 2,
+          devicemac: 3,
+        },
+        {
+          key: key,
+          timestamp_unix: 33424,
+          rssi: 24242,
+          devicemac: 366,
+        },
+        {
+          key: key,
+          timestamp_unix: 16664,
+          rssi: 2,
+          devicemac: 32342,
+        },
+      ];
+
+      // (async () => {
+      //   const response = await fetch("http://localhost:8080/data/", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json; charset=utf-8",
+      //     },
+      //     // body: formBody,
+      //     body: JSON.stringify(body),
+      //   });
+      //   const data = await response.json();
+      //   console.log(data, "THIS IS THE DATA");
+      // })();
+
+      series.current = [...series.current, { data: [], key: key }];
     }
     props.onTimerRefresh(toggleRef.current);
   };
@@ -61,8 +100,8 @@ const LiveChartComponent = (props) => {
       if (toggleRef.current) {
         let newSeries = [...series.current];
         newSeries[newSeries.length - 1].data.push({
-          x: new Date(),
-          y: data.rssi,
+          timestamp_unix: new Date(),
+          rssi: data.rssi,
           distance: inputRef.current.value,
           macaddress: macAddressRef.current.value,
         });

@@ -1,38 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ListDataComponent.module.css";
 import SingleDataComponent from "../SingleDataRecord/SingleDataComponent";
 
 const ListDataComponent = (props) => {
   const dataList = props.data;
-  const [data, setData] = useState(dataList);
+  console.log(dataList, "aaa");
+  const [data, setData] = useState([]);
 
   React.useEffect(() => {
     setData(dataList);
   }, [dataList]);
 
-  const deleteItemHandler = (id) => {
-    const newData = data.filter((item) => item.id !== id);
+  const deleteItemHandler = (key) => {
+    const newData = data.filter((item) => item.key !== key);
     setData(newData);
   };
 
-  const list = data
-    .slice(0)
-    .reverse()
-    .map((item, index) => {
-      console.log(item.length);
-      return (
-        item.data.length !== 0 && (
-          <SingleDataComponent
-            isTimerRunning={props.isTimerRunning}
-            data={item}
-            key={item.id}
-            id={item.id}
-            onDelete={deleteItemHandler}
-            onShow={(item) => props.onShow(item)}
-          ></SingleDataComponent>
-        )
-      );
-    });
+  console.log(data);
+  const list =
+    data.length === 0
+      ? ""
+      : data
+          .slice(0)
+          .reverse()
+          .map((item) => {
+            console.log(item.key);
+            return (
+              <SingleDataComponent
+                isTimerRunning={props.isTimerRunning}
+                data={item.data}
+                dataKey={item.key}
+                key={item.key}
+                onDelete={deleteItemHandler}
+                onShow={(item) => props.onShow(item)}
+              ></SingleDataComponent>
+            );
+          });
 
   return (
     <div className={styles.container}>

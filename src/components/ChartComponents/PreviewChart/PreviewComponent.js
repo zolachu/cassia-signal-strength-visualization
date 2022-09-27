@@ -8,8 +8,6 @@ import "chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot.js";
 import { Chart as Chartjs } from "chart.js";
 import annotationPlugin from "chartjs-plugin-annotation";
 Chartjs.pluginService.register(annotationPlugin);
-// Chartjs.register(annotationPlugin);
-// Chart.register(annotationPlugin);
 
 const PreviewComponent = (props) => {
   console.log("render", props.radioValue);
@@ -41,7 +39,7 @@ const PreviewComponent = (props) => {
   let arrayRSSI = [];
 
   if (props.data && props.data.datasets && props.data.datasets[0].data) {
-    arrayRSSI = props.data.datasets[0].data.map((item) => item.y);
+    arrayRSSI = props.data.datasets[0].data.map((item) => item.rssi);
   }
   console.log(arrayRSSI);
   const boxplotData = {
@@ -73,8 +71,6 @@ const PreviewComponent = (props) => {
           type="line"
           height={200}
           datasetKeyProvider={props.datasetKeyProvider}
-          // data={props.data}
-          // options={props.options}
           data={data}
           options={options}
         />
@@ -84,8 +80,6 @@ const PreviewComponent = (props) => {
           type="bar"
           height={200}
           datasetKeyProvider={props.datasetKeyProvider}
-          // data={props.data}
-          // options={props.options}
           data={data}
           options={options}
         />
@@ -95,8 +89,6 @@ const PreviewComponent = (props) => {
           type="boxplot"
           height={200}
           datasetKeyProvider={props.datasetKeyProvider}
-          // data={props.data}
-          // options={props.options}
           data={boxplotData}
           options={{
             responsive: true,
@@ -107,15 +99,6 @@ const PreviewComponent = (props) => {
           }}
         />
       )}
-      {/* <Chart
-        type={type}
-        height={200}
-        datasetKeyProvider={props.datasetKeyProvider}
-        // data={props.data}
-        // options={props.options}
-        data={data}
-        options={options}
-      /> */}
     </>
   );
 };

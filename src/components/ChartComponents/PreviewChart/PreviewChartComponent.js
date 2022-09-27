@@ -16,7 +16,7 @@ const PreviewChartComponent = (props) => {
   let macAddress = null;
 
   if (props.data && props.data[0]) {
-    labels = props.data.map((element) => element.x);
+    labels = props.data.map((element) => element.timestamp_unix);
     distance = props.data[0].distance;
     macAddress = props.data[0].macAddress;
   }

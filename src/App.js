@@ -21,31 +21,57 @@ const App = () => {
     setRecordedInstance(data);
   }, []);
 
+  // console.log("GOD PLS");
   const receiveDataHandler = useCallback((data) => {
     setData([
       {
+        key: 0.1,
         data: [
-          { x: 1, y: 1, distance: 1, macAddress: 310213 },
-          { x: 2, y: 3, distance: 3, macAddress: 310213 },
-          { x: 4, y: 4, distance: 5, macAddress: 310213 },
-          { x: 1, y: 4, distance: 1, macAddress: 310213 },
-          { x: 2, y: 5, distance: 3, macAddress: 310213 },
-          { x: 4, y: 10, distance: 5, macAddress: 310213 },
-          { x: 1, y: 11, distance: 1, macAddress: 310213 },
-          { x: 2, y: 33, distance: 3, macAddress: 310213 },
-          { x: 4, y: 40, distance: 5, macAddress: 310213 },
+          {
+            timestamp_unix: 1,
+            rssi: 2,
+            distance: 1,
+            devicemac: 3,
+          },
+          {
+            timestamp_unix: 33424,
+            rssi: 24242,
+            distance: 1,
+            devicemac: 366,
+          },
+          {
+            timestamp_unix: 16664,
+            rssi: 2,
+            distance: 1,
+            devicemac: 32342,
+          },
         ],
-        id: Math.random(),
       },
       {
-        data: [{ x: 1, y: 1, distance: 5, macAddress: 310213 }],
-        id: Math.random(),
-      },
-      {
-        data: [{ x: 5, y: 4, distance: 2, macAddress: 310213 }],
-        id: Math.random(),
+        key: 0.4,
+        data: [
+          {
+            timestamp_unix: 12342,
+            rssi: 24,
+            distance: 1,
+            devicemac: 3242,
+          },
+          {
+            timestamp_unix: 33432424,
+            rssi: 24242,
+            distance: 1,
+            devicemac: 366,
+          },
+          {
+            timestamp_unix: 16664,
+            rssi: 24,
+            distance: 1,
+            devicemac: 32342,
+          },
+        ],
       },
     ]);
+
     // setData([...data]);
   }, []);
 
