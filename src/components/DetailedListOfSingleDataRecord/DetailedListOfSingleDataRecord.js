@@ -19,7 +19,7 @@ const DetailedListOfSingleDataRecord = (props) => {
           return (
             <li key={Math.random()}>
               {/* {el.x ? el.x.toString() : ""} */}
-              {el.y},
+              {el.rssi}
             </li>
           );
         })}
