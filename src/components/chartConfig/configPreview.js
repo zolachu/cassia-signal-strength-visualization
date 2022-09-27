@@ -70,8 +70,8 @@ const options = {
         },
         ticks: {
           stepSize: 1,
-          suggestedMax: -70,
-          suggestedMin: -100,
+          suggestedMax: 0,
+          suggestedMin: -50,
         },
       },
     ],
