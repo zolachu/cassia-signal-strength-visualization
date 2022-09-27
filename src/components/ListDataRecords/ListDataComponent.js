@@ -14,6 +14,17 @@ const ListDataComponent = (props) => {
   const deleteItemHandler = (key) => {
     const newData = data.filter((item) => item.key !== key);
     setData(newData);
+
+    (async () => {
+      const response = await fetch(`http://localhost:8080/data/${key}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+      const data = await response.json();
+      // console.log(data, "SUCCESS deleting");
+    })();
   };
 
   console.log(data);

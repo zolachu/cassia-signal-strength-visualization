@@ -25,46 +25,46 @@ const App = () => {
   const receiveDataHandler = useCallback((data) => {
     setData([
       {
-        key: 0.1,
+        key: 0.1423798154941256,
         data: [
           {
-            timestamp_unix: 1,
+            timestamp_unix: Date(),
             rssi: 2,
             distance: 1,
             devicemac: 3,
           },
           {
-            timestamp_unix: 33424,
-            rssi: 24242,
+            timestamp_unix: Date(),
+            rssi: 24,
             distance: 1,
             devicemac: 366,
           },
           {
-            timestamp_unix: 16664,
-            rssi: 2,
+            timestamp_unix: Date(),
+            rssi: 20,
             distance: 1,
             devicemac: 32342,
           },
         ],
       },
       {
-        key: 0.4,
+        key: 0.27523359884517085,
         data: [
           {
-            timestamp_unix: 12342,
-            rssi: 24,
+            timestamp_unix: Date(),
+            rssi: 2,
             distance: 1,
-            devicemac: 3242,
+            devicemac: 3,
           },
           {
-            timestamp_unix: 33432424,
-            rssi: 24242,
+            timestamp_unix: Date(),
+            rssi: 24,
             distance: 1,
             devicemac: 366,
           },
           {
-            timestamp_unix: 16664,
-            rssi: 24,
+            timestamp_unix: Date(),
+            rssi: 20,
             distance: 1,
             devicemac: 32342,
           },

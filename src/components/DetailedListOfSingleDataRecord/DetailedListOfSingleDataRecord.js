@@ -16,12 +16,7 @@ const DetailedListOfSingleDataRecord = (props) => {
       <div>mac address: {macAddress}</div>
       <ul>
         {props.data.map((el) => {
-          return (
-            <li key={Math.random()}>
-              {/* {el.x ? el.x.toString() : ""} */}
-              {el.rssi}
-            </li>
-          );
+          return <li key={Math.random()}>{el.rssi}</li>;
         })}
       </ul>
     </div>
