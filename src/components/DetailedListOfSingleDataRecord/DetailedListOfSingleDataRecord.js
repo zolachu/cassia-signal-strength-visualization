@@ -6,17 +6,37 @@ const DetailedListOfSingleDataRecord = (props) => {
   if (!props.data) {
     return;
   }
-  const distance = props.data.length > 0 ? props.data[0].distance : undefined;
+  const distance = props.data.length > 0 ? props.data[0].distance : "undefined";
   const macAddress =
-    props.data.length > 0 ? props.data[0].devicemac : undefined;
+    props.data.length > 0 ? props.data[0].devicemac : "undefined";
+
+  console.log(new Date(props.data[props.data.length - 1].x).getTime());
+  const elapsedTime =
+    props.data.length > 0
+      ? (new Date(props.data[props.data.length - 1].x).getTime() -
+          new Date(props.data[0].x).getTime()) /
+        1000
+      : "undefined";
+
+  const elapsedMinutes = Math.floor(elapsedTime / 60);
+  const elapsedSeconds = elapsedTime - elapsedMinutes * 60;
+  // const timeInMinutes = elapsedMinutes > 0 ? {<bold>{elapsedMinutes}</bold> minutes} : {};
+
   return (
     <div>
-      <div>time elapsed:{props.timer}</div>
-      <div>distance: {distance}</div>
-      <div>mac address: {macAddress}</div>
+      <div>
+        time elapsed: <b>{elapsedMinutes}</b> minutes <b>{elapsedSeconds}</b>{" "}
+        seconds
+      </div>
+      <div>
+        distance: <b>{distance}</b>
+      </div>
+      <div>
+        mac address: <b>{macAddress}</b>
+      </div>
       <ul>
         {props.data.map((el) => {
-          return <li key={Math.random()}>{el.rssi}</li>;
+          return <li key={Math.random()}>{el.y}</li>;
         })}
       </ul>
     </div>

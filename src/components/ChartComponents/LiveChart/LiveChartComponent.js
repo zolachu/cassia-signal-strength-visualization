@@ -28,7 +28,7 @@ const LiveChartComponent = (props) => {
       props.onReceiveData(series.current);
       // let body = [];
       // for (let data in latestData.data) {
-      //   body.push({ key: key, ...data });
+      //   body.push({ key: key, timestamp_unix: data.x, rssi:data.y, devicemac: data.devicemac });
       // }
       const body = [
         {

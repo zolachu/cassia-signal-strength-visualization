@@ -8,7 +8,40 @@ const ListDataComponent = (props) => {
   const [data, setData] = useState([]);
 
   React.useEffect(() => {
-    setData(dataList);
+    (async () => {
+      const response = await fetch("http://localhost:8080/data/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+      const data = await response.json();
+      console.log(data, "THIS IS THE DATA");
+      const dictionary = {};
+      data.map((instance) => {
+        if (!dictionary[instance["key"]]) dictionary[instance["key"]] = [];
+        dictionary[instance["key"]].push({
+          x: instance["timestamp_unix"],
+          y: instance["rssi"],
+          distance: instance["distance"],
+          devicemac: instance["devicemac"],
+        });
+      });
+      const list = [];
+      for (const [key, value] of Object.entries(dictionary)) {
+        list.push({ key: key, data: value });
+      }
+
+      console.log(list, "THIS IS THE BEAUTIFUL LIST");
+      setData(list);
+    })();
+  }, []);
+
+  React.useEffect(() => {
+    setData((prevData) => {
+      const newData = [...prevData, ...dataList];
+      return newData;
+    });
   }, [dataList]);
 
   const deleteItemHandler = (key) => {
