@@ -15,11 +15,13 @@ const PreviewChartComponent = (props) => {
   let labels = [];
   let distance = null;
   let macAddress = null;
+  let tag = null;
 
   if (props.data && props.data[0]) {
     labels = props.data.map((element) => element.x);
     distance = props.data[0].distance;
     macAddress = props.data[0].devicemac;
+    tag = props.data[0].tag;
   }
 
   const data = {
@@ -70,6 +72,7 @@ const PreviewChartComponent = (props) => {
       BoxPlot
       <h4>Distance: {distance}</h4>
       <h4>Mac Address: {macAddress}</h4>
+      <h4>Tag: {tag}</h4>
       <SmallCard className={styles.container}>
         <PreviewComponent
           datasetKeyProvider={datasetKeyProvider}
