@@ -35,8 +35,13 @@ const DetailedListOfSingleDataRecord = (props) => {
         mac address: <b>{macAddress}</b>
       </div>
       <ul>
-        {props.data.map((el) => {
-          return <li key={Math.random()}>{el.y}</li>;
+        {props.data.map((item) => {
+          return (
+            <li key={Math.random()}>
+              rssi:<b> {item.y}</b> recorded at{" "}
+              <b>{new Date(item.x).toTimeString().split(" ")[0]}</b>
+            </li>
+          );
         })}
       </ul>
     </div>
