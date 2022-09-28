@@ -108,7 +108,7 @@ const LiveChartComponent = (props) => {
       })();
 
       // let body = [];
-      // for (let data in latestData.data) {
+      // for (let data of latestData.data) {
       //   body.push({
       //     key: key,
       //     timestamp_unix: data.x,
