@@ -3,6 +3,8 @@
     display: flex;
     width: 100%;
     flex-direction: row;
+    background: white;
+    /* background: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25)); */
     /* border: 1px solid black; */
 }
 

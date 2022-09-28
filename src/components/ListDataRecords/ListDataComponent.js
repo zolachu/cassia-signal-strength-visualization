@@ -25,6 +25,7 @@ const ListDataComponent = (props) => {
           y: instance["rssi"],
           distance: instance["distance"],
           devicemac: instance["devicemac"],
+          tag: instance["tag"],
         });
       });
       const list = [];

@@ -13,6 +13,7 @@ const SingleDataComponent = (props) => {
   const arrayY = data.map((element) => element.y);
   const distance = data.length > 0 ? data[0].distance : undefined;
   const macAddress = data.length > 0 ? data[0].devicemac : undefined;
+  const tag = data.length > 0 ? data[0].tag : undefined;
 
   console.log(dataKey);
   return (
@@ -24,6 +25,7 @@ const SingleDataComponent = (props) => {
           timer={props.timer}
           distance={distance}
           macAddress={macAddress}
+          tag={tag}
         ></DataStats>
         <Button
           onClick={() => props.onDelete(dataKey)}

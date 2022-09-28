@@ -4,6 +4,11 @@ import TextField from "@mui/material/TextField";
 import styles from "./LiveChartComponent.module.css";
 import LiveChart from "./LiveChart";
 import { v4 as uuidv4 } from "uuid";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 // const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
 // const serverBaseURL =
@@ -14,6 +19,7 @@ const LiveChartComponent = (props) => {
   const toggleRef = useRef(false);
   const inputRef = useRef(0);
   const macAddressRef = useRef(0);
+  const tagRef = useRef(1);
   const series = useRef([{ data: [], id: Math.random() }]);
   const [graphPoints, updateGraphPoints] = useState([]);
 
@@ -28,7 +34,56 @@ const LiveChartComponent = (props) => {
 
       const key = uuidv4();
       console.log(key);
-      props.onReceiveData(series.current);
+
+      props.onReceiveData({
+        key: Math.random(),
+        data: [
+          {
+            x: "Mon Sep 26 2022 22:29:42 GMT-0700 (Pacific Daylight Time)",
+            y: -2,
+            distance: inputRef.current.value,
+            devicemac: 3,
+            tag: tagRef.current.value,
+          },
+          {
+            x: "Mon Sep 26 2022 22:29:43 GMT-0700 (Pacific Daylight Time)",
+            y: -24,
+            distance: inputRef.current.value,
+            devicemac: 366,
+            tag: tagRef.current.value,
+          },
+          {
+            x: "Mon Sep 26 2022 22:29:44 GMT-0700 (Pacific Daylight Time)",
+            y: -20,
+            distance: inputRef.current.value,
+            devicemac: 32342,
+            tag: tagRef.current.value,
+          },
+          {
+            x: "Mon Sep 26 2022 22:29:45 GMT-0700 (Pacific Daylight Time)",
+            y: -2,
+            distance: inputRef.current.value,
+            devicemac: 3,
+            tag: tagRef.current.value,
+          },
+          {
+            x: "Mon Sep 26 2022 22:29:45 GMT-0700 (Pacific Daylight Time)",
+            y: -24,
+            distance: inputRef.current.value,
+            devicemac: 366,
+            tag: tagRef.current.value,
+          },
+          {
+            x: "Mon Sep 26 2022 22:29:46 GMT-0700 (Pacific Daylight Time)",
+            y: -20,
+            distance: inputRef.current.value,
+            devicemac: 32342,
+            tag: tagRef.current.value,
+          },
+        ],
+      });
+      // props.onReceiveData(series.current);
+
       let body = [];
       for (let data in latestData.data) {
         body.push({
@@ -37,6 +92,7 @@ const LiveChartComponent = (props) => {
           rssi: data.y,
           distance: data.distance,
           devicemac: data.devicemac,
+          tag: data.tag,
         });
       }
       // (async () => {
@@ -114,6 +170,7 @@ const LiveChartComponent = (props) => {
           distance: inputRef.current.value,
           // macaddress: macAddressRef.current.value,
           devicemac: data.bdaddrs[0]["bdaddr"],
+          tag: tagRef.current.value,
         });
         macAddressRef.current = data.bdaddrs[0]["bdaddr"];
         series.current = newSeries;
@@ -130,32 +187,42 @@ const LiveChartComponent = (props) => {
       <div className={styles["chart-container"]}>
         <LiveChart graphPoints={graphPoints} />
       </div>
+
+      <RecordButton onClick={clickToggleHandler} disable={props.shouldStop} />
+
       <div className={styles.actions}>
-        <RecordButton onClick={clickToggleHandler} disable={props.shouldStop} />
-        <label htmlFor="inputDistance">Distance</label>
-        <TextField
-          id="inputDistance"
-          label="Distance"
-          variant="outlined"
-          type="number"
-          placeholder="distance in feet"
-          inputRef={inputRef}
-          disabled={props.shouldStop || toggleRef.current}
-        />
-        {/* <label htmlFor="devicemac">Mac</label> */}
-        {/* <TextField
-          id="devicemac"
-          label="Mac Address"
-          variant="outlined"
-          // type="string"
-          placeholder="mac address"
-          inputRef={macAddressRef}
-          disabled={props.shouldStop || toggleRef.current}
-        /> */}
-        <div>Mac Address:</div>
-        <div>
-          <b>{macAddressRef.current}aa:aa:aa</b>
-        </div>
+        <Box sx={{ minWidth: 50 }}>
+          <FormControl
+            fullWidth
+            disabled={props.shouldStop || toggleRef.current}
+          >
+            <TextField
+              labelId="demo-simple-select-label"
+              // id="inputDistance"
+              label="Distance"
+              variant="outlined"
+              type="number"
+              inputRef={inputRef}
+              disabled={props.shouldStop || toggleRef.current}
+            />
+          </FormControl>
+        </Box>
+
+        <Box sx={{ minWidth: 50 }}>
+          <FormControl
+            fullWidth
+            disabled={props.shouldStop || toggleRef.current}
+          >
+            {/* <InputLabel id="demo-simple-select-label">Test Tag</InputLabel> */}
+            <TextField
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Test Tag"
+              variant="outlined"
+              inputRef={tagRef}
+            />
+          </FormControl>
+        </Box>
       </div>
     </div>
   );

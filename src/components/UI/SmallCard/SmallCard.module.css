@@ -1,9 +1,7 @@
 .smallCard {
     /* border: 1px solid white; */
     border-radius: 0.5rem;
-    padding: 1rem;
-    color:#151E3E;
-
+    
     /* box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem; */
     box-shadow: rgb(58 53 65 / 10%) 0px 4px 4px 0px;
 }

@@ -23,74 +23,7 @@ const App = () => {
 
   // console.log("GOD PLS");
   const receiveDataHandler = useCallback((data) => {
-    setData([
-      {
-        key: Math.random(),
-        data: [
-          {
-            x: "Mon Sep 26 2022 22:29:42 GMT-0700 (Pacific Daylight Time)",
-            y: -2,
-            distance: 1,
-            devicemac: 3,
-          },
-          {
-            x: "Mon Sep 26 2022 22:29:43 GMT-0700 (Pacific Daylight Time)",
-            y: -24,
-            distance: 1,
-            devicemac: 366,
-          },
-          {
-            x: "Mon Sep 26 2022 22:29:44 GMT-0700 (Pacific Daylight Time)",
-            y: -20,
-            distance: 1,
-            devicemac: 32342,
-          },
-          {
-            x: "Mon Sep 26 2022 22:29:42 GMT-0700 (Pacific Daylight Time)",
-            y: -2,
-            distance: 1,
-            devicemac: 3,
-          },
-          {
-            x: "Mon Sep 26 2022 22:29:43 GMT-0700 (Pacific Daylight Time)",
-            y: -24,
-            distance: 1,
-            devicemac: 366,
-          },
-          {
-            x: "Mon Sep 26 2022 22:29:44 GMT-0700 (Pacific Daylight Time)",
-            y: -20,
-            distance: 1,
-            devicemac: 32342,
-          },
-        ],
-      },
-      {
-        key: Math.random(),
-        data: [
-          {
-            x: "Mon Sep 26 2022 22:29:42 GMT-0700 (Pacific Daylight Time)",
-            y: -2,
-            distance: 10,
-            devicemac: 3,
-          },
-          {
-            x: "Mon Sep 30 2022 22:29:42 GMT-0700 (Pacific Daylight Time)",
-            y: -24,
-            distance: 10,
-            devicemac: 366,
-          },
-          {
-            x: "Mon Sep 31 2022 22:29:42 GMT-0700 (Pacific Daylight Time)",
-            y: -20,
-            distance: 10,
-            devicemac: 32342,
-          },
-        ],
-      },
-    ]);
-
-    // setData([...data]);
+    setData([...data]);
   }, []);
 
   const timerHandler = useCallback((setStopAll) => {

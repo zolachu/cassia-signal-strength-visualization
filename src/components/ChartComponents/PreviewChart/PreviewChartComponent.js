@@ -27,6 +27,7 @@ const PreviewChartComponent = (props) => {
     datasets: [
       {
         label: "Distance",
+        textColor: "red",
         data: props.data,
         // fill: true,
         backgroundColor: chartColors.red,

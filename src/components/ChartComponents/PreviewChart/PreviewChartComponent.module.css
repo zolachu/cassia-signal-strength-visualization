@@ -1,5 +1,5 @@
 .container {
     position: relative;
-    background: linear-gradient(195deg, rgb(207, 245, 209), rgb(206, 244, 207));
+    background: rgb(250, 246, 246);
     box-shadow: rgb(0 0 0 / 14%) 0rem 0.25rem 1.25rem 0rem, rgb(76 175 79 / 40%) 0rem 0.4375rem 0.625rem -0.3125rem;
 }

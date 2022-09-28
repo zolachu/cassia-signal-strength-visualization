@@ -21,6 +21,12 @@ const DataStatsComponent = (props) => {
     <span style={{ color: "red", fontWeight: "bold" }}>NONE</span>
   );
 
+  const tag = props.tag ? (
+    props.tag
+  ) : (
+    <span style={{ color: "red", fontWeight: "bold" }}>NONE</span>
+  );
+
   return (
     <div className={`${styles.dataStats} ${props.className}`}>
       <div>
@@ -40,6 +46,9 @@ const DataStatsComponent = (props) => {
       </div>
       <div>
         <strong>MAC ADDRESS:</strong> {macAddress}
+      </div>
+      <div>
+        <strong>TAG:</strong> {tag}
       </div>
     </div>
   );
