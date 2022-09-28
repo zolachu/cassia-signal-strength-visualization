@@ -42,7 +42,6 @@ const ListDataComponent = (props) => {
     setData((prevData) => {
       const data = [...prevData];
       if (addedData !== null) data.push(addedData);
-      // const data = [...prevData, addedData];
       return data;
     });
   }, [addedData]);

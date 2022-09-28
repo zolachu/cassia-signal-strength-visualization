@@ -33,10 +33,10 @@ const LiveChartComponent = (props) => {
       // props.onReceiveData(latestData);
 
       const key = uuidv4();
-      console.log(key);
+      // props.onReceiveData(series.current);
 
-      props.onReceiveData({
-        key: Math.random(),
+      const tempdata = {
+        key: key,
         data: [
           {
             x: "Mon Sep 26 2022 22:29:42 GMT-0700 (Pacific Daylight Time)",
@@ -49,14 +49,14 @@ const LiveChartComponent = (props) => {
             x: "Mon Sep 26 2022 22:29:43 GMT-0700 (Pacific Daylight Time)",
             y: -24,
             distance: inputRef.current.value,
-            devicemac: 366,
+            devicemac: 3,
             tag: tagRef.current.value,
           },
           {
             x: "Mon Sep 26 2022 22:29:44 GMT-0700 (Pacific Daylight Time)",
             y: -20,
             distance: inputRef.current.value,
-            devicemac: 32342,
+            devicemac: 3,
             tag: tagRef.current.value,
           },
           {
@@ -70,22 +70,21 @@ const LiveChartComponent = (props) => {
             x: "Mon Sep 26 2022 22:29:45 GMT-0700 (Pacific Daylight Time)",
             y: -24,
             distance: inputRef.current.value,
-            devicemac: 366,
+            devicemac: 3,
             tag: tagRef.current.value,
           },
           {
             x: "Mon Sep 26 2022 22:29:46 GMT-0700 (Pacific Daylight Time)",
             y: -20,
             distance: inputRef.current.value,
-            devicemac: 32342,
+            devicemac: 3,
             tag: tagRef.current.value,
           },
         ],
-      });
-      // props.onReceiveData(series.current);
-
+      };
+      props.onReceiveData(tempdata);
       let body = [];
-      for (let data in latestData.data) {
+      for (let data of tempdata.data) {
         body.push({
           key: key,
           timestamp_unix: data.x,
@@ -95,6 +94,30 @@ const LiveChartComponent = (props) => {
           tag: data.tag,
         });
       }
+      (async () => {
+        const response = await fetch("http://localhost:8080/data/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+          },
+          // body: formBody,
+          body: JSON.stringify(body),
+        });
+        const data = await response.json();
+        console.log(data, "THIS IS THE DATA");
+      })();
+
+      // let body = [];
+      // for (let data in latestData.data) {
+      //   body.push({
+      //     key: key,
+      //     timestamp_unix: data.x,
+      //     rssi: data.y,
+      //     distance: data.distance,
+      //     devicemac: data.devicemac,
+      //     tag: data.tag,
+      //   });
+      // }
       // (async () => {
       //   const response = await fetch("http://localhost:8080/data/", {
       //     method: "POST",
@@ -107,27 +130,6 @@ const LiveChartComponent = (props) => {
       //   const data = await response.json();
       //   console.log(data, "THIS IS THE DATA");
       // })();
-
-      // const body = [
-      //   {
-      //     key: key,
-      //     timestamp_unix: 1,
-      //     rssi: 2,
-      //     devicemac: 3,
-      //   },
-      //   {
-      //     key: key,
-      //     timestamp_unix: 33424,
-      //     rssi: 24242,
-      //     devicemac: 366,
-      //   },
-      //   {
-      //     key: key,
-      //     timestamp_unix: 16664,
-      //     rssi: 2,
-      //     devicemac: 32342,
-      //   },
-      // ];
 
       series.current = [...series.current, { data: [], key: key }];
     }
