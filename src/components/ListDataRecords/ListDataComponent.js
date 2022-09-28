@@ -40,7 +40,6 @@ const ListDataComponent = (props) => {
         list.push({ key: key, data: value });
       }
 
-      console.log(list, "THIS IS THE BEAUTIFUL LIST");
       setData(list);
     })();
   }, []);
@@ -60,23 +59,20 @@ const ListDataComponent = (props) => {
     (async () => {
       const response = await fetch(`http://localhost:8080/data/${key}`, {
         method: "DELETE",
-        headers: {
-          // "Content-Type": "application/json; charset=utf-8",
-        },
       });
       console.log(response);
     })();
   };
 
-  console.log(data);
-
   return (
     <div className={styles.container}>
-      {/* <h4>Recorded Data Stats</h4> */}
-      {/* {data[0].length === 0 ? (
-        <h5 style={{ color: "rgb(0,0,0)" }}> No Data Records Available</h5>
-      ) : ( */}
-      {/* <div> */}
+      <div>
+        {data.length === 0 ? (
+          <h5 style={{ color: "rgb(200,2,2)" }}> No Data Records Available</h5>
+        ) : (
+          ""
+        )}
+      </div>
       <ul>
         {data.length === 0
           ? ""
