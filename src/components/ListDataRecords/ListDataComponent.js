@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import styles from "./ListDataComponent.module.css";
 import SingleDataComponent from "../SingleDataRecord/SingleDataComponent";
 
+// myList.sort(function(x, y){
+//   return x.timestamp - y.timestamp;
+// })
+
 const ListDataComponent = (props) => {
   const addedData = props.data;
   console.log(addedData, "aaa");
@@ -30,6 +34,9 @@ const ListDataComponent = (props) => {
       });
       const list = [];
       for (const [key, value] of Object.entries(dictionary)) {
+        value.sort(function (a, b) {
+          return a.x - b.x;
+        });
         list.push({ key: key, data: value });
       }
 
