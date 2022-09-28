@@ -24,6 +24,7 @@ const LiveChartComponent = (props) => {
       // If the length is more than zero then send to Preview
       const latestData = series.current[series.current.length - 1];
       if (latestData.length > 0) props.displayThisInstance(latestData.data);
+      props.onReceiveData(latestData);
 
       const key = uuidv4();
       console.log(key);
@@ -38,9 +39,6 @@ const LiveChartComponent = (props) => {
           devicemac: data.devicemac,
         });
       }
-
-      props.onReceiveData(latestData);
-
       // (async () => {
       //   const response = await fetch("http://localhost:8080/data/", {
       //     method: "POST",
@@ -53,6 +51,7 @@ const LiveChartComponent = (props) => {
       //   const data = await response.json();
       //   console.log(data, "THIS IS THE DATA");
       // })();
+
       // const body = [
       //   {
       //     key: key,
@@ -113,8 +112,10 @@ const LiveChartComponent = (props) => {
           x: new Date(),
           y: data.rssi,
           distance: inputRef.current.value,
-          macaddress: macAddressRef.current.value,
+          // macaddress: macAddressRef.current.value,
+          devicemac: data.bdaddrs[0]["bdaddr"],
         });
+        macAddressRef.current = data.bdaddrs[0]["bdaddr"];
         series.current = newSeries;
       }
     };
@@ -141,8 +142,8 @@ const LiveChartComponent = (props) => {
           inputRef={inputRef}
           disabled={props.shouldStop || toggleRef.current}
         />
-        <label htmlFor="devicemac">Mac</label>
-        <TextField
+        {/* <label htmlFor="devicemac">Mac</label> */}
+        {/* <TextField
           id="devicemac"
           label="Mac Address"
           variant="outlined"
@@ -150,7 +151,11 @@ const LiveChartComponent = (props) => {
           placeholder="mac address"
           inputRef={macAddressRef}
           disabled={props.shouldStop || toggleRef.current}
-        />
+        /> */}
+        <div>Mac Address:</div>
+        <div>
+          <b>{macAddressRef.current}aa:aa:aa</b>
+        </div>
       </div>
     </div>
   );

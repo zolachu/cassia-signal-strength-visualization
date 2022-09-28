@@ -63,7 +63,7 @@ const PreviewComponent = (props) => {
             responsive: true,
             title: {
               display: true,
-              text: "Chart.js Box Plot Chart",
+              text: "Recorded Data",
             },
           }}
         />

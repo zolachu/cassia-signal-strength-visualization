@@ -22,7 +22,7 @@ const DataStatsComponent = (props) => {
   );
 
   return (
-    <div className={`styles.dataStats ${props.className}`}>
+    <div className={`${styles.dataStats} ${props.className}`}>
       <div>
         <strong>MIN:</strong> {min}
       </div>

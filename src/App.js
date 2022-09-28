@@ -25,8 +25,26 @@ const App = () => {
   const receiveDataHandler = useCallback((data) => {
     setData([
       {
-        key: 0.1423798154941256,
+        key: Math.random(),
         data: [
+          {
+            x: "Mon Sep 26 2022 22:29:42 GMT-0700 (Pacific Daylight Time)",
+            y: -2,
+            distance: 1,
+            devicemac: 3,
+          },
+          {
+            x: "Mon Sep 26 2022 22:29:43 GMT-0700 (Pacific Daylight Time)",
+            y: -24,
+            distance: 1,
+            devicemac: 366,
+          },
+          {
+            x: "Mon Sep 26 2022 22:29:44 GMT-0700 (Pacific Daylight Time)",
+            y: -20,
+            distance: 1,
+            devicemac: 32342,
+          },
           {
             x: "Mon Sep 26 2022 22:29:42 GMT-0700 (Pacific Daylight Time)",
             y: -2,
@@ -48,7 +66,7 @@ const App = () => {
         ],
       },
       {
-        key: 0.27523359884517085,
+        key: Math.random(),
         data: [
           {
             x: "Mon Sep 26 2022 22:29:42 GMT-0700 (Pacific Daylight Time)",
@@ -113,7 +131,7 @@ const App = () => {
             <Card
               className={styles.listDataContainer}
               icon="record"
-              title="Recorded Data Stats"
+              title="List of Recorded Data"
             >
               <div className={styles.listData}>
                 <ListDataComponent
@@ -126,11 +144,11 @@ const App = () => {
           </div>
 
           <div className={styles.rightContainer}>
-            <Card className={styles.barChart} icon="preview">
+            <Card className={styles.barChart} icon="preview" title="Chart View">
               <PreviewChartComponent data={recordedInstance} />
             </Card>
 
-            <Card icon="statistics">
+            <Card icon="statistics" title="Recorded Data Details">
               <div className={styles.statistics}>
                 {/* <PreviewChartComponent data={showRecordedDataInstance} /> */}
                 <DetailedListOfSingleDataRecord

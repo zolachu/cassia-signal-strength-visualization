@@ -4,6 +4,7 @@ import config from "../../chartConfig/configPreview";
 import PreviewComponent from "./PreviewComponent";
 
 import styles from "./PreviewChartComponent.module.css";
+import SmallCard from "../../UI/SmallCard/SmallCard";
 
 const PreviewChartComponent = (props) => {
   //chart component
@@ -68,14 +69,14 @@ const PreviewChartComponent = (props) => {
       BoxPlot
       <h4>Distance: {distance}</h4>
       <h4>Mac Address: {macAddress}</h4>
-      <div className={styles.container}>
+      <SmallCard className={styles.container}>
         <PreviewComponent
           datasetKeyProvider={datasetKeyProvider}
           data={data}
           options={options}
           radioValue={radioValue}
         />
-      </div>
+      </SmallCard>
     </div>
   );
 };

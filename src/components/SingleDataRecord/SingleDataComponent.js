@@ -2,6 +2,7 @@ import DataStats from "../DataStatsComponent/DataStatsComponent";
 import styles from "./SingleDataComponent.module.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Button from "@mui/material/Button";
+import SmallCard from "../UI/SmallCard/SmallCard";
 
 const SingleDataComponent = (props) => {
   const data = props.data;
@@ -16,7 +17,7 @@ const SingleDataComponent = (props) => {
   console.log(dataKey);
   return (
     <li>
-      <div className={styles.container}>
+      <SmallCard className={styles.container}>
         <DataStats
           className={styles.dataStats}
           array={arrayY}
@@ -36,7 +37,7 @@ const SingleDataComponent = (props) => {
         <Button onClick={() => props.onShow(data)} disabled={disable}>
           SHOW DETAILS
         </Button>
-      </div>
+      </SmallCard>
     </li>
   );
 };
