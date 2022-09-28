@@ -55,31 +55,12 @@ const ListDataComponent = (props) => {
           "Content-Type": "application/json; charset=utf-8",
         },
       });
-      const data = await response.json();
-      // console.log(data, "SUCCESS deleting");
+      // const data = await response.json();
+      // // console.log(data, "SUCCESS deleting");
     })();
   };
 
   console.log(data);
-  const list =
-    data.length === 0
-      ? ""
-      : data
-          .slice(0)
-          .reverse()
-          .map((item) => {
-            console.log(item.key);
-            return (
-              <SingleDataComponent
-                isTimerRunning={props.isTimerRunning}
-                data={item.data}
-                dataKey={item.key}
-                key={item.key}
-                onDelete={deleteItemHandler}
-                onShow={(item) => props.onShow(item)}
-              ></SingleDataComponent>
-            );
-          });
 
   return (
     <div className={styles.container}>
@@ -88,7 +69,25 @@ const ListDataComponent = (props) => {
         <h5 style={{ color: "rgb(0,0,0)" }}> No Data Records Available</h5>
       ) : ( */}
       {/* <div> */}
-      <ul>{list}</ul>
+      <ul>
+        {data.length === 0
+          ? ""
+          : data
+              .slice(0)
+              .reverse()
+              .map((item) => {
+                return (
+                  <SingleDataComponent
+                    isTimerRunning={props.isTimerRunning}
+                    data={item.data}
+                    dataKey={item.key}
+                    key={item.key}
+                    onDelete={deleteItemHandler}
+                    onShow={(item) => props.onShow(item)}
+                  ></SingleDataComponent>
+                );
+              })}
+      </ul>
     </div>
   );
 };

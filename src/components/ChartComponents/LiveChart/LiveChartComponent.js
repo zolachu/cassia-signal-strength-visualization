@@ -3,6 +3,7 @@ import RecordButton from "../../UI/RecordButton/RecordButton";
 import TextField from "@mui/material/TextField";
 import styles from "./LiveChartComponent.module.css";
 import LiveChart from "./LiveChart";
+import { v4 as uuidv4 } from "uuid";
 
 // const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
 // const serverBaseURL =
@@ -24,32 +25,21 @@ const LiveChartComponent = (props) => {
       const latestData = series.current[series.current.length - 1];
       if (latestData.length > 0) props.displayThisInstance(latestData.data);
 
-      const key = Math.random();
+      const key = uuidv4();
+      console.log(key);
       props.onReceiveData(series.current);
-      // let body = [];
-      // for (let data in latestData.data) {
-      //   body.push({ key: key, timestamp_unix: data.x, rssi:data.y, devicemac: data.devicemac });
-      // }
-      const body = [
-        {
+      let body = [];
+      for (let data in latestData.data) {
+        body.push({
           key: key,
-          timestamp_unix: 1,
-          rssi: 2,
-          devicemac: 3,
-        },
-        {
-          key: key,
-          timestamp_unix: 33424,
-          rssi: 24242,
-          devicemac: 366,
-        },
-        {
-          key: key,
-          timestamp_unix: 16664,
-          rssi: 2,
-          devicemac: 32342,
-        },
-      ];
+          timestamp_unix: data.x,
+          rssi: data.y,
+          distance: data.distance,
+          devicemac: data.devicemac,
+        });
+      }
+
+      props.onReceiveData(latestData);
 
       // (async () => {
       //   const response = await fetch("http://localhost:8080/data/", {
@@ -63,6 +53,26 @@ const LiveChartComponent = (props) => {
       //   const data = await response.json();
       //   console.log(data, "THIS IS THE DATA");
       // })();
+      // const body = [
+      //   {
+      //     key: key,
+      //     timestamp_unix: 1,
+      //     rssi: 2,
+      //     devicemac: 3,
+      //   },
+      //   {
+      //     key: key,
+      //     timestamp_unix: 33424,
+      //     rssi: 24242,
+      //     devicemac: 366,
+      //   },
+      //   {
+      //     key: key,
+      //     timestamp_unix: 16664,
+      //     rssi: 2,
+      //     devicemac: 32342,
+      //   },
+      // ];
 
       series.current = [...series.current, { data: [], key: key }];
     }
