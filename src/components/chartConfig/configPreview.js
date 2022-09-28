@@ -13,16 +13,6 @@ var chartColors = {
   grey: "rgb(201, 203, 207)",
 };
 
-const findDistinctElements = (array) => {
-  let map = new Map();
-  for (let i = 0; i < array.length; i++) {
-    if (!map.has(array[i])) map[array[i]] = 0;
-    map[array[i]]++;
-  }
-
-  return map;
-};
-
 const options = {
   responsive: true,
   maintainAspectRatio: true,
