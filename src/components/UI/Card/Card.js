@@ -9,6 +9,7 @@ const Card = (props) => {
       <IconComponent title={props.title} icon={props.icon}>
         <TrendingUpOutlinedIcon />
       </IconComponent>
+
       {props.children}
     </div>
   );

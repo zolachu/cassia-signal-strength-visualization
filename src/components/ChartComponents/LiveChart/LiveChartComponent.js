@@ -199,7 +199,6 @@ const LiveChartComponent = (props) => {
             disabled={props.shouldStop || toggleRef.current}
           >
             <TextField
-              labelId="demo-simple-select-label"
               // id="inputDistance"
               label="Distance"
               variant="outlined"
@@ -217,7 +216,6 @@ const LiveChartComponent = (props) => {
           >
             {/* <InputLabel id="demo-simple-select-label">Test Tag</InputLabel> */}
             <TextField
-              labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="Test Tag"
               variant="outlined"

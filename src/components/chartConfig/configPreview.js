@@ -30,6 +30,7 @@ const options = {
       },
     },
   },
+  labels: { render: "value" },
   title: {
     display: true,
     text: "Recorded Data",

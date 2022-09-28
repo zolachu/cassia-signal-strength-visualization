@@ -32,9 +32,10 @@ const PreviewChartComponent = (props) => {
         textColor: "red",
         data: props.data,
         // fill: true,
-        backgroundColor: chartColors.red,
-        borderColor: chartColors.pink,
-        segment: {},
+        backgroundColor: "rgba(255, 10, 13, 0.3)",
+        borderColor: chartColors.red,
+        borderWidth: 2,
+        borderRadius: 10,
       },
     ],
   };
