@@ -21,7 +21,7 @@ const DetailedListOfSingleDataRecord = (props) => {
   const elapsedMinutes = Math.floor(elapsedTime / 60);
   const elapsedSeconds = elapsedTime - elapsedMinutes * 60;
   // const timeInMinutes = elapsedMinutes > 0 ? {<bold>{elapsedMinutes}</bold> minutes} : {};
-
+  const tag = props.data.length > 0 ? props.data[0].tag : "undefined";
   return (
     <div>
       <div>
@@ -33,6 +33,9 @@ const DetailedListOfSingleDataRecord = (props) => {
       </div>
       <div>
         mac address: <b>{macAddress}</b>
+      </div>
+      <div>
+        tag: <b>{tag}</b>
       </div>
       <ul>
         {props.data.map((item) => {

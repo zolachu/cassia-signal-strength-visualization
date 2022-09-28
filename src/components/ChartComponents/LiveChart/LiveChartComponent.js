@@ -33,7 +33,6 @@ const LiveChartComponent = (props) => {
       // props.onReceiveData(latestData);
 
       const key = uuidv4();
-      // props.onReceiveData(series.current);
 
       const tempdata = {
         key: key,
@@ -83,6 +82,8 @@ const LiveChartComponent = (props) => {
         ],
       };
       props.onReceiveData(tempdata);
+      props.displayThisInstance(tempdata.data);
+
       let body = [];
       for (let data of tempdata.data) {
         body.push({
@@ -100,7 +101,6 @@ const LiveChartComponent = (props) => {
           headers: {
             "Content-Type": "application/json; charset=utf-8",
           },
-          // body: formBody,
           body: JSON.stringify(body),
         });
         const data = await response.json();
