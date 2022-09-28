@@ -10,7 +10,7 @@ import DetailedListOfSingleDataRecord from "./components/DetailedListOfSingleDat
 import styles from "./App.module.css";
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [IsTimerRunning, setIsTimerStart] = useState(false);
   const [stopFetching, setStopFetching] = useState(false);
   const [disableFetchButton, setDisableFetchButton] = useState(false);
@@ -23,7 +23,7 @@ const App = () => {
 
   // console.log("GOD PLS");
   const receiveDataHandler = useCallback((data) => {
-    setData([...data]);
+    setData(data);
   }, []);
 
   const timerHandler = useCallback((setStopAll) => {

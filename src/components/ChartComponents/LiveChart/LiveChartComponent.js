@@ -30,7 +30,7 @@ const LiveChartComponent = (props) => {
       // If the length is more than zero then send to Preview
       const latestData = series.current[series.current.length - 1];
       if (latestData.length > 0) props.displayThisInstance(latestData.data);
-      props.onReceiveData(latestData);
+      // props.onReceiveData(latestData);
 
       const key = uuidv4();
       console.log(key);

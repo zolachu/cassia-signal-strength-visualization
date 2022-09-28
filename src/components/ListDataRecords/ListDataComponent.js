@@ -3,8 +3,8 @@ import styles from "./ListDataComponent.module.css";
 import SingleDataComponent from "../SingleDataRecord/SingleDataComponent";
 
 const ListDataComponent = (props) => {
-  const dataList = props.data;
-  console.log(dataList, "aaa");
+  const addedData = props.data;
+  console.log(addedData, "aaa");
   const [data, setData] = useState([]);
 
   React.useEffect(() => {
@@ -40,10 +40,12 @@ const ListDataComponent = (props) => {
 
   React.useEffect(() => {
     setData((prevData) => {
-      const newData = [...prevData, ...dataList];
-      return newData;
+      const data = [...prevData];
+      if (addedData !== null) data.push(addedData);
+      // const data = [...prevData, addedData];
+      return data;
     });
-  }, [dataList]);
+  }, [addedData]);
 
   const deleteItemHandler = (key) => {
     const newData = data.filter((item) => item.key !== key);
