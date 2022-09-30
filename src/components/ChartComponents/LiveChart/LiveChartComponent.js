@@ -34,55 +34,53 @@ const LiveChartComponent = (props) => {
 
       props.onReceiveData(latestData);
 
-      const key = uuidv4();
-
-      const tempdata = {
-        key: key,
-        data: [
-          {
-            x: new Date("2016-01-01T00:00:01.000Z").getTime(),
-            y: -2,
-            distance: inputRef.current.value,
-            devicemac: 3,
-            tag: tagRef.current.value,
-          },
-          {
-            x: new Date("2016-01-01T00:00:02.000Z").getTime(),
-            y: -24,
-            distance: inputRef.current.value,
-            devicemac: 3,
-            tag: tagRef.current.value,
-          },
-          {
-            x: new Date("2016-01-01T00:00:03.000Z").getTime(),
-            y: -20,
-            distance: inputRef.current.value,
-            devicemac: 3,
-            tag: tagRef.current.value,
-          },
-          {
-            x: new Date("2016-01-01T00:00:04.000Z").getTime(),
-            y: -2,
-            distance: inputRef.current.value,
-            devicemac: 3,
-            tag: tagRef.current.value,
-          },
-          {
-            x: new Date("2016-01-01T00:00:05.000Z").getTime(),
-            y: -24,
-            distance: inputRef.current.value,
-            devicemac: 3,
-            tag: tagRef.current.value,
-          },
-          {
-            x: new Date("2016-01-01T00:00:06.000Z").getTime(),
-            y: -20,
-            distance: inputRef.current.value,
-            devicemac: 3,
-            tag: tagRef.current.value,
-          },
-        ],
-      };
+      // const tempdata = {
+      //   key: key,
+      //   data: [
+      //     {
+      //       x: new Date("2016-01-01T00:00:01.000Z").getTime(),
+      //       y: -2,
+      //       distance: inputRef.current.value,
+      //       devicemac: 3,
+      //       tag: tagRef.current.value,
+      //     },
+      //     {
+      //       x: new Date("2016-01-01T00:00:02.000Z").getTime(),
+      //       y: -24,
+      //       distance: inputRef.current.value,
+      //       devicemac: 3,
+      //       tag: tagRef.current.value,
+      //     },
+      //     {
+      //       x: new Date("2016-01-01T00:00:03.000Z").getTime(),
+      //       y: -20,
+      //       distance: inputRef.current.value,
+      //       devicemac: 3,
+      //       tag: tagRef.current.value,
+      //     },
+      //     {
+      //       x: new Date("2016-01-01T00:00:04.000Z").getTime(),
+      //       y: -2,
+      //       distance: inputRef.current.value,
+      //       devicemac: 3,
+      //       tag: tagRef.current.value,
+      //     },
+      //     {
+      //       x: new Date("2016-01-01T00:00:05.000Z").getTime(),
+      //       y: -24,
+      //       distance: inputRef.current.value,
+      //       devicemac: 3,
+      //       tag: tagRef.current.value,
+      //     },
+      //     {
+      //       x: new Date("2016-01-01T00:00:06.000Z").getTime(),
+      //       y: -20,
+      //       distance: inputRef.current.value,
+      //       devicemac: 3,
+      //       tag: tagRef.current.value,
+      //     },
+      //   ],
+      // };
       // props.onReceiveData(tempdata);
       // props.displayThisInstance(tempdata.data);
 
@@ -112,7 +110,7 @@ const LiveChartComponent = (props) => {
       let body = [];
       for (let data of latestData.data) {
         body.push({
-          key: key,
+          key: latestData.key,
           timestamp_unix: new Date(data.x).getTime(),
           rssi: data.y,
           distance: data.distance,
@@ -132,6 +130,7 @@ const LiveChartComponent = (props) => {
         console.log(data, "THIS IS THE DATA");
       })();
 
+      const key = uuidv4();
       series.current = [...series.current, { data: [], key: key }];
     }
     props.onTimerRefresh(toggleRef.current);

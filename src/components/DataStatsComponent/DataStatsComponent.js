@@ -10,22 +10,24 @@ const DataStatsComponent = (props) => {
       : "Calculating...";
 
   const count = arrayY.length > 0 ? arrayY.length : "Calculating...";
-  const distance = props.distance ? (
-    props.distance
-  ) : (
-    <span style={{ color: "red", fontWeight: "bold" }}>NONE</span>
-  );
+  const distance =
+    props.distance !== "" ? (
+      props.distance
+    ) : (
+      <span style={{ color: "red", fontWeight: "bold" }}>NONE</span>
+    );
   const macAddress = props.macAddress ? (
     props.macAddress
   ) : (
     <span style={{ color: "red", fontWeight: "bold" }}>NONE</span>
   );
 
-  const tag = props.tag ? (
-    props.tag
-  ) : (
-    <span style={{ color: "red", fontWeight: "bold" }}>NONE</span>
-  );
+  const tag =
+    props.tag !== "" ? (
+      props.tag
+    ) : (
+      <span style={{ color: "red", fontWeight: "bold" }}>NONE</span>
+    );
 
   return (
     <div className={`${styles.dataStats} ${props.className}`}>
