@@ -28,8 +28,10 @@ const LiveChartComponent = (props) => {
       // This part sends the most current data to Preview Component.
       // If the length is more than zero then send to Preview
       const latestData = series.current[series.current.length - 1];
-      if (latestData.data.length > 0)
+      if (latestData.data.length > 0) {
         props.displayThisInstance(latestData.data);
+      }
+
       props.onReceiveData(latestData);
 
       const key = uuidv4();
@@ -111,7 +113,7 @@ const LiveChartComponent = (props) => {
       for (let data of latestData.data) {
         body.push({
           key: key,
-          timestamp_unix: data.x,
+          timestamp_unix: new Date(data.x).getTime(),
           rssi: data.y,
           distance: data.distance,
           devicemac: data.devicemac,
@@ -124,7 +126,6 @@ const LiveChartComponent = (props) => {
           headers: {
             "Content-Type": "application/json; charset=utf-8",
           },
-          // body: formBody,
           body: JSON.stringify(body),
         });
         const data = await response.json();
