@@ -18,16 +18,9 @@ const options = {
   maintainAspectRatio: true,
   plugins: {
     datalabels: {
-      align: "start",
-      anchor: "start",
-    },
-    legend: {
-      labels: {
-        // This more specific font property overrides the global property
-        font: {
-          size: 14,
-        },
-      },
+      anchor: "end",
+      align: "end",
+      rotation: -45,
     },
   },
   labels: { render: "value" },

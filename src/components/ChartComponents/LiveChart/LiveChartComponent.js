@@ -10,17 +10,16 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-// const serverBaseURL = "http://10.0.0.97/gap/nodes?event=1&filter_mac=50:31*";
-// const serverBaseURL =
-// "http://10.1.10.150/gap/nodes?event=1&filter_mac=C8:D0:83:E2:7A*";
-const serverBaseURL = "http://10";
+const serverBaseURL = "http://10.0.0.96/gap/nodes?event=1&filter_mac=50:31*";
+// const serverBaseURL = "http://10.0.0.96/gap/nodes?event=1&filter_mac=50:31*";
+// const serverBaseURL = "http://10";
 
 const LiveChartComponent = (props) => {
   const toggleRef = useRef(false);
   const inputRef = useRef(0);
   const macAddressRef = useRef(0);
   const tagRef = useRef(1);
-  const series = useRef([{ data: [], id: Math.random() }]);
+  const series = useRef([{ data: [], key: uuidv4() }]);
   const [graphPoints, updateGraphPoints] = useState([]);
 
   const clickToggleHandler = (shouldRecord) => {
@@ -29,8 +28,9 @@ const LiveChartComponent = (props) => {
       // This part sends the most current data to Preview Component.
       // If the length is more than zero then send to Preview
       const latestData = series.current[series.current.length - 1];
-      if (latestData.length > 0) props.displayThisInstance(latestData.data);
-      // props.onReceiveData(latestData);
+      if (latestData.data.length > 0)
+        props.displayThisInstance(latestData.data);
+      props.onReceiveData(latestData);
 
       const key = uuidv4();
 
@@ -81,34 +81,11 @@ const LiveChartComponent = (props) => {
           },
         ],
       };
-      props.onReceiveData(tempdata);
-      props.displayThisInstance(tempdata.data);
-
-      let body = [];
-      for (let data of tempdata.data) {
-        body.push({
-          key: key,
-          timestamp_unix: data.x,
-          rssi: data.y,
-          distance: data.distance,
-          devicemac: data.devicemac,
-          tag: data.tag,
-        });
-      }
-      (async () => {
-        const response = await fetch("http://localhost:8080/data/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json; charset=utf-8",
-          },
-          body: JSON.stringify(body),
-        });
-        const data = await response.json();
-        console.log(data, "THIS IS THE DATA");
-      })();
+      // props.onReceiveData(tempdata);
+      // props.displayThisInstance(tempdata.data);
 
       // let body = [];
-      // for (let data of latestData.data) {
+      // for (let data of tempdata.data) {
       //   body.push({
       //     key: key,
       //     timestamp_unix: data.x,
@@ -124,12 +101,35 @@ const LiveChartComponent = (props) => {
       //     headers: {
       //       "Content-Type": "application/json; charset=utf-8",
       //     },
-      //     // body: formBody,
       //     body: JSON.stringify(body),
       //   });
       //   const data = await response.json();
       //   console.log(data, "THIS IS THE DATA");
       // })();
+
+      let body = [];
+      for (let data of latestData.data) {
+        body.push({
+          key: key,
+          timestamp_unix: data.x,
+          rssi: data.y,
+          distance: data.distance,
+          devicemac: data.devicemac,
+          tag: data.tag,
+        });
+      }
+      (async () => {
+        const response = await fetch("http://localhost:8080/data/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+          },
+          // body: formBody,
+          body: JSON.stringify(body),
+        });
+        const data = await response.json();
+        console.log(data, "THIS IS THE DATA");
+      })();
 
       series.current = [...series.current, { data: [], key: key }];
     }
