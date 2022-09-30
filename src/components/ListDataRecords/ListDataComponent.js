@@ -81,14 +81,16 @@ const ListDataComponent = (props) => {
               .reverse()
               .map((item) => {
                 return (
-                  <SingleDataComponent
-                    isTimerRunning={props.isTimerRunning}
-                    data={item.data}
-                    dataKey={item.key}
-                    key={item.key}
-                    onDelete={deleteItemHandler}
-                    onShow={(item) => props.onShow(item)}
-                  ></SingleDataComponent>
+                  item.data.length > 0 && (
+                    <SingleDataComponent
+                      isTimerRunning={props.isTimerRunning}
+                      data={item.data}
+                      dataKey={item.key}
+                      key={item.key}
+                      onDelete={deleteItemHandler}
+                      onShow={(item) => props.onShow(item)}
+                    ></SingleDataComponent>
+                  )
                 );
               })}
       </ul>

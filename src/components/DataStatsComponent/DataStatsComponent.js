@@ -2,6 +2,7 @@ import styles from "./DataStatsComponent.module.css";
 
 const DataStatsComponent = (props) => {
   const arrayY = props.array;
+  if (arrayY.length === 0) return;
   const min = arrayY.length > 0 ? Math.max(...arrayY) : "Calculating...";
   const max = arrayY.length > 0 ? Math.min(...arrayY) : "Calculating...";
   const average =
