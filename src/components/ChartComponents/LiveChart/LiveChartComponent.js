@@ -10,7 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-const serverBaseURL = "http://10.0.0.96/gap/nodes?event=1&filter_mac=50:31*";
+const serverBaseURL = "http://10.0.0.128/gap/nodes?event=1&filter_mac=50:31*";
 // const serverBaseURL = "http://10.0.0.96/gap/nodes?event=1&filter_mac=50:31*";
 // const serverBaseURL = "http://10";
 
