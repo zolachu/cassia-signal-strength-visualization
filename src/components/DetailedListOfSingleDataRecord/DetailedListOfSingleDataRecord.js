@@ -39,7 +39,7 @@ const DetailedListOfSingleDataRecord = (props) => {
       </div>
       <ul>
         {props.data.map((item) => {
-          return (
+          return ( 
             <li key={Math.random()}>
               rssi:<b> {item.y}</b> recorded at{" "}
               <b>{new Date(item.x).toTimeString().split(" ")[0]}</b>

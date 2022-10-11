@@ -1,6 +1,6 @@
 import { Chart } from "react-chartjs-2";
 import "chartjs-plugin-streaming";
-import "chartjs-plugin-datalabels";
+// import "chartjs-plugin-datalabels";
 
 var chartColors = {
   red: "rgb(255, 99, 132)",
@@ -17,11 +17,11 @@ const options = {
   responsive: true,
   maintainAspectRatio: true,
   plugins: {
-    datalabels: {
-      anchor: "end",
-      align: "end",
-      rotation: -45,
-    },
+    // datalabels: {
+    //   anchor: "end",
+    //   align: "end",
+    //   rotation: -45,
+    // },
   },
   labels: { render: "value" },
   title: {
