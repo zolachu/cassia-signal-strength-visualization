@@ -1,5 +1,4 @@
 # Signal Strength Visualization
 
-<img width="567" alt="Screen Shot 2022-10-17 at 4 56 21 PM" src="https://user-images.githubusercontent.com/36867950/196304921-17d31995-37f5-4dca-ad0e-942512c24dc9.png">
 
-
+![New Wireframe 1](https://user-images.githubusercontent.com/36867950/197306989-2e0450ce-6ea1-46b5-a226-cd7d455f9efb.png)
